@@ -21,29 +21,32 @@ public class Signup extends HttpServlet{
 		LoginMapper logmapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(LoginMapper.class);
 		String id = request.getParameter("id");
 		String name = logmapper.selectCheckMember(id);
-			
-		if(name==null) {
-			if(request.getParameter("password")!=request.getParameter("repassword")) {
-				RequestDispatcher rde =request.getRequestDispatcher("/jsp/signup/pass_not_match.jsp");
-				rde.forward(request, response);
-				return;
-			} // inner if
-		Member regMember = new Member();
-		regMember.setId(id);
-		regMember.setPassword(request.getParameter("password"));
-		regMember.setName(request.getParameter("name"));
-		
-		logmapper.insertMember(regMember);
+		String pass = request.getParameter("password");
+		String rePass = request.getParameter("repassword");
+		System.out.println("password input: "+pass);
+		System.out.println("repassword input: "+rePass);
 
-		RequestDispatcher rd =request.getRequestDispatcher("/jsp/main/main.do");
-		rd.forward(request, response);
-		
-		} else {
-			RequestDispatcher rd =request.getRequestDispatcher("/jsp/signup/existinguser.jsp");
-			rd.forward(request, response);
+		if(name==null && pass.equals(rePass)) {
 			
+				Member regMember = new Member();
+				regMember.setId(id);
+				regMember.setPassword(pass);
+				regMember.setName(request.getParameter("name"));
+
+				logmapper.insertMember(regMember);
+
+				response.sendRedirect("/08_servletjsp/jsp/main/main.do");
+				return;
+		} else if(!name.isEmpty()) {
+				RequestDispatcher rd =request.getRequestDispatcher("/jsp/signup/existinguser.jsp");
+				rd.forward(request, response);
+				return;
+			} else {
+			RequestDispatcher rde =request.getRequestDispatcher("/jsp/signup/pass_not_match.jsp");
+			rde.forward(request, response);
+
 		} // if-else
-		
+
 	} // service();
-	
+
 } // end class
