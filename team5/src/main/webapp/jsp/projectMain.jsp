@@ -7,9 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
-	href="<c:url value="/project/css/project_login.css"/>">
+	href="<c:url value="/css/project_login.css"/>">
 <link rel="stylesheet"
-	href="<c:url value="/project/css/project_background.css"/>">
+	href="<c:url value="/css/project_background.css"/>">
 <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light"
 	rel="stylesheet">
 <!-- google font -->
