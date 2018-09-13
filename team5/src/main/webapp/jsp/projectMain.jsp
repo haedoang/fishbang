@@ -36,7 +36,7 @@
 			</div>
 			<div class="div_button">
 				<button type="button" id="start"
-					onclick="location.href='<c:url value="/project/jsp/projectUi.jsp"/>'">start</button>
+					onclick="location.href='<c:url value="/jsp/projectUi.jsp"/>'">start</button>
 			</div>
 
 

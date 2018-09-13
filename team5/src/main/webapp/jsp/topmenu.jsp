@@ -11,7 +11,7 @@
 	crossorigin="anonymous"> <!-- fontawesome logo -->
 <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light"
 	rel="stylesheet">
-<link rel="stylesheet" href="<c:url value="/project/css/project_topmenu.css"/>">
+<link rel="stylesheet" href="<c:url value="/css/project_topmenu.css"/>">
 <!-- google font -->
 <style>
 * {

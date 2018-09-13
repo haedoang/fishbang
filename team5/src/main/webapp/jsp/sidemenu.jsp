@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<c:url value="/project/css/project_sidemenu.css"/>">
+<link rel="stylesheet" href="<c:url value="/css/project_sidemenu.css"/>">
 </head>
 <body>
 <aside>

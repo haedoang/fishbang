@@ -15,7 +15,7 @@
 
 <body>
 
-	<c:import url="/project/jsp/topmenu.jsp"/>
+	<c:import url="/jsp/topmenu.jsp"/>
 
 	<!-- MAIN PAGE TOP MENU -->
 	
