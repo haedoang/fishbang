@@ -1,0 +1,10 @@
+127.0.0.1 - - [14/Sep/2018:09:20:26 +0900] "GET / HTTP/1.1" 404 1074
+127.0.0.1 - - [14/Sep/2018:09:20:55 +0900] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [14/Sep/2018:09:21:00 +0900] "GET /team5/jsp/projectUi.jsp HTTP/1.1" 200 2814
+0:0:0:0:0:0:0:1 - - [14/Sep/2018:09:21:02 +0900] "GET /team5/css/project_topmenu.css;jsessionid=FB47338341DDBF6BF334603ED77E9B38 HTTP/1.1" 200 20228
+0:0:0:0:0:0:0:1 - - [14/Sep/2018:09:21:02 +0900] "GET /team5/css/project_sidemenu.css;jsessionid=FB47338341DDBF6BF334603ED77E9B38 HTTP/1.1" 200 1961
+0:0:0:0:0:0:0:1 - - [14/Sep/2018:09:21:03 +0900] "GET /favicon.ico HTTP/1.1" 404 1085
+0:0:0:0:0:0:0:1 - - [14/Sep/2018:09:21:46 +0900] "GET /team5/jsp/projectUi.jsp HTTP/1.1" 200 2773
+0:0:0:0:0:0:0:1 - - [14/Sep/2018:09:21:47 +0900] "GET /team5/css/project_topmenu.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Sep/2018:09:21:47 +0900] "GET /team5/css/project_sidemenu.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Sep/2018:09:22:19 +0900] "GET /team5/jsp/projectUi.jsp HTTP/1.1" 200 2803
