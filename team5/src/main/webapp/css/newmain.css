@@ -89,9 +89,9 @@
 }
 
 .main-content {
-  margin-top: 60px;
+  margin-top: 51px;
   margin-left: 200px;
-  padding: 20px;
+  <!--padding: 20px;-->
 }
 
 .collapsed + .main-content {

@@ -17,7 +17,22 @@
 <style>
 #mains{
 border:1px solid tomato;
-height:8000px
+height:8000px;
+}
+#feedBoard{
+border:1px solid blue;
+width:1000px;
+height:3000px;
+margin-right:10px;
+float:left;
+display:block;
+}
+#side{
+border:1px solid yellow;
+width:355px;
+height:3000px;
+margin-left:1000px;
+
 }
 </style>
 </head>
@@ -46,11 +61,11 @@ height:8000px
   <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
   <ul class="navbar-primary-menu">
     <li>
-      <a href="#"><span class="glyphicon glyphicon-unchecked"></span><span class="nav-label">내어장보기</span></a>
-      <a href="#"><span class="glyphicon glyphicon-unchecked"></span><span class="nav-label">날씨,물때정보(option)</span></a>
-      <a href="#"><span class="glyphicon glyphicon-unchecked"></span><span class="nav-label">조과랭킹</span></a>
-      <a href="#"><span class="glyphicon glyphicon-unchecked"></span><span class="nav-label">고객센터(option)</span></a>
-      <a href="#"><span class="glyphicon glyphicon-unchecked"></span><span class="nav-label">어류도감</span></a>
+      <a href="#"><span class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기(로그인시)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감(비로그인)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-tint"></span><span class="nav-label">날씨,물때정보(option)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span><span class="nav-label">조과랭킹</span></a>
+      <a href="#"><span class="glyphicon glyphicon-question-sign"></span><span class="nav-label">고객센터(option)</span></a>
 
     </li>
   </ul>
@@ -58,7 +73,14 @@ height:8000px
 <div class="main-content">
 
  <div id="mains">
-  
+  	<div id="feedBoard"> asdasdasd</div>
+  	
+  	<div id="side">asdasdasd </div>
+  	
+  	
+  	
+  	
+  	
   </div>
 </div>
 <script>
