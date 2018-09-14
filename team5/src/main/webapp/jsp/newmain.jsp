@@ -14,6 +14,12 @@
 
 
 <title>Insert title here</title>
+<style>
+#mains{
+border:1px solid tomato;
+height:8000px
+}
+</style>
 </head>
 <body>
  <nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
@@ -29,8 +35,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-user navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Santhosh Giridara</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> 로그인시 id 표기 </a></li>
             <li><a href="#about"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
+            <li><a href="#about"><span class="glyphicon glyphicon-log-out"></span> logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -39,16 +46,20 @@
   <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
   <ul class="navbar-primary-menu">
     <li>
-      <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">게시판</span></a>
-      <a href="#"><span class="glyphicon glyphicon-envelope"></span><span class="nav-label">게시판2</span></a>
-      <a href="#"><span class="glyphicon glyphicon-cog"></span><span class="nav-label">게시판3</span></a>
-      <a href="#"><span class="glyphicon glyphicon-film"></span><span class="nav-label">게시판4</span></a>
-      <a href="#"><span class="glyphicon glyphicon-calendar"></span><span class="nav-label">게시판5</span></a>
+      <a href="#"><span class="glyphicon glyphicon-unchecked"></span><span class="nav-label">내어장보기</span></a>
+      <a href="#"><span class="glyphicon glyphicon-unchecked"></span><span class="nav-label">날씨,물때정보(option)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-unchecked"></span><span class="nav-label">조과랭킹</span></a>
+      <a href="#"><span class="glyphicon glyphicon-unchecked"></span><span class="nav-label">고객센터(option)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-unchecked"></span><span class="nav-label">어류도감</span></a>
+
     </li>
   </ul>
 </nav>
 <div class="main-content">
-  <h2>본문내용 나올 곳</h2>
+
+ <div id="mains">
+  
+  </div>
 </div>
 <script>
 $('.btn-expand-collapse').click(function(e) {
