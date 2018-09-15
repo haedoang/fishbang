@@ -46,18 +46,13 @@ margin-left:1000px;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<c:url value="/jsp/newmain.jsp"/>">fishbang</a>	<!-- 현재 페이지 새로 고침  -->
+          <a class="navbar-brand" href="#">fishbang</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-user navbar-right">
-          
-          	<!-- 비로그인 시  -->
-            <li><a href="<c:url value="/jsp/firstpage.jsp"/>"><span class="glyphicon glyphicon-plus"></span> signup</a></li>
-            <li><a href="<c:url value="/jsp/firstpage.jsp"/>"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
-            
-            <!-- 로그인 시  -->
-            <li><a href="<c:url value="/jsp/updateuserpage.jsp"/>"><span class="glyphicon glyphicon-user"></span> fishbang@fish.bang</a></li>
-            <li><a href="<c:url value="/jsp/newmain.jsp"/>"><span class="glyphicon glyphicon-log-out"></span> logout</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> 로그인시 id 표기 </a></li>
+            <li><a href="#about"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
+            <li><a href="#about"><span class="glyphicon glyphicon-log-out"></span> logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

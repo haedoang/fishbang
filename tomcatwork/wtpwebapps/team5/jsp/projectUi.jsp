@@ -8,12 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TestUi</title>
 <style>
-.main{
-	width: 1442px;
-	height: 3500px;
-	border: 2px solid tomato;
-	margin-left: 251.84px
-}
 </style>
 <c:import url="/jsp/topmenu.jsp"/>
 </head>
@@ -22,6 +16,6 @@
 <div class="sidemenu">
 	<c:import url="/jsp/sidemenu.jsp"/>
 </div>
-<div class="main"></div>
+
 </body>
 </html>
