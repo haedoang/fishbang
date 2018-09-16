@@ -11,7 +11,7 @@
 <body>
 	<h1>회원정보수정 페이지 입니다</h1>
 	<div class="settings-message" id="js-message"></div>
-	<form>
+	<form action="#" method="post" encType="multipart/form-data">
 		<input id="js-file-uploader" class="hidden" name="profile-picture"
 			type="file" accept="image/png, image/jpeg" />
 
@@ -45,13 +45,13 @@
 			</div>
 
 			<div class="input-container__single">
-				<label for="contact">Contact:</label> <input type="text" 
-					 name="contact" id="contact" />
+				<label for="contact">Contact:</label> <input type="text"
+					name="contact" id="contact" />
 			</div>
-			
+
 			<div class="input-container__single">
-				<label for="birth">Birth:</label>  <input type="date" name="mydate" value="2018-08-28"
-                min="1950-01-01" max="2018-10-04"/>
+				<label for="birth">Birth:</label> <input type="date" name="mydate"
+					value="2018-08-28" min="1950-01-01" max="2018-10-04" />
 			</div>
 
 
@@ -59,10 +59,11 @@
 
 		<div>
 			<input type="submit" value="Save Profile" /> <input type="button"
-				value="Cancel" onclick="location.href='<c:url value="/jsp/newmain.jsp"/>'" />
+				value="Cancel"
+				onclick="location.href='<c:url value="/jsp/newmain.jsp"/>'" />
 		</div>
 
-	</form>
+	</form><!--  form end  -->
 
 	<script src="<c:url value="/script/updateuser.js"/>"></script>
 </body>

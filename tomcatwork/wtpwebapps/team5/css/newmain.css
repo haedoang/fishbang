@@ -100,3 +100,6 @@
 nav{
 	position:fixed;
 }
+a,div{
+font-size : 1em;
+}

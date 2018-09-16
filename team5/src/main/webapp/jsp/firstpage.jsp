@@ -20,7 +20,7 @@ body {
 #main {
 	margin-top: 55px ;
 	font-size: 3em;
-	color: #F2F2F2;
+	color: #C2C2C2;
 }
 
 a{
@@ -29,14 +29,15 @@ margin-left:5px;
 }
 
 /* 백그라운드 적용시 제거  ↓*/
-body{
-background: skyblue;
+ body{
+background-image: url('../img/background.jpg'); !important;
+background-size:100%;
 }
 
  
- 
+  */
 </style>
-<%-- <c:import url="/jsp/firstpage_background.jsp"/>  --%>
+ <%-- <c:import url="/jsp/firstpage_background.jsp"/> --%>  
 <title>Welcome to fishbang</title>
 </head>
 <body>
@@ -79,11 +80,11 @@ background: skyblue;
 					<a href="#" onclick="showPopup()" style="text-decoration:none">forgot password?</a>
 				</div>
 				
-				<div class="form-row">
-					<button type="button" onclick="location.href='newmain.jsp'">Login</button>
-					
-					
 					<!--구현시 submit button .. -->
+				<div class="form-row">
+					<button type="button" onclick="location.href='newmain_board_feeds.jsp'">Login</button>
+					
+					
 				</div>
 				<div class="row">
 					<span>OR</span>

@@ -10,27 +10,48 @@
 <style>
 
 
-<%--
+/*
 body {
 	background: #0B0B61
 }
---%>
+*/
+
 
 #main {
-	margin-top: 100px;
+	margin-top: 55px ;
 	font-size: 3em;
-	color: #F2F2F2;
+	color: #C2C2C2;
 }
+
+a{
+line-height:60px;
+margin-left:5px;
+}
+
+/* 백그라운드 적용시 제거  ↓*/
+ body{
+background-image: url('../img/background.jpg'); !important;
+background-size:100%;
+}
+
+ 
+  */
 </style>
-<!--<c:import url="/jsp/firstpage_background.jsp"/>-->
-<title>Insert title here</title>
+ <%-- <c:import url="/jsp/firstpage_background.jsp"/> --%>  
+<title>Welcome to fishbang</title>
 </head>
 <body>
-
+	<div>
 	<center>
 		<h1 id="main">Welcome to fishbang</h1>
 	</center>
+	</div>
+	<!-- login form tag  -->
+	<form action="#" method ="post" id ="loginForm">
 
+
+	
+	
 	<!-- login -->
 	<div class="form">
 		<div class="head" class="signup">
@@ -38,7 +59,11 @@ body {
 			<div onclick="changeTab(this)" data-tab="signup" class="signup-tab">Signup</div>
 		</div>
 		<div class="body" id="form-body">
+			
+		
+			
 			<div class="login">
+			
 				<div class="form-row">
 					<label for="">Email</label> <input type="text" placeholder="Email">
 				</div>
@@ -46,12 +71,20 @@ body {
 					<label for="">Password</label> <input type="password"
 						placeholder="Password">
 				</div>
-				<div class="rem-row">
+			<!--<div class="rem-row">
 					<input type="checkbox" id="rem"> <label for="rem">Remember
 						me</label>
-				</div>
+				</div> -->
+				
 				<div class="form-row">
-					<button onclick="location.href='newmain.jsp'">Login</button>
+					<a href="#" onclick="showPopup()" style="text-decoration:none">forgot password?</a>
+				</div>
+				
+					<!--구현시 submit button .. -->
+				<div class="form-row">
+					<button type="button" onclick="location.href='newmain_board_feeds.jsp'">Login</button>
+					
+					
 				</div>
 				<div class="row">
 					<span>OR</span>
@@ -61,7 +94,13 @@ body {
 					<div class="social-form Kakao">Login with Kakao</div>
 				</div>
 			</div>
+			</form> <!-- login form end  -->
+			
+			
+			
+			
 			<div class="signup">
+		<form action="#" method="post" id="signupForm">
 				<div class="form-row">
 					<label for="">Name</label> <input type="text" placeholder="Name">
 				</div>
@@ -85,10 +124,17 @@ body {
 				</div>
 			</div>
 		</div>
+	 		</form> <!-- signup form end  -->
 
 	</div>
 	<script src="<c:url value="/script/firstpage_login.js"/>"></script>
-
+	
+	<script>
+		var showPopup = () => {
+			window.open("findpassword.jsp","findPass","width=480,height=450,left=100,top=50, resizable=no") 
+			
+		}
+	</script>
 	
 
 

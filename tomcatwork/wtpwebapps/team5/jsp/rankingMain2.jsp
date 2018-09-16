@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<c:url value="/css/newmain.css"/>">
+<link rel="stylesheet" href="<c:url value="../css/newmain.css"/>">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 <!-- javascript -->
@@ -13,22 +13,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
-<!-- fontawesone 로고 -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
 
 
-<!-- googleFont -->
+  		<c:import  url="../rankingMains/rankingCss.jsp" />
+  		<c:import  url="../rankingMains/rankingScript.jsp" />
+  		<c:import  url="../rankingMains/rankingSideCss.jsp" />
 
 
 
 <title>Insert title here</title>
 <style>
 #mains{
-border:1px solid tomato;
 height:8000px;
 }
 #feedBoard{
-border:1px solid blue;
+background : #fbfbfb;
+border : 5px double red;
 width:1000px;
 height:3000px;
 margin-right:10px;
@@ -36,7 +36,7 @@ float:left;
 display:block;
 }
 #side{
-border:1px solid yellow;
+background: white;
 width:355px;
 height:3000px;
 margin-left:1000px;
@@ -54,7 +54,7 @@ margin-left:1000px;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<c:url value="/jsp/newmain.jsp"/>"><span><i class="fas fa-fish fa-1x"></i></span>&nbsp;fishbang</a>	<!-- 현재 페이지 새로 고침  -->
+          <a class="navbar-brand" href="<c:url value="/jsp/newmain.jsp"/>">fishbang</a>	<!-- 현재 페이지 새로 고침  -->
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-user navbar-right">
@@ -74,11 +74,11 @@ margin-left:1000px;
   <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
   <ul class="navbar-primary-menu">
     <li>
-      <a href="#"><span class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기(로그인)</span></a>
-      <a href="#"><span class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감(비회원)</span></a>
-      <a href="#"><span class="glyphicon glyphicon-tint"></span><span class="nav-label">날씨,물때정보(opt)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기(로그인시)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감(비로그인)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-tint"></span><span class="nav-label">날씨,물때정보(option)</span></a>
       <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span><span class="nav-label">조과랭킹</span></a>
-      <a href="#"><span class="glyphicon glyphicon-question-sign"></span><span class="nav-label">고객센터(opt)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-question-sign"></span><span class="nav-label">고객센터(option)</span></a>
 
     </li>
   </ul>
@@ -86,9 +86,12 @@ margin-left:1000px;
 <div class="main-content">
 
  <div id="mains">
-  	<div id="feedBoard"> asdasdasd</div>
-  	
-  	<div id="side">asdasdasd </div>
+  	<div id="feedBoard">
+  		<c:import  url="../rankingMains/rankingSpeciesDetail.jsp" />
+  	</div>
+  	<div id="side">
+  		<c:import  url="../rankingMains/sideRankingSpecies.jsp" />
+  	</div>
   	
   	
   	
