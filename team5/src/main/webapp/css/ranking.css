@@ -270,7 +270,7 @@ li.unselect{
 
 .icon li:first-child{
 	position: absolute;
-	right: 190px;
+	left: 500px;
 	clear: both;
 	height: 400px;
 }

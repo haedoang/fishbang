@@ -87,10 +87,10 @@ margin-left:1000px;
 
  <div id="mains">
   	<div id="feedBoard">
-  		<c:import  url="../rankingMains/rankingSpecies.jsp" />
+  		<c:import  url="../rankingMains/rankingFishTotal.jsp" />
   	</div>
   	<div id="side">
-  		<c:import  url="../rankingMains/sideRankingSpecies.jsp" />
+  		<c:import  url="../rankingMains/sideRankingFishTotal.jsp" />
   	</div>
   	
   	
