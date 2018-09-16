@@ -243,7 +243,9 @@ small{
   border-top:1px #f1f1f1 solid;
 }
 
-
+td#table-header{
+	text-weight: bold;
+}
 
 
 </style>
@@ -364,7 +366,33 @@ small{
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <span class="text-message">Estou trabalhando em projetos de aplicações que exibem dados do Facebook através do API, portanto, preciso ter uma interface que segue o estilo do próprio website, afim de proporcionar uma experiência amigável para os usuários . </span>
+                <span class="text-message">
+                	<table>
+                		<tr>
+                			<td id="table-header">출조날짜: 	&nbsp;</td>
+                			<td>2018.09.15 (금)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                			<td id="table-header">출조지역:	&nbsp;</td>
+                			<td>거제도 어느 방파제 &nbsp;&nbsp;&nbsp;&nbsp;</td>
+                			<td id="table-header">낚시방법:	&nbsp;</td>
+                			<td>방파제 낚시 </td>
+                		</tr>
+                		<tr>
+                			<td id="table-header">어종(바다):	&nbsp;</td>
+                			<td>놀래미 &nbsp;	&nbsp;&nbsp;</td>
+                			<td id="table-header">전장: 	&nbsp;</td>
+                			<td>20cm &nbsp;	&nbsp;&nbsp;</td>
+                			<td id="table-header">무게: 	&nbsp;</td>
+                			<td>(미입력)kg &nbsp;	&nbsp;&nbsp;</td>
+                		</tr>
+                	</table>
+                	<table>
+                		<tr>
+                			<td>
+                			<img src="gamsung.jpg" width=300px>
+                			</td>
+                		</tr>
+                		</table>
+                </span>
                 <div class="txtbottom">
                     <a href="#" class="text-liketext">대박</a> · <a href="#" class="text-commenttext">댓글</a> · <a href="#" class="text-sharetext">공유</a>
                 </div>
@@ -398,6 +426,8 @@ small{
             </div>
         </div>
 				<br>
+				
+<!--  다른 스타일의 포스트 feeds -->
 				<div class="col-md-12">
 					<div class="feed">
 						<div class="media">
