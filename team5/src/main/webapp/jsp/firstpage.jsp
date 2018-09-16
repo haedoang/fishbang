@@ -16,8 +16,9 @@ body {
 }
 */
 
+
 #main {
-	margin-top: 100px;
+	margin-top: 55px ;
 	font-size: 3em;
 	color: #F2F2F2;
 }
@@ -31,7 +32,7 @@ margin-left:5px;
 body{
 background: skyblue;
 }
- 
+
  
  
 </style>
@@ -39,11 +40,11 @@ background: skyblue;
 <title>Welcome to fishbang</title>
 </head>
 <body>
-
+	<div>
 	<center>
 		<h1 id="main">Welcome to fishbang</h1>
 	</center>
-
+	</div>
 	<!-- login form tag  -->
 	<form action="#" method ="post" id ="loginForm">
 
@@ -75,7 +76,7 @@ background: skyblue;
 				</div> -->
 				
 				<div class="form-row">
-					<a href="#" onclick="showPopup()">forgot password?</a>
+					<a href="#" onclick="showPopup()" style="text-decoration:none">forgot password?</a>
 				</div>
 				
 				<div class="form-row">

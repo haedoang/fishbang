@@ -15,11 +15,11 @@
 	<form action="#" method="post">
 	<div class="form">
 		<div>
-			<h2 id="main">비밀번호 찾기</h2>
+			<h3 id="main">비밀번호 찾기</h3>
 		</div>
-		<div class="head" class="signup">
-			<div class="login-tab">Please Input your Info</div>
-			<!-- <div onclick="changeTab(this)" data-tab="signup" class="signup-tab">forgot Password</div> -->
+		<div class="head">
+			<div >Please Input your Info</div>
+	
 		</div>
 		<div class="body" id="form-body">
 			<div class="login">
@@ -29,6 +29,7 @@
 				<div class="form-row">
 					<label for="">Email</label> <input type="email" placeholder="Email">
 				</div>
+				
 				<div class="form-row">
 					<button type="submit" onclick="alert('변경된 비밀번호가 메일로 발송되었습니다.')">비밀번호 찾기</button>
 					<!--  location.href='newmain.jsp'-->
