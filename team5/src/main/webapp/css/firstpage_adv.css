@@ -17,7 +17,10 @@
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    box-shadow:0 3px 20px 0px rgba(0, 0, 0, 0.1)
+    box-shadow:0 3px 20px 0px rgba(0, 0, 0, 0.1);
+    top:-700px;
+    top:0px;
+    transition:1s;
 }
 
 .form-modal button{

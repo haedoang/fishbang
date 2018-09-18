@@ -54,7 +54,29 @@
 					value="2018-08-28" min="1950-01-01" max="2018-10-04" />
 			</div>
 
-
+					<div class="input-container__single">
+				<label for="address">Address:</label> <input type="text"
+					name="address" id="address" />
+			</div>
+			
+			<div class="input-container__single">
+				<label for="nationality">Nationality:</label><br> 
+					<select id ="nationality">
+						<option value="">국적을 선택하세요</option>
+						<option value="Afghanistan">Afghanistan </option>
+						<option value="Angola">Angola</option>
+						<option value="Chile">Chile</option>
+						<option value="China">China</option>
+						<option value="France ">France  </option>
+						<option value="Italy">Italy </option>
+						<option value="United Kingdom">United Kingdom</option>
+						<option value="USA">USA</option>
+						<option value="Korea">Korea</option>
+						<option value="Japan">Japan</option>
+						<option value="Other">Other</option>
+					</select>
+			</div>
+			
 		</div>
 
 		<div>

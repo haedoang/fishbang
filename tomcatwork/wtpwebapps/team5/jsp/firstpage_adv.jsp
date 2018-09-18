@@ -28,8 +28,8 @@
 
     <div id="login-form">
         <form name="loginForm" onsubmit="return doLogin()" method="post">
-            <input name ="email" id="email" type="text" placeholder="Enter email or username"/>
-            <input name ="password" id="password" type="password" placeholder="Enter password"/>
+            <input name ="login_email" id="login_email" type="text" placeholder="Enter email or username"/>
+            <input name ="login_password" id="login_password" type="password" placeholder="Enter password"/>
             <button type="button" class="btn login" onclick="doLogin()">login</button>
             <p><a href="#" onclick="showPopup()">Forgotten account</a></p>
             <hr/>
@@ -49,12 +49,10 @@
             
         </form>
     </div>
-
+	
 </div>
 <script src="<c:url value="/script/firstpage_adv.js"/>"></script>
-	
-	
-	
+		
 	<!-- forgot password popup -->
 	<script>
 	var showPopup = () => {
@@ -64,14 +62,14 @@
 	
 	var doLogin =  () => {
 		var form = document.loginForm
-		if(form.email.value==""){
+		if(form["login_email"].value==""){
 			alert("Enter email or username")
-			form.email.focus()
+			form[Login_email].focus()
 			return false
 		}
-		if(form.password.value==""){
+		if(form["login_password"].value==""){
 			alert("Enter password")
-			form.password.focus()
+			form["login_password"].focus()
 			return false 
 		}
 			

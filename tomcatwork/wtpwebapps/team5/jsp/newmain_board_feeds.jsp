@@ -12,6 +12,11 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
+
+<!-- mapapi -->
+  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=XdHi52ymtJ5BbGtyiEPn"></script>
+  
+  
 <!-- javascript -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script
@@ -418,6 +423,7 @@ td#table-header {
 							<table>
 								<tr>
 									<td><img src="gamsung.jpg" width=300px></td>
+									<td><div id="map" style="width:300px;height:300px; margin-left:100px;">잡은 곳</div></td>
 								</tr>
 							</table>
 						</span>
@@ -708,6 +714,21 @@ td#table-header {
 		});
 
 		uploadBtn.addEventListener('keydown', fakeUploadClick);
+	</script>
+	
+	
+	<script>
+	var mapOptions = {
+		    center: new naver.maps.LatLng(37.3595704, 127.105399),
+		    zoom: 10
+		};
+
+		var map = new naver.maps.Map('map', mapOptions);
+		
+		var marker = new naver.maps.Marker({
+		    position: new naver.maps.LatLng(37.3595704, 127.105399),
+		    map: map
+		});
 	</script>
 </body>
 </html>
