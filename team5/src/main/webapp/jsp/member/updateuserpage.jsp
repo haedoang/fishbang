@@ -111,10 +111,6 @@
 
 			<div id="side">asdasdasd</div>
 
-
-
-
-
 		</div>
 	</div>
 	<script>

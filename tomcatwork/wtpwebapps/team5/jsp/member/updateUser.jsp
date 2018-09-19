@@ -45,21 +45,6 @@
 			</div>
 
 			<div class="input-container__single">
-				<label for="contact">Contact:</label> <input type="text"
-					name="contact" id="contact" />
-			</div>
-
-			<div class="input-container__single">
-				<label for="birth">Birth:</label> <input type="date" name="mydate"
-					value="2018-08-28" min="1950-01-01" max="2018-10-04" />
-			</div>
-
-					<div class="input-container__single">
-				<label for="address">Address:</label> <input type="text"
-					name="address" id="address" />
-			</div>
-			
-			<div class="input-container__single">
 				<label for="nationality">Nationality:</label><br> 
 					<select id ="nationality">
 						<option value="">국적을 선택하세요</option>
@@ -77,7 +62,19 @@
 					</select>
 			</div>
 			
+
+			<div class="input-container__single">
+				<label for="birth">Birth:</label> <input type="date" name="mydate"
+					value="2018-08-28" min="1950-01-01" max="2018-10-04" />
+			</div>
+
+			<div class="input-container__single">
+				<label for="contact">Contact:</label> <input type="text"
+					name="contact" id="contact" />
+			</div>
+			
 		</div>
+		
 
 		<div>
 			<input type="submit" value="Save Profile" /> <input type="button"
