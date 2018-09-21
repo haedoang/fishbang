@@ -3,47 +3,73 @@ var showPopup = () => {
 	window.open("findpassword.jsp","findPass","width=480,height=450,left=100,top=50, resizable=no");
 	}
 	
-	//login form 
-	var doLogin =  () => {
+
+
+	function doLogin(){
+		if($("#loginEmail").val()==""){
+			//$("#loginEmail").focus().css({backgroundColor:"#A9F5A9"});
+			return false;
+		}	
 		
+		
+		if($("#loginPassword").val()==""){
+			$("#loginPassword").focus().css({backgroundColor:"#A9F5A9"});
+			return false;
+		}	
+		
+		$("form:nth-child(1)").action="../main/main.jsp".submit()
+		
+		
+	}
+
+
+
+
+
+
+/*
+	//login form alert
+	var doLogin =  () => {
+
 		var form = document.loginForm;
 		
-		if(form.email.value==""){
+		if(form.loginEmail.value==""){
 			alert("Enter email or username");
-			form.email.focus();
+			form.loginEmail.focus();
 			return false
 		}
-		if(form.password.value==""){
+		if(form.loginPassword.value==""){
 			alert("Enter password");
-			form.password.focus();
+			form.loginPassword.focus();
 			return false 
 		}
-			
+	
 		form.action = "../main/main.jsp";
 		form.submit();
 			
+		
 	
-}	
-	//signup form... 
+}*/	
+	//signup form alert 
 	var doSignup = () => {
 		
 		var form = document.signupForm
 		
-		if(form.email.value==""){
+		if(form.signEmail.value==""){
 			alert("Enter your Email");
-			form.email.focus();
+			form.signEmail.focus();
 			return false
 		}
 		
-		if(form.name.value==""){
+		if(form.signName.value==""){
 			alert("Enter username")
-			form.email.focus()
+			form.signName.focus()
 			return false
 		}
 		
-		if(form.password.value==""){
+		if(form.signPassword.value==""){
 			alert("Enter password")
-			form.password.focus()
+			form.signPassword.focus()
 			return false 
 		}
 			
@@ -51,4 +77,32 @@ var showPopup = () => {
 		form.action = "./homepage.jsp";
 		form.submit();
 	}
+	
+	//login enter 
+	var password =document.querySelector("#loginPassword")
+	password.onkeydown = function(e){
+		if(e.keyCode==13){
+			form.action = "../main/main.jsp";
+			form.submit();
+		}
+	}
+/*	//signup enter 
+	var password =document.querySelector("#signPassword")
+	password.onkeydown = function(e){
+		if(e.keyCode==13){
+			form.action = "./homepage.jsp";
+			form.submit();
+		}
+	}*/
+	
+	//jquery 활용 enter
+/*	$("#signPassword").keydown(function(e){
+		if(e.keyCode==13){
+			alert("회원가입이 완료되었습니다.")
+			$("form:nth-child(2)").action="./homepage.jsp";
+			$("form:nth-child(2)").submit();
+			
+		}
+	})
+	*/
 	

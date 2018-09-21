@@ -10,12 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/home.do")
-public class Home extends HttpServlet{
+public class HomeController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/home/homepage.jsp");
 		

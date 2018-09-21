@@ -5,9 +5,7 @@
 <html>
 <head>
 <style>
-#browse{
-text-align:center;
-}
+
 </style>
 <!--font  -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
@@ -15,6 +13,12 @@ text-align:center;
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<c:url value="/css/home/homepage.css"/>">
+<!-- jquery -->
+  <script
+        src="http://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous">
+  </script>
 
 <title>welcome to fishbang, here is our homepage.</title>
 </head>
@@ -33,31 +37,30 @@ text-align:center;
 
     <div id="login-form">
         <form name="loginForm" onsubmit="return doLogin()" method="post">
-            <input name ="email" id="email" type="text" placeholder="Enter email or username"/>
-            <input name ="password" id="password" type="password" placeholder="Enter password"/>
+            <input name ="loginEmail" id="loginEmail" type="text" placeholder="Enter email or username"/>
+            <input name ="loginPassword" id="loginPassword" type="password" placeholder="Enter password"/>
             <button type="button" class="btn login" onclick="doLogin()">login</button>
             <p><a href="#" onclick="showPopup()">Find password?</a></p>
             <hr/>
             <button type="button" class="btn -box-sd-effect naver"> <i class="fa fa-plus fa-lg" aria-hidden="true"></i> sign in with Naver</button>
             <button type="button" class="btn -box-sd-effect kakao"> <i class="fa fa-plus fa-lg" aria-hidden="true"></i> sign in with Kakao</button>
+            <hr/>
+            <p><a href="#">둘러보기</a></p>
         </form>
     </div>
 
     <div id="signup-form">
-        <form name="signupForm" onsubmit="return doSignup()" method="post">
-            <input name="email" id="email" type="email" placeholder="Enter your email"/>
-            <input name="name" id="name" type="text" placeholder="Choose username"/>
-            <input name="password" id="password" type="password" placeholder="Create password"/>
+        <form id ="signupForm" name="signupForm" onsubmit="return doSignup()" method="post">
+            <input name="signEmail" id="signEmail" type="email" placeholder="Enter your email"/>
+            <input name="signName" id="signName" type="text" placeholder="Choose username"/>
+            <input name="signPassword" id="signPassword" type="password" placeholder="Create password"/>
             <button type="button" onclick="doSignup()" class="btn signup">create account</button>
             <p>Clicking <strong>create account</strong> means that you are agree to our <a href="#">terms of services</a>.</p>
             <hr/>
-            
+           
         </form>
     </div>
     
-    <div>
-    	<p id="browse">둘러보기</p>
-    </div>
 
 </div>
 <!-- toggle -->
@@ -65,10 +68,6 @@ text-align:center;
 <!-- form alert -->
 <script src="<c:url value="/script/home/homepageAlert.js"/>"></script>
 	
-	
-	
-
-
 
 	
 </body>
