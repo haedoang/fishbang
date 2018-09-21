@@ -13,11 +13,11 @@
 		  해당VO 타입의 별칭을 줘서 짧게 하기 위해
 	  -->
 	<typeAliases>  <!-- VO객체 타입의 alias 설정!  -->
- 	<typeAlias alias="Board" type="kr.co.mlec.repository.domain.Board"/> 
- 	<typeAlias alias="Memo" type="kr.co.mlec.repository.domain.Memo"/> 
- 	<typeAlias alias="FileDB" type="kr.co.mlec.repository.domain.FileDB"/> 
- 	<typeAlias alias="Member" type="kr.co.mlec.repository.domain.Member"/> 
- 	<typeAlias alias="Comment" type="kr.co.mlec.repository.domain.Comment"/> 
+ 	<typeAlias alias="Board" type="kr.co.fishbang.repository.domain.Board"/> 
+ 	<typeAlias alias="ThumbNail" type="kr.co.fishbang.repository.domain.Thumbnail"/> 
+ 	<typeAlias alias="FileDB" type="kr.co.fishbang.repository.domain.FileDB"/> 
+ 	<typeAlias alias="Member" type="kr.co.fishbang.repository.domain.Member"/> 
+ 	<typeAlias alias="Comment" type="kr.co.fishbang.repository.domain.Comment"/> 
 
 	</typeAliases>
 	
