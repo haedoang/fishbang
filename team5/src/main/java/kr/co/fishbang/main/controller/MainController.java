@@ -17,7 +17,7 @@ public class MainController extends HttpServlet{
 		//main page..
 		
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/firstpage_adv.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/main/main.jsp");
 		
 		rd.forward(request, response);
 	}

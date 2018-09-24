@@ -13,11 +13,8 @@
 		  해당VO 타입의 별칭을 줘서 짧게 하기 위해
 	  -->
 	<typeAliases>  <!-- VO객체 타입의 alias 설정!  -->
+ 	<typeAlias alias="User" type="kr.co.fishbang.repository.domain.User"/> 
  	<typeAlias alias="Board" type="kr.co.fishbang.repository.domain.Board"/> 
- 	<typeAlias alias="ThumbNail" type="kr.co.fishbang.repository.domain.Thumbnail"/> 
- 	<typeAlias alias="FileDB" type="kr.co.fishbang.repository.domain.FileDB"/> 
- 	<typeAlias alias="Member" type="kr.co.fishbang.repository.domain.Member"/> 
- 	<typeAlias alias="Comment" type="kr.co.fishbang.repository.domain.Comment"/> 
 
 	</typeAliases>
 	
@@ -37,12 +34,8 @@
 	<!-- 사용자가 직접 작성한 SQL 문장들이 
 	들어있는 xml 파일의 위치  classpath  -->
 	<mappers>
+		<mapper resource="config/sqlmap/user.xml"/> 
 		<mapper resource="config/sqlmap/board.xml"/> 
-		<mapper resource="config/sqlmap/memo.xml"/> 
-		<mapper resource="config/sqlmap/file.xml"/> 
-		<mapper resource="config/sqlmap/login.xml"/> 
-		<mapper resource="config/sqlmap/signup.xml"/> 
-		<mapper resource="config/sqlmap/comment.xml"/> 
 	
 	</mappers>
 	

@@ -31,30 +31,32 @@
 <div class="form-modal">
     
     <div class="form-toggle">
-        <button id="login-toggle" onclick="toggleLogin()">log in</button>
-        <button id="signup-toggle" onclick="toggleSignup()">sign up</button>
+        <button id="login-toggle">log in</button>
+        <button id="signup-toggle">sign up</button>
     </div>
 
     <div id="login-form">
-        <form name="loginForm" onsubmit="return doLogin()" method="post">
-            <input name ="loginEmail" id="loginEmail" type="text" placeholder="Enter email or username"/>
-            <input name ="loginPassword" id="loginPassword" type="password" placeholder="Enter password"/>
-            <button type="button" class="btn login" onclick="doLogin()">login</button>
-            <p><a href="#" onclick="showPopup()">Find password?</a></p>
+        <form id="lForm" method="post">
+        
+            <input name ="lEmail" id="lEmail" type="text" placeholder="Enter email"/>
+            <input name ="lPass" id="lPass" type="password" placeholder="Enter password"/>
+            <button id="login" type="button" class="btn login">login</button>
+            <p id="pwArea"><a href="#">Find password?</a></p>
             <hr/>
             <button type="button" class="btn -box-sd-effect naver"> <i class="fa fa-plus fa-lg" aria-hidden="true"></i> sign in with Naver</button>
             <button type="button" class="btn -box-sd-effect kakao"> <i class="fa fa-plus fa-lg" aria-hidden="true"></i> sign in with Kakao</button>
             <hr/>
-            <p><a href="#">둘러보기</a></p>
+            <p id="browseArea"><a href="<c:url value="/main.do"/>">둘러보기</a></p>
         </form>
     </div>
 
     <div id="signup-form">
-        <form id ="signupForm" name="signupForm" onsubmit="return doSignup()" method="post">
-            <input name="signEmail" id="signEmail" type="email" placeholder="Enter your email"/>
-            <input name="signName" id="signName" type="text" placeholder="Choose username"/>
-            <input name="signPassword" id="signPassword" type="password" placeholder="Create password"/>
-            <button type="button" onclick="doSignup()" class="btn signup">create account</button>
+        <form id ="sForm" method="post">
+            <input name="sEmail" id="sEmail" type="text" placeholder="Enter your email"/>
+            <div id="sEmailValidation"> </div>
+            <input name="sName" id="sName" type="text" placeholder="Enter your name"/>
+            <input name="sPass" id="sPass" type="password" placeholder="Create password"/>
+            <button id=signup type="button" class="btn signup">create account</button>
             <p>Clicking <strong>create account</strong> means that you are agree to our <a href="#">terms of services</a>.</p>
             <hr/>
            
@@ -63,12 +65,8 @@
     
 
 </div>
-<!-- toggle -->
-<script src="<c:url value="/script/home/homepageToggle.js"/>"></script>
-<!-- form alert -->
-<script src="<c:url value="/script/home/homepageAlert.js"/>"></script>
-	
 
-	
+<!-- home script -->
+<script src="<c:url value="/script/home/home.js"/>"></script>
 </body>
 </html>

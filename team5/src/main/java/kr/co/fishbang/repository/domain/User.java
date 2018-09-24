@@ -3,77 +3,79 @@ package kr.co.fishbang.repository.domain;
 import java.util.Date;
 
 public class User {
-	private String userId;
-	private int userNo;
-	private String userName;
-	private String userPassword;
-	private String userProfile;
-	private String userContact;
-	private Date userBirth;
-	private char userLevel;
-	private String userNat;
+	private String id;		//p.k 
+	private int no;			//s_user_no (seq)
+	private String name;	//nn
+	private String password; //nn
+	private String profile; //def unknown
+	private String thumbnail; //def unknown
+	private String contact;	//def unknown
+	private Date birth;		//def null
+	private char lev;		//default c , root = s 
+	private String nat;		//def unknown
 	
 	
 	
 	
-	
-	public String getUserId() {
-		return userId;
+	public String getId() {
+		return id;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public int getUserNo() {
-		return userNo;
+	public int getNo() {
+		return no;
 	}
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setNo(int no) {
+		this.no = no;
 	}
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getUserPassword() {
-		return userPassword;
+	public String getPassword() {
+		return password;
 	}
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public String getUserProfile() {
-		return userProfile;
+	public String getProfile() {
+		return profile;
 	}
-	public void setUserProfile(String userProfile) {
-		this.userProfile = userProfile;
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
-	public String getUserContact() {
-		return userContact;
+	public String getThumbnail() {
+		return thumbnail;
 	}
-	public void setUserContact(String userContact) {
-		this.userContact = userContact;
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
-	public Date getUserBirth() {
-		return userBirth;
+	public String getContact() {
+		return contact;
 	}
-	public void setUserBirth(Date userBirth) {
-		this.userBirth = userBirth;
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
-	public char getUserLevel() {
-		return userLevel;
+	public Date getBirth() {
+		return birth;
 	}
-	public void setUserLevel(char userLevel) {
-		this.userLevel = userLevel;
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
-	public String getUserNat() {
-		return userNat;
+	public char getLev() {
+		return lev;
 	}
-	public void setUserNat(String userNat) {
-		this.userNat = userNat;
+	public void setLev(char lev) {
+		this.lev = lev;
+	}
+	public String getNat() {
+		return nat;
+	}
+	public void setNat(String nat) {
+		this.nat = nat;
 	}
 
-	
-	
-	
-	
 }
