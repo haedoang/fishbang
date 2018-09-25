@@ -46,6 +46,16 @@
 	</select>
 	
 	
+	<!-- 비밀번호 찾기 -->
+	<select id="selectIdAndPass" parameterType="User" resultType="int">
+		select count(*)
+		  from tb_user
+		 where id=#{id}
+		   and name=#{name}
+	</select>
+	
+	
+	
 	
 	
 	

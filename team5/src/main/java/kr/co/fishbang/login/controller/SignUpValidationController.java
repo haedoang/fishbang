@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.fishbang.common.db.MyAppSqlConfig;
 import kr.co.fishbang.repository.mapper.UserMapper;
 
-@WebServlet("/idCheck.do")
+@WebServlet("/id-check.do")
 public class SignUpValidationController extends HttpServlet{
 
 //id 중복검사 ajax 

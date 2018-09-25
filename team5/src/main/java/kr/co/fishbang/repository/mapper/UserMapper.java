@@ -16,4 +16,7 @@ public interface UserMapper {
 	int selectId(String id);
 	
 	
+	//아이디 비밀번호 찾기 있으면 1 없으면 0
+	int selectIdAndPass(User user);
+	
 }

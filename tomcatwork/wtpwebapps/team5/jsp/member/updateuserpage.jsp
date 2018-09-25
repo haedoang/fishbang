@@ -109,7 +109,7 @@
 
 			</div>
 
-			<div id="side">asdasdasd</div>
+			<div id="side"></div>
 
 		</div>
 	</div>

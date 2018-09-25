@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.fishbang.common.db.MyAppSqlConfig;
+import kr.co.fishbang.common.security.SecretPassword;
 import kr.co.fishbang.repository.domain.User;
 import kr.co.fishbang.repository.mapper.UserMapper;
 
@@ -19,20 +20,34 @@ public class LoginController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		
 		//home 에서 던져주는데이터 받자.. 
 		UserMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(UserMapper.class);
 		User user = new User();
 		user.setId(request.getParameter("lEmail"));
-		user.setPassword(request.getParameter("lPass"));
+		
+		
+		//pw 암호화
+		String password =request.getParameter("lPass");
+		try {
+			String encryptPass = SecretPassword.Encrypt(password);
+			user.setPassword(encryptPass);
+		} catch (Exception e) {}
+		
 		
 		User login = mapper.selectUser(user);
 		
-		PrintWriter out = response.getWriter();
+		
+		
 		//사용자가 입력한 아이디와 패스워드에 해당하는 데이터가 없는 경우 
 		if(login==null) {
 			//로그인 실패
-			out.print("err");
+			PrintWriter out = response.getWriter();
+			out.print("<script>alert('아이디와 비밀번호가 일치하지 않습니다');</script>");		//??why?
+			
+			response.sendRedirect(request.getContextPath()+"/home.do");
+			
 		}
 		else {
 			System.out.println("로그인성공");

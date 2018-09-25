@@ -13,12 +13,6 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<!-- fontawesone 로고 -->
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-	crossorigin="anonymous">
-
 
 <title>Insert title here</title>
 <style>
@@ -191,59 +185,38 @@ outline: none;
 </style>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
-<div class="container-fluid">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-			aria-controls="navbar">
-			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
-			<span class="icon-bar"></span> <span class="icon-bar"></span>
-		</button>
-		<!-- 현재 페이지 새로 고침  -->
-		<a class="navbar-brand" href="<c:url value="/jsp/main/main.jsp"/>"><span><i
-				class="fas fa-fish fa-1x"></i></span>&nbsp;fishbang</a>
-	</div>
-	<div id="navbar" class="collapse navbar-collapse">
-		<ul class="nav navbar-nav navbar-user navbar-right">
+ <nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">fishbang</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-user navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> 로그인시 id 표기 </a></li>
+            <li><a href="#about"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
+            <li><a href="#about"><span class="glyphicon glyphicon-log-out"></span> logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+<nav class="navbar-primary">
+  <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
+  <ul class="navbar-primary-menu">
+    <li>
+      <a href="#"><span class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기(로그인시)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감(비로그인)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-tint"></span><span class="nav-label">날씨,물때정보(option)</span></a>
+      <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span><span class="nav-label">조과랭킹</span></a>
+      <a href="#"><span class="glyphicon glyphicon-question-sign"></span><span class="nav-label">고객센터(option)</span></a>
 
-			<!-- 비로그인 시  -->
-			<li><a href="<c:url value="/jsp/home/homepage.jsp"/>"><span
-					class="glyphicon glyphicon-plus"></span> signup</a></li>
-			<li><a href="<c:url value="/jsp/home/homepage.jsp"/>"><span
-					class="glyphicon glyphicon-log-in"></span> login</a></li>
-
-			<!-- 로그인 시  -->
-			<li><a href="<c:url value="/jsp/member/updateuserpage.jsp"/>"><span
-					class="glyphicon glyphicon-user"></span> fishbang@fish.bang</a></li>
-			<li><a href="<c:url value="/jsp/main/main.jsp"/>"><span
-					class="glyphicon glyphicon-log-out"></span> logout</a></li>
-		</ul>
-	</div>
-	<!--/.nav-collapse -->
-</div>
-</nav>
-<nav class="navbar-primary"> <a href="#"
-	class="btn-expand-collapse"><span
-	class="glyphicon glyphicon-menu-left"></span></a>
-<ul class="navbar-primary-menu">
-	<li><a href="<c:url value="/jsp/dictionary/fisheryAll.jsp"/>"><span
-			class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기(로그인시)</span></a>
-
-
-
-		<a href="<c:url value="/jsp/dictionary/fishDictAll.jsp"/>"><span
-			class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감(비로그인)</span></a>
-
-
-
-		<a href="#"><span class="glyphicon glyphicon-tint"></span><span
-			class="nav-label">날씨,물때정보(option)</span></a> <a
-		href="<c:url value="/jsp/rank/rankingMain.jsp"/>"><span
-			class="glyphicon glyphicon-thumbs-up"></span><span class="nav-label">조과랭킹</span></a>
-		<a href="#"><span class="glyphicon glyphicon-question-sign"></span><span
-			class="nav-label">고객센터(option)</span></a></li>
-</ul>
+    </li>
+  </ul>
 </nav>
 <div class="main-content">	
 

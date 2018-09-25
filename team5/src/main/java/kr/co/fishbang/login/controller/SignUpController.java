@@ -2,7 +2,6 @@ package kr.co.fishbang.login.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.fishbang.common.db.MyAppSqlConfig;
+import kr.co.fishbang.common.security.SecretPassword;
 import kr.co.fishbang.repository.domain.User;
 import kr.co.fishbang.repository.mapper.UserMapper;
 
@@ -26,7 +26,16 @@ public class SignUpController extends HttpServlet{
 		
 		user.setId(request.getParameter("sEmail"));
 		user.setName(request.getParameter("sName"));
-		user.setPassword(request.getParameter("sPass"));
+		
+		//비밀번호 암호화;
+		String password =request.getParameter("sPass");
+		try {
+		String encryptPass = SecretPassword.Encrypt(password);
+		user.setPassword(encryptPass);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		mapper.insertUser(user);
 		
 		response.sendRedirect("home.do");

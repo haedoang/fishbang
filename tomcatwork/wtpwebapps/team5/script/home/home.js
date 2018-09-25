@@ -114,10 +114,12 @@ $("#sEmail").on("input",function(e){
 	var id = $("#sEmail").val();
 	$.ajax({
 		type:"POST",
-		url :"/team5/idCheck.do",
+		url :"/team5/id-check.do",
 		async:true,
 		data :"id="+id,
 		success: function(data){
+			
+			//사용 가능 id 
 			if(data=="success" && 		//중복ID 아님 
 			   $("#sEmail").val().indexOf("@")!=-1 &&  
 			   $("#sEmail").val().indexOf(".")!=-1){
@@ -126,6 +128,7 @@ $("#sEmail").on("input",function(e){
 				.html("사용가능한 아이디 입니다")
 				.css({color:"green"});
 			}
+			//id 중복
 			if(data=="fail"){
 				idcheck=data	//중복 alert
 				
@@ -133,6 +136,7 @@ $("#sEmail").on("input",function(e){
 				.html("중복된 아이디입니다.")
 				.css({color:"red"});
 			}
+			//이메일 형식 
 			if($("#sEmail").val().indexOf("@")==-1||
 			   $("#sEmail").val().indexOf(".")==-1){
 				$("#sEmailValidation")
@@ -148,12 +152,48 @@ $("#sEmail").on("input",function(e){
 
 //find password.
 
-$("#passArea > a").click(function(){
+$("#pwArea > a").click(function(){
 
-	window.open("http://localhost:8000/team5/findpassword.do","findpassword","width=480,height=450,left=100,top=50,resizable=no");
+	window.open("http://localhost:8000/team5/find-password.do","findpassword","width=480,height=450,left=100,top=50,resizable=no");
 })
 
 
+//naver login 
+var naverLogin = new naver.LoginWithNaverId(
+		{
+			clientId: "95xgm7QrIqhKs7dy8ykt",
+			callbackUrl: "http://localhost:8000/team5/naver-login.do",
+			isPopup: false, /* 팝업을 통한 연동처리 여부 */
+			loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
+			
+		}
+	);
+	
+	/* 설정정보를 초기화하고 연동을 준비 */
+	naverLogin.init();
+
+//kakao
+	
+	
+	  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('f5f8fdc4f3fee211f64a4acd5c1589c2');
+    // 카카오 로그인 버튼을 생성합니다.
+    Kakao.Auth.createLoginButton({
+      container: '#kakao-login-btn',
+      success: function(authObj) {
+        alert(JSON.stringify(authObj));
+      },
+      fail: function(err) {
+         alert(JSON.stringify(err));
+      }
+    });
+  //]]>	
+	
+	
+	
+	
+	
 /*
 	//login form alert
 	var doLogin =  () => {

@@ -16,9 +16,10 @@
 
 
 <!-- mapapi -->
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=XdHi52ymtJ5BbGtyiEPn"></script>
-  
-  
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=XdHi52ymtJ5BbGtyiEPn"></script>
+
+
 <!-- javascript -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script
@@ -62,64 +63,77 @@ a, div {
 </style>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
-<div class="container-fluid">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-			aria-controls="navbar">
-			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
-			<span class="icon-bar"></span> <span class="icon-bar"></span>
-		</button>
-		<!-- 현재 페이지 새로 고침  -->
-		<a class="navbar-brand" href="<c:url value="/jsp/main/main.jsp"/>"><span><i
-				class="fas fa-fish fa-1x"></i></span>&nbsp;fishbang</a>
+	<nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<!-- 현재 페이지 새로 고침  -->
+			<a class="navbar-brand" href="<c:url value="/jsp/main/main.jsp"/>"><span><i
+					class="fas fa-fish fa-1x"></i></span>&nbsp;fishbang</a>
+		</div>
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-user navbar-right">
+
+
+				<c:if test="${empty sessionScope.user.id}">
+					<!-- 비로그인 시  -->
+					<li><a href="<c:url value="/home.do"/>"><span
+							class="glyphicon glyphicon-plus"></span> signup</a></li>
+					<li><a href="<c:url value="/home.do"/>"><span
+							class="glyphicon glyphicon-log-in"></span> login</a></li>
+				</c:if>
+
+				<c:if test="${not empty sessionScope.user.id}">
+					<li><a href="<c:url value="/jsp/member/updateuserpage.jsp"/>"><span
+							class="glyphicon glyphicon-user"></span> ${sessionScope.user.id}</a></li>
+					<li><a href="<c:url value="/logout.do"/>"><span
+							class="glyphicon glyphicon-log-out"></span> logout</a></li>
+				</c:if>
+			</ul>
+		</div>
+		<!--/.nav-collapse -->
 	</div>
-	<div id="navbar" class="collapse navbar-collapse">
-		<ul class="nav navbar-nav navbar-user navbar-right">
+	</nav>
+	<nav class="navbar-primary"> <a href="#"
+		class="btn-expand-collapse"><span
+		class="glyphicon glyphicon-menu-left"></span></a>
+	<ul class="navbar-primary-menu">
+		<li>
+		
+		<c:if test="${not empty sessionScope.user.id}">
+		<a href="<c:url value="/jsp/dictionary/fisheryAll.jsp"/>"><span
+				class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기</span></a>
+		</c:if>
+
+		<c:if test="${empty sessionScope.user.id}">
+			<a href="<c:url value="/jsp/dictionary/fishDictAll.jsp"/>"><span
+				class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감</span></a>
+		</c:if>
+
+
+			<a href="#">
+				<span class="glyphicon glyphicon-tint"></span>
+				<span class="nav-label">날씨,물때정보(option)</span>
+			</a>
+			 
+			<a href="<c:url value="/jsp/rank/rankingMain.jsp"/>">
+				<span class="glyphicon glyphicon-thumbs-up"></span>
+				<span class="nav-label">조과랭킹</span>
+			</a>
 			
-			
-			<c:if test="${empty sessionScope.user.id}">
-			<!-- 비로그인 시  -->
-			<li><a href="<c:url value="/home.do"/>"><span
-					class="glyphicon glyphicon-plus"></span> signup</a></li>
-			<li><a href="<c:url value="/home.do"/>"><span
-					class="glyphicon glyphicon-log-in"></span> login</a></li>
-			</c:if>
-			
-			<c:if test="${not empty sessionScope.user.id}">
-			<li><a href="<c:url value="/jsp/member/updateuserpage.jsp"/>"><span
-					class="glyphicon glyphicon-user"></span> ${sessionScope.user.id}</a></li>
-			<li><a href="<c:url value="/logout.do"/>"><span
-					class="glyphicon glyphicon-log-out"></span> logout</a></li>
-			</c:if>
-		</ul>
-	</div>
-	<!--/.nav-collapse -->
-</div>
-</nav>
-<nav class="navbar-primary"> <a href="#"
-	class="btn-expand-collapse"><span
-	class="glyphicon glyphicon-menu-left"></span></a>
-<ul class="navbar-primary-menu">
-	<li><a href="<c:url value="/jsp/dictionary/fisheryAll.jsp"/>"><span
-			class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기(로그인시)</span></a>
-
-
-
-		<a href="<c:url value="/jsp/dictionary/fishDictAll.jsp"/>"><span
-			class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감(비로그인)</span></a>
-
-
-
-		<a href="#"><span class="glyphicon glyphicon-tint"></span><span
-			class="nav-label">날씨,물때정보(option)</span></a> <a
-		href="<c:url value="/jsp/rank/rankingMain.jsp"/>"><span
-			class="glyphicon glyphicon-thumbs-up"></span><span class="nav-label">조과랭킹</span></a>
-		<a href="#"><span class="glyphicon glyphicon-question-sign"></span><span
-			class="nav-label">고객센터(option)</span></a></li>
-</ul>
-</nav>
+			<a href="#">
+				<span class="glyphicon glyphicon-question-sign"></span>
+				<span class="nav-label">고객센터(option)</span>
+			</a>
+		</li>
+	</ul>
+	</nav>
 
 
 	<!-- Main-Content 각자의 페이지 작성  -->
@@ -193,7 +207,8 @@ a, div {
 					<div class="post">
 						<div class="top">
 							<div class="img fileinput-preview">
-								<img src="../../img/catch1.png" width="40" height="40" id="profile">
+								<img src="../../img/catch1.png" width="40" height="40"
+									id="profile">
 							</div>
 							<div class="name">
 								<strong><a href="#"><span class="text-name">다잡아</span></a></strong>
@@ -230,7 +245,9 @@ a, div {
 							<table>
 								<tr>
 									<td><img src="../../img/gamsung.jpg" width=300px></td>
-									<td><div id="map" style="width:300px;height:300px; margin-left:100px;">잡은 곳</div></td>
+									<td><div id="map"
+											style="width: 300px; height: 300px; margin-left: 100px;">잡은
+											곳</div></td>
 								</tr>
 							</table>
 						</span>
@@ -404,19 +421,19 @@ a, div {
 
 		uploadBtn.addEventListener('keydown', fakeUploadClick);
 	</script>
-	
-	
+
+
 	<script>
-	var mapOptions = {
-		    center: new naver.maps.LatLng(37.3595704, 127.105399),
-		    zoom: 10
+		var mapOptions = {
+			center : new naver.maps.LatLng(37.3595704, 127.105399),
+			zoom : 10
 		};
 
 		var map = new naver.maps.Map('map', mapOptions);
-		
+
 		var marker = new naver.maps.Marker({
-		    position: new naver.maps.LatLng(37.3595704, 127.105399),
-		    map: map
+			position : new naver.maps.LatLng(37.3595704, 127.105399),
+			map : map
 		});
 	</script>
 </body>

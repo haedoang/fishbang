@@ -18,7 +18,13 @@
         src="http://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
-  </script>
+  </script>	
+  
+<!-- naver login -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<!-- kakao login -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 
 <title>welcome to fishbang, here is our homepage.</title>
 </head>
@@ -43,8 +49,17 @@
             <button id="login" type="button" class="btn login">login</button>
             <p id="pwArea"><a href="#">Find password?</a></p>
             <hr/>
+            <!--  
             <button type="button" class="btn -box-sd-effect naver"> <i class="fa fa-plus fa-lg" aria-hidden="true"></i> sign in with Naver</button>
             <button type="button" class="btn -box-sd-effect kakao"> <i class="fa fa-plus fa-lg" aria-hidden="true"></i> sign in with Kakao</button>
+            -->
+            
+            <!-- naver login  -->
+            <div id="naverIdLogin"></div>
+            
+            <!-- kakao login -->
+            <a id="kakao-login-btn"></a>
+			<a href="http://developers.kakao.com/logout"></a>
             <hr/>
             <p id="browseArea"><a href="<c:url value="/main.do"/>">둘러보기</a></p>
         </form>
@@ -59,7 +74,7 @@
             <button id=signup type="button" class="btn signup">create account</button>
             <p>Clicking <strong>create account</strong> means that you are agree to our <a href="#">terms of services</a>.</p>
             <hr/>
-           
+           	
         </form>
     </div>
     
@@ -68,5 +83,6 @@
 
 <!-- home script -->
 <script src="<c:url value="/script/home/home.js"/>"></script>
+
 </body>
 </html>
