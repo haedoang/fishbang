@@ -79,6 +79,10 @@ img:hover{
     transition: 0.5s ease-in-out; 
 
 }
+.listCard_Link{
+font-size : 12.5px;
+}
+
 .fishimg{
 overflow : hidden;
  transform: scale(1);
