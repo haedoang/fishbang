@@ -55,4 +55,4 @@ CREATE TABLE tb_fish_method (
 	sea1_fresh2	number	NULL
 );
 
-create SEQUENCE method_no;
+create SEQUENCE s_method_no;
