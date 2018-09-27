@@ -86,10 +86,10 @@ where rownum <= 1
 <select id="selectCatchRanking"  resultMap="boardMap">
  <![CDATA[
 select *
-from (select user_id, count(*)
+from (select user_id, count(*) cnt
 from tb_posting 
 group by user_id
-order by count(*) desc)
+order by cnt desc)
 where rownum <= 20
  ]]>
 </select>
@@ -97,7 +97,7 @@ where rownum <= 20
 <!-- <전체 랭킹> : 나의 랭킹 -->
 <select id="selectCatchMyRanking" parameterType="String" resultMap="boardMap">
  <![CDATA[
-select user_id, count(*)
+select user_id, count(*) cnt
 from tb_posting 
 group by user_id
 having user_id=#{userId}
@@ -111,30 +111,37 @@ having user_id=#{userId}
 
 
 
-
-<select id="selectCollectionRanking" parameterType="Board" resultMap="boardMap">
+<!-- <도감 수집도 랭킹> : 전체 랭킹 -->
+<select id="selectCollectionRanking" resultMap="boardMap">
  <![CDATA[
-select *
-from (select count(*), user_id
-from(select DISTINCT p.user_id, f.KN, p.fish_name
-from tb_fishbook f, tb_posting p 
-where f.KN = p.fish_name) 
+select count(*), user_id
+from(select p.user_id, p.fish_name, count(*) cnt
+from tb_posting p
+group by p.user_id, p.fish_name)
 group by user_id
-order by count(*) desc)
-where rownum <= 20
  ]]>
 </select>
 
 
+<!-- <도감 수집도 랭킹> : 나의 도감 수집도 -->
+<select id="selectCollectionMyRanking" parameterType="String" resultMap="boardMap">
 
-<select id="selectCollectionMyRanking" parameterType="Board" resultMap="boardMap">
  <![CDATA[
 select count(*)
-from(select DISTINCT p.user_id, f.KN, p.fish_name
-from tb_fishbook f, tb_posting p 
-where f.KN = p.fish_name and user_id='cc@.') 
+from(select p.user_id, p.fish_name, count(*) cnt
+from tb_posting p
+where user_id=#{userId}
+group by p.user_id, p.fish_name)
  ]]>
 </select>
+
+<!-- <도감 수집도 랭킹> : 전체 도감 개수  -->
+<select id="selectCollectionMyRanking" resultMap="boardMap">
+select count(*)
+from tb_fishbook;
+</select>
+
+
 
 
 
