@@ -32,17 +32,15 @@
 			<div class="body" id="form-body">
 				<div class="list">
 					<div class="form-row">
-						<label for="">Name</label> <input type="text" placeholder="Name">
+						<label for="">Name</label> <input id="name" name="name" type="text" placeholder="Name">
 					</div>
 					<div class="form-row">
-						<label for="">Email</label> <input type="email"
-							placeholder="Email">
+						<label for="">Email</label> <input id="email" name="email" type="text" placeholder="Email">
 					</div>
 
 					<div class="form-row">
-						<button type="submit" onclick="alert('변경된 비밀번호가 메일로 발송되었습니다.')">비밀번호
+						<button id="find" type="button">비밀번호
 							찾기</button>
-						<!--  location.href='#.jsp'-->
 
 					</div>
 					<div class="form-row">
@@ -56,6 +54,6 @@
 
 		</div>
 	</form>
-
+<script src="<c:url value="/script/home/findpassword.js"/>"></script>
 </body>
 </html>

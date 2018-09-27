@@ -21,6 +21,7 @@ public class LoginController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		
 		//home 에서 던져주는데이터 받자.. 
 		UserMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(UserMapper.class);
@@ -43,10 +44,11 @@ public class LoginController extends HttpServlet{
 		//사용자가 입력한 아이디와 패스워드에 해당하는 데이터가 없는 경우 
 		if(login==null) {
 			//로그인 실패
-			PrintWriter out = response.getWriter();
-			out.print("<script>alert('아이디와 비밀번호가 일치하지 않습니다');</script>");		//??why?
+			PrintWriter out = response.getWriter();	
+			out.print("<script>alert('아이디와 비밀번호를 확인해주세요');"
+					+ "location.href='"+request.getContextPath()+"/home.do"+"'</script>");	
 			
-			response.sendRedirect(request.getContextPath()+"/home.do");
+			
 			
 		}
 		else {

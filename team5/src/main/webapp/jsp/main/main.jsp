@@ -90,7 +90,7 @@ a, div {
 				</c:if>
 
 				<c:if test="${not empty sessionScope.user.id}">
-					<li><a href="<c:url value="/jsp/member/updateuserpage.jsp"/>"><span
+					<li><a href="<c:url value="/updateuserform.do"/>"><span
 							class="glyphicon glyphicon-user"></span> ${sessionScope.user.id}</a></li>
 					<li><a href="<c:url value="/logout.do"/>"><span
 							class="glyphicon glyphicon-log-out"></span> logout</a></li>

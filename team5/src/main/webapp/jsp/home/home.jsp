@@ -56,7 +56,7 @@
             
             <!-- naver login  -->
             <div id="naverIdLogin"></div>
-            
+            <br>
             <!-- kakao login -->
             <a id="kakao-login-btn"></a>
 			<a href="http://developers.kakao.com/logout"></a>

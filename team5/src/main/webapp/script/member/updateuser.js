@@ -1,20 +1,20 @@
-const messageElement = document.querySelector('#js-message');
+const messageElement = document.querySelector('#message');
 
 // Image elements
-const fileUpload        = document.querySelector('#js-file-uploader');
-const profileTrigger    = document.querySelector('#js-profile-trigger');
-const profileBackground = document.querySelector('#js-profile-pic');
+const fileUpload        = document.querySelector('#file-uploader');
+const profileTrigger    = document.querySelector('#profile-trigger');
+const profileBackground = document.querySelector('#profile-pic');
 
 // Password objects
-const password        = document.querySelector('#js-password');
-const passwordConfirm = document.querySelector('#js-password-confirm');
-const passwordToggle  = document.querySelector('#js-toggle-password');
-const passwordSuggest = document.querySelector('#js-suggest-password');
+const password        = document.querySelector('#password');
+const passwordConfirm = document.querySelector('#password-confirm');
+const passwordToggle  = document.querySelector('#toggle-password');
+const passwordSuggest = document.querySelector('#suggest-password');
 let passwordDisplayed = false;
 
 // On form submission, check the passwords match and display a message if the password (would have) been saved.
 document.querySelector('form').addEventListener('submit', function(event) {
-  event.preventDefault();
+  //event.preventDefault();
   
   if (password.value != passwordConfirm.value) {
     messageElement.innerText = 'The passwords don\'t match!';
@@ -29,7 +29,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
 // Trigger the file upload to set the profile picture
 profileTrigger.addEventListener('click', function(event) {
-  event.preventDefault();
+  //event.preventDefault();
   fileUpload.click();
 });
 

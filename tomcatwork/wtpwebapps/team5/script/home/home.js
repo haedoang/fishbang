@@ -164,7 +164,7 @@ var naverLogin = new naver.LoginWithNaverId(
 			clientId: "95xgm7QrIqhKs7dy8ykt",
 			callbackUrl: "http://localhost:8000/team5/naver-login.do",
 			isPopup: false, /* 팝업을 통한 연동처리 여부 */
-			loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
+			loginButton: {color: "green", type: 3, height: 49} /* 로그인 버튼의 타입을 지정 */
 			
 		}
 	);
