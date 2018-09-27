@@ -15,7 +15,7 @@
 	<typeAliases>  <!-- VO객체 타입의 alias 설정!  -->
  	<typeAlias alias="User" type="kr.co.fishbang.repository.domain.User"/> 
  	<typeAlias alias="Board" type="kr.co.fishbang.repository.domain.Board"/> 
-
+    <typeAlias alias="Dictionary" type="kr.co.fishbang.repository.domain.Dictionary"/> 
 	</typeAliases>
 	
 	<environments default="development">
@@ -36,6 +36,7 @@
 	<mappers>
 		<mapper resource="config/sqlmap/user.xml"/> 
 		<mapper resource="config/sqlmap/board.xml"/> 
+		<mapper resource="config/sqlmap/dictionary.xml"/> 
 	
 	</mappers>
 	

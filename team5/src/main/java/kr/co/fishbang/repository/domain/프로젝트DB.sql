@@ -14,6 +14,8 @@ create table tb_user(
     nat varchar2(20) default 'unknown'
 );
 
+create sequence s_user_no;
+
 CREATE TABLE tb_fishbook (
   NO NUMBER(6),
   id VARCHAR2(26),
