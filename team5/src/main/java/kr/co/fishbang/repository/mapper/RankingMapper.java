@@ -6,3 +6,22 @@ public interface RankingMapper {
 
 	
 }
+
+public interface UserMapper2 {
+
+	//회원 mapper..
+	
+	//login
+	User selectUser(User user);
+	
+	//signup
+	void insertUser(User user);
+	
+	//아이디 중복검사  있으면 1 없으면 0
+	int selectId(String id);
+	
+	
+	//아이디 비밀번호 찾기 있으면 1 없으면 0
+	int selectIdAndPass(User user);
+	
+}

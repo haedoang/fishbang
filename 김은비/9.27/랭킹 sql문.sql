@@ -1,4 +1,4 @@
---create table tb_posting(
+﻿--create table tb_posting(
 --	posting_no number not null primary key,
 --	user_id varchar2(25) not null,
 --	competition_id number not null,
@@ -194,6 +194,9 @@ order by cnt desc;
 --);
 --insert into tb_fishbook(no, f_name) values(s_fishbook_no.nextval, '갈치');
 --create SEQUENCE s_fishbook_no;
+
+
+
 
 
 
