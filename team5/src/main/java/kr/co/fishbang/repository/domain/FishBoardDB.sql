@@ -1,9 +1,14 @@
+--drop table tb_posting purge;
+--drop table tb_pcomment purge;
+--drop table tb_attach purge;
+--drop table tb_fish_method purge;
+
 create table tb_posting(
 	posting_no number not null primary key,
 	user_id varchar2(25) not null,
 	competition_id number not null,
 	method_no number, 
-	fish_id number not null,
+	fish_id VARCHAR2(30) not null,
 	fish_name varchar2(255) not null,
 	reg_date date default sysdate,
 	catch_date date not null,
@@ -19,9 +24,6 @@ create table tb_posting(
 );
 
 create sequence s_posting_no;
-
---drop table tb_posting purge;
-
 
 create table tb_pcomment(
 comment_no number not null PRIMARY key,
