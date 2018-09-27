@@ -256,7 +256,9 @@ a, div {
 								class="text-commenttext">댓글</a> · <a href="#"
 								class="text-sharetext">공유</a>
 						</div>
-					</div>
+					</div> 
+					<!--div#post end -->
+					
 					<div class="post_likes">
 						<img
 							src="http://social-prank.foxsash.com/assets/images/facebook/facebook_like_thumb.png">
@@ -385,6 +387,14 @@ a, div {
 
 		</div>
 	</div>
+	
+	<!-- Feeds Listing AJAX Script -->
+	<script>
+		
+	</script>
+	<!-- Feeds Listing AJAX Script ENDS-->
+	
+	<!-- Write Input Script -->
 	<script>
 		$('.btn-expand-collapse').click(function(e) {
 			$('.navbar-primary').toggleClass('collapsed');
@@ -421,8 +431,9 @@ a, div {
 
 		uploadBtn.addEventListener('keydown', fakeUploadClick);
 	</script>
+<!-- Write Input Script ENDS-->
 
-
+<!-- Map Marker Script -->
 	<script>
 		var mapOptions = {
 			center : new naver.maps.LatLng(37.3595704, 127.105399),
@@ -436,5 +447,6 @@ a, div {
 			map : map
 		});
 	</script>
+<!-- Map Marker Script ENDS -->
 </body>
 </html>

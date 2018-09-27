@@ -109,7 +109,7 @@ $("#signup").on("click",function(e){
 })
 
 //oninput id 중복체크
-$("#sEmail").on("input",function(e){
+$("#sEmail").on("blur",function(e){
 
 	var id = $("#sEmail").val();
 	$.ajax({
