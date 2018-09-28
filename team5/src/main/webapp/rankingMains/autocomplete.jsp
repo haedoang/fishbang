@@ -37,6 +37,7 @@ $(function() {
                 }
             });
         },
+        /* 한글일 경우 아래키로 내리면 자동완성이 변경된는 것을 방지 */
         focus: function( event, ui ) {
          	event.preventDefault();
         	},
