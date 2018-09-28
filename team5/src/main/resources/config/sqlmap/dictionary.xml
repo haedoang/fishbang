@@ -2,35 +2,268 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace = "kr.co.fishbang.repository.mapper.DictionaryMapper">
+	<resultMap type="Dictionary" id = "dictionaryMap">
+	<result property = "no" column = "no"/>
+	<result property = "fishId" column = "fish_id"/>
+	<result property = "sn" column = "sn"/>
+	<result property = "kn" column = "kn"/>
+	<result property = "en" column = "en"/>
+	<result property = "distr" column = "distr"/>
+	<result property = "habitat" column = "habitat"/>
+	<result property = "shape" column = "shape"/>
+	<result property = "spawn" column = "spawn"/>
+	<result property = "grow" column = "grow"/>
+	<result property = "migration" column = "migration"/>
+	<result property = "food" column = "food"/>
+	<result property = "ls" column = "ls"/>
+	<result property = "color" column = "color"/>
 	
+	
+	</resultMap>
+
 	<!-- 데이터베이스에서 국명 꺼내오기 -->
-	<select id = "selectFishKn" resultType = "String">
-	select kn
-	from tb_fishbook
-	order by no
+	<select id = "selectDictionary1"  resultType = "Dictionary">
 	
-	</select>
-	<!-- 데이터베이스에서 영명 꺼내오기 -->
-	<select id = "selectFishEn" resultType = "String">
-	select en
-	from tb_fishbook
-	order by no
-	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 1 AND 50
 	</select>
 	
+		<select id = "selectDictionary2"  resultType = "Dictionary">
 	
-	<!-- 데이터베이스에서 학명 꺼내오기 -->
-	<select id = "selectFishSn" resultType = "String">
-	select sn
-	from tb_fishbook
-	order by no
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 51 AND 100
+	</select>
+		<select id = "selectDictionary3"  resultType = "Dictionary">
 	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 101 AND 150
+	</select>
+		<select id = "selectDictionary4"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 151 AND 200
+	</select>
+		<select id = "selectDictionary5"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 201 AND 250
+	</select>
+		<select id = "selectDictionary6"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 251 AND 300
+	</select>
+		<select id = "selectDictionary7"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 301 AND 350
+	</select>
+		<select id = "selectDictionary8"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 351 AND 400
+	</select>
+		<select id = "selectDictionary9"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 401 AND 450
 	</select>
 	
-	<!-- 데이터베이스에서 영명, 국명 둘다 꺼내오기 -->
-	<select id = "selectFishKnEn" resultType = "Dictionary">
-	select en, kn
-	from tb_fishbook
-	order by no
+		<select id = "selectDictionary10"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 451 AND 500
+	</select>
+	
+		<select id = "selectDictionary11"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 501 AND 550
+	</select>
+	
+		<select id = "selectDictionary12"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 551 AND 600
+	</select>
+	
+	<select id = "selectDictionary13"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 601 AND 650
+	</select>
+	
+	<select id = "selectDictionary14"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 651 AND 700
+	</select>
+	
+	<select id = "selectDictionary15"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 701 AND 750
+	</select>
+	
+	<select id = "selectDictionary16"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 751 AND 800
+	</select>
+	
+	<select id = "selectDictionary17"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 800 AND 850
+	</select>
+	
+	<select id = "selectDictionary18"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 851 AND 900
+	</select>
+	
+	<select id = "selectDictionary19"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 901 AND 950
+	</select>
+	
+	<select id = "selectDictionary20"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 951 AND 1000
+	</select>
+	
+	<select id = "selectDictionary21"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 1001 AND 1050
+	</select>
+	
+	<select id = "selectDictionary22"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 1051 AND 1100
+				</select>
+	
+	<select id = "selectDictionary23"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 1101 AND 1150
+	</select>
+	
+		<select id = "selectDictionary24"  resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN 1151 AND 1187
+	</select>
+	
+	
+	
+	<select id = "selectDictionary"  parameterType = "int" resultType = "Dictionary">
+	
+			SELECT *
+ 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
+               				    , P.*
+               				 FROM tb_fishbook P
+        				  )
+				WHERE RNUM BETWEEN #{no1} AND #{no2}
 	</select>
 	</mapper>

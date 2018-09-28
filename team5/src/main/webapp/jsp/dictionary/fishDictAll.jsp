@@ -12,18 +12,18 @@
 <!-- javascript -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+
+</script>
 
 
 <title>Insert title here</title>
 <style>
-#mains{
-border:1px solid tomato;
-height:8000px;
-}
+
 #feedBoard{
 
 width:1000px;
-height:3000px;
+height:3200px;
 margin-right:10px;
 float:left;
 display:block;
@@ -31,7 +31,7 @@ display:block;
 #side{
 
 width:355px;
-height:3000px;
+height:3200px;
 margin-left:1000px;
 }
 
@@ -39,14 +39,14 @@ margin-left:1000px;
  background-color:#FCFCFC;
  
  
-  width: 900px;
-        height: 2800px;
+  width: 1200px;
+        height: 3200px;
       border-bottom: 2px solid #72655F;
       border-right: 2px solid #72655F;
       border-left: 2px solid #72655F;
        margin-top: -20px;
-        margin-right: 5%;
-        margin-left: 10%;
+        margin-right: 0%;
+        margin-left: 7%;
  }
  
  
@@ -65,7 +65,7 @@ height: 230px;
 }
 .fishinfoline{
 
-border: 1px solid black;
+
 	width: 190px;
 	height: 229px;
 	margin: auto;
@@ -80,7 +80,7 @@ img:hover{
 
 }
 .listCard_Link{
-font-size : 12.5px;
+font-size : 10px;
 }
 
 .fishimg{
@@ -103,7 +103,7 @@ font-family: 'Noto Sans KR', sans-serif;
 font-weight: bold;
 color: gray;
 
-border: 1px solid black;
+
 width: 188px;
 height: 40px;
 text-align: center;
@@ -113,10 +113,10 @@ text-align: center;
 font-family: 'Noto Sans KR', sans-serif;
 font-weight: bold;
 color: gray;
-
+border-top: 1px solid gray;
 
 text-align: center;
-border: 1px solid black;
+
 width: 188px;
 height: 20px;
 
@@ -126,6 +126,9 @@ height: 20px;
 .just{
 margin-top : 8.7px;
 
+}
+.formargin{
+margin-left : 50px;
 }
 
 
@@ -146,7 +149,7 @@ ul.tabs {
 
 width: 803px;
 height: 80px;
-margin-left : 10%;
+margin-left : 7%;
 margin-bottom : -10px;
 list-style: none;
 overflow: hidden;
@@ -200,6 +203,18 @@ border-right: 2px solid #72655F;
 border-left: 2px solid #72655F;
 z-index: 6;
 outline: none;
+}
+.pageNo{
+margin-top : -5px;
+width : 1200px;
+margin-left : 37%;
+}
+.m{
+width: 26.78px;
+height: 25px;
+  border-bottom: 2px solid #72655F;
+      border-right: 2px solid #72655F;
+      border-left: 2px solid #72655F;
 }
 
 
@@ -273,619 +288,28 @@ outline: none;
   	<div class ="contentlineass">
   <ul class = "v">
   
+
+ <c:forEach var = "b" items = "${dict}">
+ <div class ="formargin">
  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
+ 	<a href = "<c:url value = "fishBookPopup2.jsp"/>" class = "listCard_Link">
+  		<div class = "fishinfoline">
   	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
+  			<div class = "fishimg">
+  				<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
+  			</div>
+  		<div class = "just">
+  		<p class = "fishname1">${b.kn}<br>${b.en}</p>
+  		
+  		<p class = "fishviewcnt">물고기과,조회수넣기</p>
   		</div>
   				</div>
   				</a>
-  			
- 
+  
  </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li> <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
-  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
-  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
-  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
-  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
-  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
-  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
-  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
-  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
-  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
-  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- 
- <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
-  <li class ="fishinfolayout">
- <a href = "http://naver.com/" class = "listCard_Link">
-  	<div class = "fishinfoline">
-  	
-  		<div class = "fishimg">
-  		<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
-  		</div>
-  				<div class = "just">
-  					<p class = "fishname1">고등어<br>godonga</p>
-  
-  					<p class = "fishviewcnt">물고기과,조회수넣기</p>
-  		</div>
-  				</div>
-  				</a>
-  			
- 
- </li>
- 
+ </div>
+ </c:forEach>
+
 
   
   	
@@ -896,7 +320,32 @@ outline: none;
 
 
 	</div>
-  	
+	<p class = "pageNo">
+  	<a href = "dictionary.do?m=1"  class = "m" >1</a>
+  	<a href = "dictionary.do?m=2"  class = "m">2</a>
+  	<a href = "dictionary.do?m=3"  class = "m">3</a>
+  	<a href = "dictionary.do?m=4"  class = "m">4</a>
+  	<a href = "dictionary.do?m=5"  class = "m">5</a>
+  	<a href = "dictionary.do?m=6" class = "m">6</a>
+  	<a href = "dictionary.do?m=7" class = "m">7</a>
+  	<a href = "dictionary.do?m=8"  class = "m">8</a>
+  	<a href = "dictionary.do?m=9" class = "m">9</a>
+  	<a href = "dictionary.do?m=10"  class = "m">10</a>
+  	<a href = "dictionary.do?m=11"  class = "m">11</a>
+  	<a href = "dictionary.do?m=12" class = "m">12</a>
+  	<a href = "dictionary.do?m=13" class = "m">13</a>
+  	<a href = "dictionary.do?m=14"  class = "m">14</a>
+  	<a href = "dictionary.do?m=15"  class = "m">15</a>
+  	<a href = "dictionary.do?m=16"  class = "m">16</a>
+  	<a href = "dictionary.do?m=17"  class = "m">17</a>
+  	<a href = "dictionary.do?m=18"  class = "m">18</a>
+  	<a href = "dictionary.do?m=19"  class = "m">19</a>
+  	<a href = "dictionary.do?m=20" class = "m">20</a>
+  	<a href = "dictionary.do?m=21"  class = "m">21</a>
+  	<a href = "dictionary.do?m=22"  class = "m">22</a>
+  	<a href = "dictionary.do?m=23"  class = "m">23</a>
+  	<a href = "dictionary.do?m=24"  class = "m">24</a>
+  	</p>
   	<div id="side"> </div>
   	
   	
@@ -910,6 +359,8 @@ outline: none;
 $('.btn-expand-collapse').click(function(e) {
 	$('.navbar-primary').toggleClass('collapsed');
 });
+
+
 </script>
 </body>
 </html>
