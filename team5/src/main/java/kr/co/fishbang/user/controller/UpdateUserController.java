@@ -13,7 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 
+import kr.co.fishbang.common.db.MyAppSqlConfig;
 import kr.co.fishbang.common.file.ProfileFileRenamePolicy;
+import kr.co.fishbang.common.security.SecretPassword;
+import kr.co.fishbang.repository.domain.Profile;
+import kr.co.fishbang.repository.domain.User;
+import kr.co.fishbang.repository.mapper.ProfileMapper;
+import kr.co.fishbang.repository.mapper.UserMapper;
 import net.coobird.thumbnailator.Thumbnails;
 
 @WebServlet("/updateuser.do")
@@ -21,18 +27,12 @@ public class UpdateUserController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//파라미터 받자;
-		
-		
 		//1 프로필 사진
 		//저장경로 c://fishbang//upload(dir)
-		String uploadPath = "c:/fishbang/upload/profile";	//업로드 PATH 
+		String uploadPath = "c:/fishbang/upload";	//업로드 PATH 
+		String path = "/profile";
 		
-		//SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
-		//String path = sdf.format(new Date());
-		
-		
-		File file = new File(uploadPath/*+path*/);	//날짜+시간에 해당하는 폴더 생성  
+		File file = new File(uploadPath+path);
 		
 		if(file.exists() == false) { 
 			file.mkdirs();
@@ -41,7 +41,7 @@ public class UpdateUserController extends HttpServlet{
 		MultipartRequest mRequest = 
 				new MultipartRequest(
 						request, 		
-						uploadPath/*+sdf.format(new Date())*/,
+						uploadPath,
 						1024 * 1024 * 100, 
 						"utf-8", 			 	
 						new ProfileFileRenamePolicy() 
@@ -50,44 +50,68 @@ public class UpdateUserController extends HttpServlet{
 		 File profile = mRequest.getFile("profile-picture");
 
 		 if(profile != null) {
-			 //FileDB attachFile = new FileDB();// 첨부 파일 저장할 db 생성 
-			// FileMapper mapper2= MyAppSqlConfig.getSqlSessionInstance().getMapper(FileMapper.class);
+			 Profile attProfile = new Profile();// 첨부 파일 저장할 db 생성 
+			 ProfileMapper profileMapper= MyAppSqlConfig.getSqlSessionInstance().getMapper(ProfileMapper.class);
 			 
 			 String oriName = mRequest.getOriginalFileName("profile-picture");
-			 System.out.println("원본 파일 명 : "+ oriName);
+			// System.out.println("원본 파일 명 : "+ oriName);
 			 String sysName = mRequest.getFilesystemName("profile-picture");
-			 System.out.println("서버 파일 명 : "+sysName);
+			// System.out.println("서버 파일 명 : "+sysName);
 			
-			
-			// attachFile.setBoardNo(b.getNo());
-			// attachFile.setOriName(oriName);
-			// attachFile.setSysName(sysName);
-			// attachFile.setPath(path);
 			 
-			// mapper2.insertFile(attachFile);
-			 
-			 
+			 //thunbnail 저장.
 			 Thumbnails.
 			 	of(new File(profile.getParent(),sysName)).
 			 			forceSize(125,125).outputFormat("jpg").toFile(new File(profile.getParent(),"thumb_"+sysName));
-			 			//forceSize() 강제로 크기 변환 			  //이 지정된 파일의 저장 위치 		 
-		 }
-
-		System.out.println();
+			 			//forceSize() 강제로 크기 변환 			  //이 지정된 파일의 저장 위치 	
+			 
+			 //db저장
+			 attProfile.setId(mRequest.getParameter("userid"));
+			 attProfile.setOriName(oriName);
+			 attProfile.setSysProName(sysName);
+			 attProfile.setSysThuName("thumb_"+sysName);
+			 
+			 
+			 profileMapper.updateProfile(attProfile);
+		 }		
+				
 		
+		 	//유저 정보 update
+		 	User user = new User();
 		
+		try {
+			user.setId(mRequest.getParameter("userid"));
+			user.setNat(mRequest.getParameter("nat"));
+			user.setContact(mRequest.getParameter("contact"));
+			//password encrypt
+			String password = mRequest.getParameter("password");
+			String encryptPass = SecretPassword.Encrypt(password);
+			user.setPassword(encryptPass);
+			
+			//date parsing
+			Date birth = new SimpleDateFormat("yyyy-MM-dd").parse(mRequest.getParameter("birth"));
+			user.setBirth(birth);
+			
+			
+			UserMapper userMapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(UserMapper.class);
+	/*		
+			System.out.println(mRequest.getParameter("birth"));
+			System.out.println(mRequest.getParameter("contact"));
+			System.out.println(mRequest.getParameter("nat"));
+			System.out.println(mRequest.getParameter("password"));
+			System.out.println();
+			System.out.println(user.getId());
+			System.out.println(user.getContact());
+			System.out.println(user.getNat());
+			System.out.println(user.getPassword());
+			System.out.println(user.getBirth());*/
+			
+			userMapper.updateUser(user);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		
-		
-		
-		
-		
-		//2 나머지 텍스트
-		
-		String password = request.getParameter("password");
-		String nationality = request.getParameter("nationality");
-		String birth = request.getParameter("birth");//형변환확인
-		String contact = request.getParameter("contact");
 		
 		
 		

@@ -18,8 +18,12 @@ public interface UserMapper {
 	
 	//아이디 비밀번호 찾기 있으면 1 없으면 0
 	int selectIdAndPass(User user);
-
+	
+	//비밀번호 분실 시 update 
 	void updatePassword(User user);
+	
+	//회원정보 수정
+	void updateUser(User user);
 	
 	
 	

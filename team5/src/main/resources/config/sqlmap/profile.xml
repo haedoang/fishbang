@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.fishbang.repository.mapper.ProfileMapper"> 
+	<resultMap id="profileMap" type="Profile">
+		<result column="no" property="no"/>
+		<result column="id" property="id"/>
+		<result column="ori_name" property="oriName"/>
+		<result column="sys_pro_name" property="sysProName"/>
+		<result column="sys_thu_name" property="sysThuName"/>
+		<result column="path" property="path"/>
+	</resultMap>
+	
+	
+	
+	<!-- 회원 프로필 등록 : 회원가입 시 기본 설정  -->
+	<insert id="insertProfile" parameterType="Profile">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+    	select s_profile_no.nextval from dual
+    	</selectKey>
+    	insert into tb_profile(
+								no,
+								id
+									)values(
+											#{no},
+											#{id}
+													)
+		
+	</insert>
+	
+	<!-- 회원 프로필 수정: 프로필 사진 변경 시 db update -->
+	<update id="updateProfile" parameterType="Profile">
+		update tb_profile
+		  set ori_name=#{oriName},
+			  sys_pro_name=#{sysProName},
+			  sys_thu_name=#{sysThuName}
+	     where id=#{id}	
+	</update>
+	
+ 
+	
+	<!-- 프로필 보기  -->
+	<select id="selectProfile" parameterType="String" resultMap="profileMap">
+		select * 
+		  from tb_profile
+		 where id=#{id}
+	</select>
+	
+</mapper>

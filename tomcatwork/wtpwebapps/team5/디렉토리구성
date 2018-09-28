@@ -1,0 +1,32 @@
+
+
+
+webapp>
+		css>	
+					bin:미사용
+					dictionary:도감
+					home:첫페이지
+					main:메인페이지
+					member:회원정보수정
+					rank:랭킹페이지
+			
+		
+		
+		jsp>
+					bin:미사용
+					dictionary:도감
+					home:첫페이지
+					main:메인페이지
+					member:회원정보수정
+					rank:랭킹페이지
+		
+		script>
+					bin:미사용
+					dictionary:도감
+					home:첫페이지
+					main:메인페이지
+					member:회원정보수정
+					rank:랭킹페이지
+		
+		
+		img (사용할 이미지 파일 저장 위치) 

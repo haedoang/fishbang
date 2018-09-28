@@ -72,13 +72,8 @@ public class FindPasswordCheckController extends HttpServlet {
 				e1.printStackTrace();
 			}
 			
-			
-			
 			System.out.println(tempPass.toString());
 			System.out.println(user.getId());
-			
-			
-			
 			
 			//db저장 난수
 			try {

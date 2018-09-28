@@ -34,7 +34,9 @@ public class LoginController extends HttpServlet{
 		try {
 			String encryptPass = SecretPassword.Encrypt(password);
 			user.setPassword(encryptPass);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		
 		User login = mapper.selectUser(user);

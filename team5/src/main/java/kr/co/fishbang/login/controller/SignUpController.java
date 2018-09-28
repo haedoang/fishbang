@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.fishbang.common.db.MyAppSqlConfig;
 import kr.co.fishbang.common.security.SecretPassword;
+import kr.co.fishbang.repository.domain.Profile;
 import kr.co.fishbang.repository.domain.User;
+import kr.co.fishbang.repository.mapper.ProfileMapper;
 import kr.co.fishbang.repository.mapper.UserMapper;
 
 @WebServlet("/signup.do")
@@ -37,6 +39,14 @@ public class SignUpController extends HttpServlet{
 		}
 		
 		mapper.insertUser(user);
+		
+		
+		//fileDB 저장 ..
+		ProfileMapper profileMapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(ProfileMapper.class);
+		Profile profile = new Profile();
+		
+		profile.setId(request.getParameter("sEmail"));
+		profileMapper.insertProfile(profile);	
 		
 		response.sendRedirect("home.do");
 	}

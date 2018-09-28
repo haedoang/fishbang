@@ -14,6 +14,7 @@
 	  -->
 	<typeAliases>  <!-- VO객체 타입의 alias 설정!  -->
  	<typeAlias alias="User" type="kr.co.fishbang.repository.domain.User"/> 
+ 	<typeAlias alias="Profile" type="kr.co.fishbang.repository.domain.Profile"/> 
  	<typeAlias alias="Board" type="kr.co.fishbang.repository.domain.Board"/> 
     <typeAlias alias="Dictionary" type="kr.co.fishbang.repository.domain.Dictionary"/> 
 	</typeAliases>
@@ -35,6 +36,7 @@
 	들어있는 xml 파일의 위치  classpath  -->
 	<mappers>
 		<mapper resource="config/sqlmap/user.xml"/> 
+		<mapper resource="config/sqlmap/profile.xml"/> 
 		<mapper resource="config/sqlmap/board.xml"/> 
 		<mapper resource="config/sqlmap/dictionary.xml"/> 
 		<mapper resource="config/sqlmap/ranking.xml"/> 
