@@ -47,10 +47,20 @@
         <tr>
           <td class="species">광어</td>
           <td><r>1위</r>     howon1042     42cm     3.3kg</td>
-          <td><r>2위</r>     suzin5512     40cm     3.1kg</td>
-          <td><r>3위</r>     kds1042     42cm     3.3kg</td>
+          <td><r>2위</r></td>
+          <td><r>3위</r></td>
           <td class="myRanking"><r>내 순위</r> 433위 22cm 2kg </td>
         </tr>
         <%}%>
       </tbody>
+      <script>
+		$.ajax({
+			url: '/team5/ranking/fishLength.do',
+			sucess: function (data) {
+				if(data != null){
+					
+				}
+			}
+		})
+      </script>
     </table>

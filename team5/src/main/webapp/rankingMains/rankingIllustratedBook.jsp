@@ -36,8 +36,8 @@
       <%for(int i = 1; i<20;i++) {%>
         <tr>
           <td>1위</td>
-          <td>해동왕 (howon1042)</td>
-          <td>수집도 <progress value="50" max="100"></progress> 42%</td>
+          <td></td>
+          <td>수집도 <progress value="44" max="100"></progress> 42%</td>
           <td>240종</td>
         </tr>
         <%}%>

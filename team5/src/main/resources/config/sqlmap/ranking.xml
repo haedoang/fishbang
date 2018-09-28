@@ -24,6 +24,7 @@
 
 
 
+
 <!-- 사람들이 많이 잡는 상위 20개 어종 <어종별 랭킹>  -->
 <select id="selectFishRanking" resultMap="boardMap">
  <![CDATA[
@@ -49,7 +50,7 @@ where rownum <= 3
 </select>
 
 <!-- <어종별 랭킹> : 기능 : 날짜로 검색-->
-<select id="selectLengthRanking" parameterType="Board" resultMap="boardMap">
+<select id="selectLengthRankingByDate" parameterType="Board" resultMap="boardMap">
  <![CDATA[
 select *
 from (select user_id
@@ -63,6 +64,12 @@ where rownum <= 3
 
 
 <!-- <어종별 랭킹> : 기능 : 어종 자동 검색-->
+<!-- DB 어종명 끌어오기 -->
+<select id="selectFishBook" resultType="Dictionary">
+select kn, fish_id name
+from TB_FISHBOOK
+</select>
+
 <!-- <어종별 랭킹> : 어종별 랭킹(자세한) -->
 <select id="selectLengthDetailRanking" parameterType="String" resultMap="boardMap">
  <![CDATA[
@@ -90,17 +97,6 @@ where rownum <= 1
 
 
 
-<!-- 사람들이 많이 잡는 상위 20개 어종 <어종별 랭킹>  -->
-<select id="selectFishRanking" resultMap="boardMap">
- <![CDATA[
-select *
-from (select count(user_id), fish_name
-from tb_posting 
-group by fish_name
-order by count(user_id) desc)
-where rownum <= 20
- ]]>
-</select>
 
 
 
@@ -120,7 +116,7 @@ where rownum <= 20
 </select>
 
 <!-- <전체 랭킹> : 나의 랭킹 -->
-<select id="selectCatchMyRanking" parameterType="String" resultMap="int">
+<select id="selectCatchMyRanking" parameterType="String" resultMap="boardMap">
  <![CDATA[
 select user_id, count(*) cnt
 from tb_posting 
@@ -139,29 +135,32 @@ having user_id=#{userId}
 <!-- <도감 수집도 랭킹> : 전체 랭킹 -->
 <select id="selectCollectionRanking" resultMap="boardMap">
  <![CDATA[
-select count(*), user_id
+select *
+from (select count(*), user_id
 from(select p.user_id, p.fish_name, count(*) cnt
 from tb_posting p
 group by p.user_id, p.fish_name)
-group by user_id
+group by user_id)
+where rownum <= 20
  ]]>
 </select>
 
 
 <!-- <도감 수집도 랭킹> : 나의 도감 수집도 -->
-<select id="selectCollectionMyRanking" parameterType="String" resultMap="int">
-
+<select id="selectCollectionMyRanking" parameterType="String" resultMap="boardMap">
  <![CDATA[
-select count(*)
+select *
+from (select count(*)
 from(select p.user_id, p.fish_name, count(*) cnt
 from tb_posting p
 where user_id=#{userId}
-group by p.user_id, p.fish_name)
+group by p.user_id, p.fish_name))
+where rownum <= 1
  ]]>
 </select>
 
 <!-- <도감 수집도 랭킹> : 전체 도감 개수  -->
-<select id="selectCollectionMyRanking" resultMap="int">
+<select id="selectCollectionRankingCnt" resultMap="boardMap">
 select count(*)
 from tb_fishbook;
 </select>

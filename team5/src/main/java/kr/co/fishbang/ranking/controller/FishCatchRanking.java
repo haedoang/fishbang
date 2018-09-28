@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/fishCatch.do")
+@WebServlet("/ranking/fishCatch.do")
 public class FishCatchRanking extends HttpServlet{
 
 	@Override

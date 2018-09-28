@@ -8,6 +8,7 @@
 	<result column="posting_no" property="postingNo"/>
 	<result column="user_id" property="userId"/>
 	<result column="reg_date" property="regDate"/>
+	
 </resultMap>
 
 
