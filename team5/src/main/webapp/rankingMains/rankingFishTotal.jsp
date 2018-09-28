@@ -19,7 +19,7 @@
       <li class="unselect"><a href="#">민물</a></li>
     </ul>
   </div>
-  
+  <%int k=1;%>
  <table>
       <thead>
         <tr>
@@ -27,12 +27,12 @@
         </tr>
       <thead>
       <tbody>
-      <%for(int i = 1; i<20;i++) {%>
-        <tr>
-          <td>1위</td>
-          <td>장보고 (howon1042)</td>
-          <td>245마리</td>
-        </tr>
-        <%}%>
+            <c:forEach var="i" items='${drank}' >
+        		<tr>
+          		<td><%=k++%>위</td>
+          		<td>${i.userId}</td>
+          		<td>${i.cnt}마리</td>
+        		</tr>
+        	</c:forEach>
       </tbody>
     </table>

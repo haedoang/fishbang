@@ -115,18 +115,28 @@ having user_id=#{userId}
 <select id="selectCollectionRanking" parameterType="Board" resultMap="boardMap">
  <![CDATA[
 select *
+<<<<<<< Updated upstream
 from (select count(*), user_id
 from(select DISTINCT p.user_id, f.KN, p.fish_name
 from tb_fishbook f, tb_posting p 
 where f.KN = p.fish_name) 
 group by user_id
 order by count(*) desc)
+=======
+from (select count(*) cnt, user_id
+from(select p.user_id, p.fish_name, count(*)
+from tb_posting p
+group by p.user_id, p.fish_name)
+group by user_id)
+>>>>>>> Stashed changes
 where rownum <= 20
+order by cnt desc
  ]]>
 </select>
 
 
 
+<<<<<<< Updated upstream
 <select id="selectCollectionMyRanking" parameterType="Board" resultMap="boardMap">
  <![CDATA[
 select count(*)
@@ -134,6 +144,24 @@ from(select DISTINCT p.user_id, f.KN, p.fish_name
 from tb_fishbook f, tb_posting p 
 where f.KN = p.fish_name and user_id='cc@.') 
  ]]>
+=======
+<!-- <도감 수집도 랭킹> : 전체 도감 개수  -->
+<select id="selectCollectionRankingCnt" resultType="int">
+select count(*)
+from tb_fishbook
+</select>
+
+
+
+<!-- 사이드  -->
+<!-- 내가 잡은 상위 최다 어종-->
+<select id="selectSideRanking1" parameterType="String"  resultMap="boardMap">
+select p.user_id, p.fish_name, count(*) cnt
+from tb_posting p
+where user_id=#{userId}
+group by p.user_id, p.fish_name
+order by cnt desc
+>>>>>>> Stashed changes
 </select>
 
 

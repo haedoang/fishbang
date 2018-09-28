@@ -40,21 +40,21 @@
 
 
 
-
+<%int k=1;%>
  <table>
       <thead>
         <tr>
-          <th colspan="5">광어</th>
+          <th colspan="5">${fishName}</th>
         </tr>
       <thead>
       <tbody>
-      <%for(int i = 1; i<20;i++) {%>
-        <tr>
-          <td>1위</td>
-          <td>해동왕 (howon1042)</td>
-          <td>40cm</td>
-          <td>3.3kg</td>
-        </tr>
-        <%}%>
+            <c:forEach var="i" items='${drank}' >
+        		<tr>
+          		<td><%=k++%>위</td>
+          		<td>${i.userId}</td>
+          		<td>${i.fishLength}m</td>
+          		<td>${i.fishWeight}cm</td>
+        		</tr>
+        	</c:forEach>
       </tbody>
     </table>

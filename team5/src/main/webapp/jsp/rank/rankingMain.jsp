@@ -114,6 +114,7 @@ margin-left:1000px;
  <div id="mains">
   	<div id="feedBoard">
   		<c:import  url="../../rankingMains/rankingSpecies.jsp" />
+  		
   	</div>
   	<div id="side">
   		<c:import  url="../../rankingMains/sideRankingSpecies.jsp" />

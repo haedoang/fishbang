@@ -14,12 +14,30 @@ public class Board {
 	private String catchLocation;
 	private int geoLat; 
 	private int geoLng; 
+<<<<<<< Updated upstream
 	private int fishLength;
 	private int fishWeight;
 	private int fishRelease;
+=======
+	private double fishLength;
+	private double fishWeight;
+	private char fishRelease;
+>>>>>>> Stashed changes
 	private String content;
 	private String postVerified;
 	private int postLiked;
+	
+	
+	
+	
+	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	private int cnt;
 	
 	
 	
@@ -89,16 +107,16 @@ public class Board {
 	public void setGeoLng(int geoLng) {
 		this.geoLng = geoLng;
 	}
-	public int getFishLength() {
+	public double getFishLength() {
 		return fishLength;
 	}
-	public void setFishLength(int fishLength) {
+	public void setFishLength(double fishLength) {
 		this.fishLength = fishLength;
 	}
-	public int getFishWeight() {
+	public double getFishWeight() {
 		return fishWeight;
 	}
-	public void setFishWeight(int fishWeight) {
+	public void setFishWeight(double fishWeight) {
 		this.fishWeight = fishWeight;
 	}
 	public int getFishRelease() {

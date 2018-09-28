@@ -129,11 +129,12 @@ having user_id='bb@.';
 
 
 -- <도감 수집도 랭킹> : 전체 랭킹
-select count(*), user_id
-from(select p.user_id, p.fish_name, count(*) cnt
+select count(*) cnt, user_id
+from(select p.user_id, p.fish_name, count(*) 
 from tb_posting p
 group by p.user_id, p.fish_name)
-group by user_id;
+group by user_id
+order by cnt desc;
 
 
 
