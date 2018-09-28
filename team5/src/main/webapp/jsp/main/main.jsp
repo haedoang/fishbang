@@ -57,9 +57,60 @@
 	margin-left: 1000px;
 }
 
+#competition{
+	width: 15px;
+}
+
+#compList{
+	margin-right: 10px;
+}
 a, div {
 	font-size: 100%;
 }
+
+
+
+/* Write Widget CSS */
+.btn {
+	padding: .5em 1em;
+	height: 34px !important;
+	background-color: #232a96 !important;
+	color: #ffffff !important;
+	border: none;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.widget-post {
+	width: auto;
+	min-height: 100px;
+	height: auto;
+	border: 1px solid #4a98ea;
+	border-radius: 6px;
+	box-shadow: 0 1px 2px 1px rgba(130, 130, 130, 0.1);
+	background-color: #fff;
+	margin: auto;
+	overflow: hidden;
+}
+
+.widget-post__header {
+	padding: .2em .5em;
+	background-color: #4d93ea !important;
+	color: #3f5563 !important;
+}
+
+.widget-post___input.widget-post--date, .widget-post___input.widget-post--search, .widget-post___input.widget-post--select{
+	width: 150px;
+	margin-bottom: 10px;
+}
+
+.post-actions__attachments {
+	display: block;
+	float: right;
+	margin-bottom: 5px;
+	width: auto;
+}
+
 </style>
 </head>
 <body>
@@ -143,63 +194,88 @@ a, div {
 			<div id="feedBoard">
 				<div class="widget-post" aria-labelledby="post-header-title">
 					<div class="widget-post__header">
-						<h2 class="widget-post__title" id="post-header-title">
-							<i class="fa fa-pencil" aria-hidden="true"></i> 나의 조과 올리기
-						</h2>
+						<!-- <div class="widget-post__actions post--actions"> -->
+							<!-- <div class="post-actions__widget"> -->
+							<button type="button" class="btn post-actions__fish" aria-controls="fishcatch" aria-haspopup="true">
+								<i class="fa fa-usd" aria-hidden="true"></i>조과기록 작성하기
+							</button>
+								<!-- </div> -->
+							
+						<!-- </div> --> 
 					</div>
-					<form id="widget-form" class="widget-post__form" name="form"
-						aria-label="post widget">
-						<div class="widget-post__actions post--actions">
-							<div class="post-actions__attachments">
+					<form action="" id="widget-form" class="widget-post__form" name="form" aria-label="post widget" 
+						method="POST"
+						enctype="multipart/form-data"
+						onsubmit="return doSubmit()"
+					>
+					<!-- 	<div class="widget-post__actions post--actions">
+							<div class="post-actions__widget">
 								<button type="button"
-									class="btn post-actions__fish attachments--btn"
-									aria-controls="stock-options" aria-haspopup="true">
+									class="btn post-actions__fish"
+									aria-controls="fishcatch" aria-haspopup="true">
 									<i class="fa fa-usd" aria-hidden="true"></i>조과 정보작성
 								</button>
 
 							</div>
-							<div class="post-actions__widget">
-								<button type="button"
-									class="btn post-actions__addfish attachments--btn">
-									<label for="addfish" class="post-actions__label"><i
-										class="" aria-hidden="true"></i>조과추가+</label>
-								</button>
-								<button class="btn post-actions__publish">조과등록</button>
-							</div>
-						</div>
+							
+						</div> -->
 
 						<div class="widget-post__fishcatch " id="fish-kind">
-							<label for="date">출조날짜:</label> <input type="date"
-								class="widget-post___input widget-post--date" id="date">
-							<label for="search">출조지역:</label> <input type="search"
-								placeholder="예)거제도"
-								class="widget-post___input widget-post--search search--location"
-								id="search"> <label for="search">낚시방법:</label> <input
-								type="search" placeholder="예)방파제낚시"
-								class="widget-post___input widget-post--search search--method"
-								id="search"> <br> <label for="search">어종:</label> <input
-								type="search" placeholder="예)놀래미"
-								class="widget-post___input widget-post--search search--fish"
-								id="search"> <label for="fish-length">전장:</label> <input
-								type="number" class="widget-post___input widget-post--length"
-								id="fish-length" placeholder="길이(전장)"><i id="unit">cm</i>
-							<label for="fish-weight">무게:</label> <input type="number"
-								class="widget-post___input widget-post--weight" id="fish-weight"
-								placeholder="무게(체중)"><i id="unit">kg</i> <label
-								for="letgo">방생</label> <input type="checkbox" id="letgo"><br>
-							<button type="button"
-								class="btn post-actions__upload attachments--btn">
-								<label for="upload-image" class="post-actions__label"><i
-									class="fa fa-camera" aria-hidden="true"></i>인증사진 등록</label>
+							<label for="competition">대회</label>
+								<input type="checkbox" class="widget-post___input widget-post--checkbox" id="competition">
+							<select name="compList" id="compList">
+								<option value="">대회선택</option>
+								<option value="0">2018대물포낚시대회1회</option>
+								<option value="1">2018속초문어낚시대회34회</option>
+								<option value="2">2018사천낚시대회13회</option>
+								<option value="3">2018도시어부배천수만잉어낚시대회32회</option>
+							</select>
+							<label for="date">출조날짜:</label> 
+								<input type="date" class="widget-post___input widget-post--date" id="today">
+							<label for="search">출조지역:</label> 
+								<input type="search" placeholder="예)거제도" class="widget-post___input widget-post--search search--location" id="address"> 
+							<label for="search">낚시방법:</label> 
+								<select name="fMethod">
+									<option value="">낚시방법선택</option>
+									<option value="0">방파제낚시</option>
+									<option value="1">던질낚시</option>
+									<option value="2">하구낚시</option>
+									<option value="3">갯바위낚시</option>
+									<option value="4">흘림낚시</option>
+									<option value="5">트롤링낚시</option>
+									<option value="6">루어낚시</option>
+									<option value="7">호소낚시</option>
+									<option value="8">계류낚시</option>
+									<option value="9">저수지낚시</option>
+								</select>
+							<br> 
+							<label for="search">어종:</label> 
+								<input type="search" name="fishId" class="widget-post___input widget-post--search search--fish" id="search" placeholder="예)놀래미"> 
+							<label for="fish-length">전장:</label> 
+								<input type="number" name="length" class="widget-post___input widget-post--length" id="fish-length" placeholder="길이(전장)" required><i id="unit">cm</i>
+							<label for="fish-weight">무게:</label> 
+								<input type="number" name="weight" class="widget-post___input widget-post--weight" id="fish-weight" placeholder="무게(체중)" required><i id="unit">kg</i> 
+							<label for="letgo">방생</label> <input type="checkbox" name="fishRelease" value="y" id="letgo"><br>
+							<button type="button" class="btn post-actions__upload attachments--btn">
+								<label for="upload-image" class="post-actions__label">
+								인증사진 등록&nbsp<i class="fa fa-camera" aria-hidden="true"></i></label>
 							</button>
 							<input type="file" id="upload-image" accept="image/*" multiple>
-						</div>
+						
 						<div class="widget-post__content">
 							<label for="post-content" class="sr-only">자유글 또는 조황에 대한
 								설명을 작성해주세요.</label>
 							<textarea name="post" id="post-content"
 								class="widget-post__textarea scroller"
-								placeholder="(#태그 사용가능)자유글 또는 조황에 대한 설명을 작성해주세요."></textarea>
+								placeholder="조황에 대한 설명을 작성해주세요."></textarea>
+						</div>
+						<div class="post-actions__attachments">
+								<!-- <button type="button" class="btn post-actions__addfish">
+									<label for="addfish" class="post-actions__label">
+									<i class="" aria-hidden="true"></i>조과추가+</label>
+								</button> -->
+								<button class="btn post-actions__publish" type="button">조과등록</button>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -394,12 +470,48 @@ a, div {
 	</script>
 	<!-- Feeds Listing AJAX Script ENDS-->
 	
-	<!-- Write Input Script -->
+	<!-- Nav Sidebar Menu Collapse Script -->
 	<script>
 		$('.btn-expand-collapse').click(function(e) {
 			$('.navbar-primary').toggleClass('collapsed');
 		});
+	</script>
+	
+	<!-- Write Input Script -->
+	<script>
+	/* competition checkbox click active compList Select box */
+	var compList = function() {		
+		if ($("#competition").is(":checked")){
+			$('#compList').prop('disabled', false);
+		} else {
+			$('#compList').prop('disabled', true);
+		}
+	};
+	$(compList);
+	$("#competition").change(compList);
+	
+	/* today default date */
+	document.querySelector("#today").valueAsDate = new Date();
+	
+	if ( $('[type="date"]').prop('type') != 'date' ) {
+	    $('[type="date"]').datepicker();
+	}
+	
+	// Use datepicker on the date inputs
+	$("input[type=date]").datepicker({
+	  dateFormat: 'yyyy-mm-dd',
+	  onSelect: function(dateText, inst) {
+	    $(inst).val(dateText); // Write the value in the input
+	  }
+	});
 
+	// Code below to avoid the classic date-picker
+	$("input[type=date]").on('click', function() {
+	  return false;
+	});
+	
+	
+	/* buttons actions */
 		var fishBtn = document.querySelector('.post-actions__fish');
 		var postFishCatch = document.querySelector('.widget-post__fishcatch');
 		var searchLocation = document.querySelector('.search--location');
@@ -447,6 +559,12 @@ a, div {
 			map : map
 		});
 	</script>
+	
+	<!-- Daum Address Search Script -->
+	<script>
+
+</script>
+	
 <!-- Map Marker Script ENDS -->
 </body>
 </html>

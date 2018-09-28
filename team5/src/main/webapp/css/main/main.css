@@ -10,8 +10,9 @@ ul {
 
 .btn {
 	padding: .5em 1em;
-	background-color: transparent;
-	color: #6b7270;
+	height: 34px !important;
+	background-color: #232a96 !important;
+	color: #ffffff !important;
 	border: none;
 	cursor: pointer;
 }
@@ -20,7 +21,7 @@ ul {
 	width: auto;
 	min-height: 100px;
 	height: auto;
-	border: 1px solid #eaeaea;
+	border: 1px solid #4a98ea;
 	border-radius: 6px;
 	box-shadow: 0 1px 2px 1px rgba(130, 130, 130, 0.1);
 	background-color: #fff;
@@ -30,8 +31,9 @@ ul {
 
 .widget-post__header {
 	padding: .2em .5em;
-	background-color: #eaeaea;
-	color: #3f5563;
+	background-color: #4d93ea !important;
+	color: #3f5563 !important;
+	margin-bottom: 10px;
 }
 
 .widget-post__title {
@@ -77,9 +79,8 @@ i#unit {
 	margin-right: 40px;
 }
 
-.widget-post___input.widget-post--date, .widget-post___input.search--method
-	{
-	width: 140px;
+.widget-post___input.widget-post--date, .widget-post___input.widget-post--search, .widget-post___input.widget-post--select{
+	width: 150px;
 }
 
 .post-actions__label {
@@ -98,15 +99,17 @@ i#unit {
 	color: #a2a6a7;
 }
 
-.post-actions__attachments {
+/* .post-actions__attachments {
 	display: inline-block;
-	width: 60%;
-}
+	float: right;
+	margin-bottom: 5px;
+} */
 
 .attachments--btn {
 	background-color: #eaeaea;
 	color: #007582;
 	border-radius: 1.5em;
+	float: right;
 }
 
 .post-actions__widget {
