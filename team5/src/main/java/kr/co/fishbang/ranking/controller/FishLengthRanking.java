@@ -25,7 +25,7 @@ public class FishLengthRanking extends HttpServlet{
 	 	RankingMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(RankingMapper.class);
         List<Dictionary> list = mapper.selectFishBook();
         for(Dictionary li:list) {
-        	System.out.println(li.getKn()+"::::::"+li.getName());
+        	System.out.println(li.getKn()+"::::::"+li.getFishId());
         }
         response.setContentType("application/json; charset=utf-8");
         PrintWriter out = response.getWriter();

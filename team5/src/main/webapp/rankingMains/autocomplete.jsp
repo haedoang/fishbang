@@ -28,7 +28,7 @@ $(function() {
                             return {
                                 label: item.kn.replace($( "#fishName" ).val(),"<span style='font-weight:bold;color:Blue;'>" + $( "#fishName" ).val() + "</span>"),
                                 value: item.kn,
-                                value2 : item.name
+                                value2 : item.fishId
                                 //cityCd:item.cityCd,
                                 //nationCd:item.nationCd
                             }
@@ -37,9 +37,12 @@ $(function() {
                 }
             });
         },
+        focus: function( event, ui ) {
+         	event.preventDefault();
+        	},
         minLength: 1,
         select: function( event, ui ) {
-                fishValue(ui.item.value);
+                fishValue(ui.item.value, ui.item.value2);
         },
         open: function() {
             $( this ).autocomplete("widget").width("323px");
@@ -53,19 +56,19 @@ $(function() {
     .data('uiAutocomplete')._renderItem = function( ul, item ) {
         return $( "<li style='cursor:hand; cursor:pointer;'></li>" )
             .data( "item.autocomplete", item )
-            .append("<a >"  + unescape(item.label) + "</a>")
+            .append("<a onclick=\"fishValue('" + item.value + "');\">" + unescape(item.label) + "</a>")
         .appendTo( ul );
     };
 });
   
-function fishValue(message) {
-    $("<div>").text(message).prependTo("#fishsResult");
-    $("#fishsResult").scrollTop(0);
+function fishValue(msg1, msg2) {
+    $("#fishsResult").text(msg1+": "+msg2);
+ 
 }
   
 </script>
 <div class="ui-widget">
-    <input id="fishName" placeholder="어종을 검색하세요." onkeyup="enterkey();"/>
+    <input id="fishName" placeholder="어종을 검색하세요." />
 </div>
 <div class="ui-widget" style="margin-top: 2em; font-family: Arial;">Result:
     <div id="fishsResult" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
