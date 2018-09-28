@@ -29,7 +29,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
 // Trigger the file upload to set the profile picture
 profileTrigger.addEventListener('click', function(event) {
-  //event.preventDefault();
+  event.preventDefault();
   fileUpload.click();
 });
 
@@ -68,3 +68,15 @@ passwordToggle.addEventListener('click', function(event) {
     password.type = 'password';
   }
 });
+
+//국적 있으면 벨류 추가~~
+$(function(){
+	var nation = $("#userNat").val();
+	
+	if(nation!=null){
+		$(`#${nation}`).attr("selected","selected");
+	
+	}
+	
+})
+

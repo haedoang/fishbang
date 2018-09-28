@@ -22,7 +22,7 @@ package kr.co.fishbang.repository.domain;
 public class Dictionary {
 	
 private int fishNo;
-private String fishId;
+private String name;
  //class란 이름 사용불가 , fclass는 물고기과
 private String fclass;
 private String spec;
@@ -46,11 +46,11 @@ private String length;
 				public void setFishNo(int fishNo) {
 					this.fishNo = fishNo;
 				}
-				public String getFishId() {
-					return fishId;
+				public String getName() {
+					return name;
 				}
-				public void setFishId(String fishId) {
-					this.fishId = fishId;
+				public void setName(String name) {
+					this.name = name;
 				}
 				public String getFclass() {
 					return fclass;

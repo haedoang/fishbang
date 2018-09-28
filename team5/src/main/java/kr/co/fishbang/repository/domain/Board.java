@@ -7,7 +7,7 @@ public class Board {
 	private String userId;
 	private int competitionId;
 	private int methodNo;
-	private String fishId;
+	private int fishId;
 	private String fishName;
 	private Date regDate;
 	private Date catchDate;
@@ -16,7 +16,7 @@ public class Board {
 	private int geoLng; 
 	private int fishLength;
 	private int fishWeight;
-	private char fishRelease;
+	private int fishRelease;
 	private String content;
 	private String postVerified;
 	private int postLiked;
@@ -47,10 +47,10 @@ public class Board {
 	public void setMethodNo(int methodNo) {
 		this.methodNo = methodNo;
 	}
-	public String getFishId() {
+	public int getFishId() {
 		return fishId;
 	}
-	public void setFishId(String fishId) {
+	public void setFishId(int fishId) {
 		this.fishId = fishId;
 	}
 	public String getFishName() {
@@ -101,10 +101,10 @@ public class Board {
 	public void setFishWeight(int fishWeight) {
 		this.fishWeight = fishWeight;
 	}
-	public char getFishRelease() {
+	public int getFishRelease() {
 		return fishRelease;
 	}
-	public void setFishRelease(char fishRelease) {
+	public void setFishRelease(int fishRelease) {
 		this.fishRelease = fishRelease;
 	}
 	public String getContent() {

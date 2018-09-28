@@ -3,39 +3,5 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.fishbang.repository.mapper.BoardMapper"> 
-	<resultMap type="Board" id="boardMap">
-	 <result column="posting_no" property="postingNo" />
-	 <result column="user_id" property="userId" />
-	 <result column="competition_id" property="competitionId" />
-	 <result column="method_no" property="methodNo" />
-	 <result column="fish_id" property="fishId" />
-	 <result column="fish_name" property="fishName" />
-	 <result column="reg_date" property="regDate" />
-	 <result column="catch_date" property="catchDate" />
-	 <result column="catch_location" property="catchLocation" />
-	 <result column="geo_lat" property="geoLat" /> 
-	 <result column="geo_lng" property="geoLng" /> 
-	 <result column="fish_length" property="fishLength" />
-	 <result column="fish_weight" property="fishWeight" />
-	 <result column="fish_release" property="fishRelease" />
-	 <result column="content" property="content" />
-	 <result column="post_verified" property="postVerified" />
-	 <result column="post_liked" property="postLiked" />
-	</resultMap>
-	
-	<select id="displayAllFeeds" resultMap="boardMap">
-		select *
-		  from tb_posting
-		order by posting_no desc 
-	</select>
-	
-	<select id="displayByMycatch" parameterType="Board" resultMap="boardMap">
-		select *
-		  from tb_posting
-		 where user_id = #{userId}
-		 and where fish_id = #{fishId}
-		order by fish_length desc 
-	</select>
-	
-	
+
 </mapper>

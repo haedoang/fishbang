@@ -49,10 +49,6 @@
             <button id="login" type="button" class="btn login">login</button>
             <p id="pwArea"><a href="#">Find password?</a></p>
             <hr/>
-            <!--  
-            <button type="button" class="btn -box-sd-effect naver"> <i class="fa fa-plus fa-lg" aria-hidden="true"></i> sign in with Naver</button>
-            <button type="button" class="btn -box-sd-effect kakao"> <i class="fa fa-plus fa-lg" aria-hidden="true"></i> sign in with Kakao</button>
-            -->
             
             <!-- naver login  -->
             <div id="naverIdLogin"></div>

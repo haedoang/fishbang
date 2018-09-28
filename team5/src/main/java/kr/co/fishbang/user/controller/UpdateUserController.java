@@ -2,6 +2,7 @@ package kr.co.fishbang.user.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -41,7 +42,7 @@ public class UpdateUserController extends HttpServlet{
 		MultipartRequest mRequest = 
 				new MultipartRequest(
 						request, 		
-						uploadPath,
+						uploadPath+path,
 						1024 * 1024 * 100, 
 						"utf-8", 			 	
 						new ProfileFileRenamePolicy() 
@@ -107,6 +108,11 @@ public class UpdateUserController extends HttpServlet{
 			System.out.println(user.getBirth());*/
 			
 			userMapper.updateUser(user);
+			
+			PrintWriter out = response.getWriter();
+			
+			out.print("<script>alert('회원정보가 정상적으로 수정되었습니다.');"
+					+ "location.href='"+request.getContextPath()+"/main.do"+"'</script>");	
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.fishbang.repository.mapper.CommentMapper"> 
+<resultMap id="commentMap" type="Comment">
+	<result column="comment_no" property="commentNo"/>
+	<result column="posting_no" property="postingNo"/>
+	<result column="user_id" property="userId"/>
+	<result column="reg_date" property="regDate"/>
+	
+</resultMap>
+
+
+	
+	<select id="selectComment"  parameterType="int"  resultMap="boardCommentMap">
+	select *
+	from tb_pcomment
+	where posting_no=#{postingNo}
+	</select>
+	
+	<insert id="insertComment" parameterType="BoardComment">
+	insert tb_pcomment(posting_no, comment_no, content, user_id, reg_date)
+	values(#{postingNo}, s_pcomment_no.nextval, #{content}, #{userId}, #{regDate})
+	</insert>
+	
+	<update id="updateComment" parameterType="BoardComment">
+	update tb_pcomment
+	set content=#{content}
+	where posting_no=#{postingNo} and comment_no=#{CommentNo} and user_id=#{userId}
+	</update>
+	
+	<delete id="deleteComment" parameterType="BoardComment">
+	delete tb_pcomment
+	where posting_no=#{postingNo} and comment_no=#{CommentNo} and user_id=#{userId}
+	</delete>
+
+
+</mapper>

@@ -24,7 +24,6 @@
 
 
 
-
 <!-- 사람들이 많이 잡는 상위 20개 어종 <어종별 랭킹>  -->
 <select id="selectFishRanking" resultMap="boardMap">
  <![CDATA[
@@ -47,27 +46,6 @@ where fish_name=#{fishName}
 order by fish_length desc)
 where rownum <= 3
  ]]>
-</select>
-
-<!-- <어종별 랭킹> : 기능 : 날짜로 검색-->
-<select id="selectLengthRankingByDate" parameterType="Board" resultMap="boardMap">
- <![CDATA[
-select *
-from (select user_id
-from tb_posting 
-where fish_name=#{fishName}
-and catch_date between #{catchDate} and #{catchDate}
-order by fish_length desc)
-where rownum <= 3
- ]]>
-</select>
-
-
-<!-- <어종별 랭킹> : 기능 : 어종 자동 검색-->
-<!-- DB 어종명 끌어오기 -->
-<select id="selectFishBook" resultType="Dictionary">
-select kn, fish_id fishId
-from TB_FISHBOOK
 </select>
 
 <!-- <어종별 랭킹> : 어종별 랭킹(자세한) -->
@@ -103,14 +81,15 @@ where rownum <= 1
 
 
 
+
 <!--<전체 랭킹> : 가장 물고기를 많이 잡은 사람  -->
 <select id="selectCatchRanking"  resultMap="boardMap">
  <![CDATA[
 select *
-from (select user_id, count(*) cnt
+from (select user_id, count(*)
 from tb_posting 
 group by user_id
-order by cnt desc)
+order by count(*) desc)
 where rownum <= 20
  ]]>
 </select>
@@ -118,7 +97,7 @@ where rownum <= 20
 <!-- <전체 랭킹> : 나의 랭킹 -->
 <select id="selectCatchMyRanking" parameterType="String" resultMap="boardMap">
  <![CDATA[
-select user_id, count(*) cnt
+select user_id, count(*)
 from tb_posting 
 group by user_id
 having user_id=#{userId}
@@ -132,60 +111,32 @@ having user_id=#{userId}
 
 
 
-<!-- <도감 수집도 랭킹> : 전체 랭킹 -->
-<select id="selectCollectionRanking" resultMap="boardMap">
+
+<select id="selectCollectionRanking" parameterType="Board" resultMap="boardMap">
  <![CDATA[
 select *
 from (select count(*), user_id
-from(select p.user_id, p.fish_name, count(*) cnt
-from tb_posting p
-group by p.user_id, p.fish_name)
-group by user_id)
+from(select DISTINCT p.user_id, f.KN, p.fish_name
+from tb_fishbook f, tb_posting p 
+where f.KN = p.fish_name) 
+group by user_id
+order by count(*) desc)
 where rownum <= 20
  ]]>
 </select>
 
 
-<!-- <도감 수집도 랭킹> : 나의 도감 수집도 -->
-<select id="selectCollectionMyRanking" parameterType="String" resultMap="boardMap">
+
+<select id="selectCollectionMyRanking" parameterType="Board" resultMap="boardMap">
  <![CDATA[
-select *
-from (select count(*)
-from(select p.user_id, p.fish_name, count(*) cnt
-from tb_posting p
-where user_id=#{userId}
-group by p.user_id, p.fish_name))
-where rownum <= 1
+select count(*)
+from(select DISTINCT p.user_id, f.KN, p.fish_name
+from tb_fishbook f, tb_posting p 
+where f.KN = p.fish_name and user_id='cc@.') 
  ]]>
 </select>
 
-<!-- <도감 수집도 랭킹> : 전체 도감 개수  -->
-<select id="selectCollectionRankingCnt" resultMap="boardMap">
-select count(*)
-from tb_fishbook;
-</select>
 
-
-
-<!-- 사이드  -->
-<!-- 내가 잡은 상위 최다 어종-->
-<select id="selectSideRanking1" parameterType="String"  resultMap="boardMap">
-select p.user_id, p.fish_name, count(*) cnt
-from tb_posting p
-where user_id=#{userId}
-group by p.user_id, p.fish_name
-order by cnt desc
-</select>
-
-
-<!-- 내가 가장 많이간 상위 조출지 -->
-<select id="selectSideRanking2" parameterType="String" resultMap="boardMap">
-select p.user_id, p.catch_location, count(*) cnt
-from tb_posting p
-where user_id=#{userId}
-group by p.user_id, p.catch_location
-order by cnt desc
-</select>
 
 
 

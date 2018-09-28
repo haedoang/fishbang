@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 public class HomeController extends HttpServlet{
 	
 //시작페이지
-	
-
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

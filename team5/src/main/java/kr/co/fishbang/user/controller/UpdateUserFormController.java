@@ -27,12 +27,13 @@ public class UpdateUserFormController extends HttpServlet{
 		ProfileMapper mapper=  MyAppSqlConfig.getSqlSessionInstance().getMapper(ProfileMapper.class);
 		Profile profile = new Profile();
 		profile = mapper.selectProfile(user.getId());
-		System.out.println(profile.getId());
+		/*System.out.println(profile.getId());
 		System.out.println(profile.getNo());
 		System.out.println(profile.getPath());
 		System.out.println(profile.getSysProName());
-		System.out.println(profile.getSysThuName());
+		System.out.println(profile.getSysThuName());*/
 		
+		session.setAttribute("profile", profile);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/member/updateuserform.jsp");
 		rd.forward(request, response);
