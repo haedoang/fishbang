@@ -43,7 +43,7 @@ select *
 from (select user_id
 from tb_posting 
 where fish_name=#{fishName}
-order by fish_length desc)
+order by fish_length desc, fish_weight desc)
 where rownum <= 3
  ]]>
 </select>
@@ -55,7 +55,7 @@ select *
 from (select user_id, fish_name, fish_length, fish_weight
 from tb_posting 
 where fish_name=#{fishName}
-order by fish_length desc)
+order by fish_length desc, fish_weight desc)
 where rownum <= 20
  ]]>
 </select>
@@ -67,7 +67,7 @@ select *
 from (select user_id, fish_name, fish_length, fish_weight
 from tb_posting 
 where fish_name=#{fishName} and user_id=#{userId}
-order by fish_length desc )
+order by fish_length desc, fish_weight desc)
 where rownum <= 1
  ]]>
 </select>
@@ -86,10 +86,10 @@ where rownum <= 1
 <select id="selectCatchRanking"  resultMap="boardMap">
  <![CDATA[
 select *
-from (select user_id, count(*)
+from (select user_id, count(*) cnt
 from tb_posting 
 group by user_id
-order by count(*) desc)
+order by cnt desc)
 where rownum <= 20
  ]]>
 </select>
@@ -111,24 +111,15 @@ having user_id=#{userId}
 
 
 
-
+<!-- <도감 수집도 랭킹> : 전체 랭킹 -->
 <select id="selectCollectionRanking" parameterType="Board" resultMap="boardMap">
  <![CDATA[
 select *
-<<<<<<< Updated upstream
-from (select count(*), user_id
-from(select DISTINCT p.user_id, f.KN, p.fish_name
-from tb_fishbook f, tb_posting p 
-where f.KN = p.fish_name) 
-group by user_id
-order by count(*) desc)
-=======
 from (select count(*) cnt, user_id
 from(select p.user_id, p.fish_name, count(*)
 from tb_posting p
 group by p.user_id, p.fish_name)
 group by user_id)
->>>>>>> Stashed changes
 where rownum <= 20
 order by cnt desc
  ]]>
@@ -136,15 +127,19 @@ order by cnt desc
 
 
 
-<<<<<<< Updated upstream
-<select id="selectCollectionMyRanking" parameterType="Board" resultMap="boardMap">
+
+<!-- <도감 수집도 랭킹> : 나의 도감 수집도 -->
+<select id="selectCollectionMyRanking" parameterType="String" resultMap="boardMap">
+
  <![CDATA[
 select count(*)
-from(select DISTINCT p.user_id, f.KN, p.fish_name
-from tb_fishbook f, tb_posting p 
-where f.KN = p.fish_name and user_id='cc@.') 
+from(select p.user_id, p.fish_name, count(*) cnt
+from tb_posting p
+where user_id=#{userId}
+group by p.user_id, p.fish_name)
  ]]>
-=======
+</select>
+
 <!-- <도감 수집도 랭킹> : 전체 도감 개수  -->
 <select id="selectCollectionRankingCnt" resultType="int">
 select count(*)
@@ -161,7 +156,6 @@ from tb_posting p
 where user_id=#{userId}
 group by p.user_id, p.fish_name
 order by cnt desc
->>>>>>> Stashed changes
 </select>
 
 
