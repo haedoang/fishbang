@@ -24,6 +24,13 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+<!--  Fish Search Autocomplete --> -->
+<script
+  src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 
 <!-- fontawesone 로고 -->
 <link rel="stylesheet"
@@ -35,10 +42,27 @@
 
 <title>Main Board Feeds</title>
 <style>
+/* Fish Search Loading */
+.ui-autocomplete-loading
+{
+        background: white url('http://f.goodkiss.co.kr/sample/images/waiting.gif') right center no-repeat;
+}
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;   /* prevent horizontal scrollbar */
+    overflow-x: hidden; /* add padding to account for vertical scrollbar */
+    z-index:1000 !important;
+}
+
 /* <!-- Section Divider CSS --> */
 #mains {
 	border: 1px solid tomato;
 	height: 8000px;
+}
+
+.main-content {
+    margin-top: 31px;
+    margin-left: 200px;
 }
 
 #feedBoard {
@@ -60,6 +84,57 @@
 a, div {
 	font-size: 100%;
 }
+<<<<<<< Updated upstream
+=======
+
+
+
+/* Write Widget CSS */
+.btn {
+	padding: .5em 1em;
+	height: 34px !important;
+	background-color: #232a96 !important;
+	color: #ffffff !important;
+	border: none;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.widget-post {
+	width: auto;
+	min-height: 100px;
+	height: auto;
+	border: 1px solid #4a98ea;
+	border-radius: 6px;
+	box-shadow: 0 1px 2px 1px rgba(130, 130, 130, 0.1);
+	background-color: #fff;
+	margin: auto;
+	overflow: hidden;
+}
+
+.widget-post__header {
+	padding: .2em .5em;
+	background-color: #4d93ea !important;
+	color: #3f5563 !important;
+}
+
+.widget-post___input.widget-post--date, .widget-post___input.widget-post--search, .widget-post___input.widget-post--select{
+	width: 150px;
+	margin-bottom: 10px;
+}
+
+.post-actions__attachments {
+	display: block;
+	float: right;
+	margin-bottom: 5px;
+	width: auto;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+>>>>>>> Stashed changes
 </style>
 </head>
 <body>
@@ -139,7 +214,7 @@ a, div {
 	<!-- Main-Content 각자의 페이지 작성  -->
 	<div class="main-content">
 
-		<div id="mains">
+		<!-- <div id="mains"> -->
 			<div id="feedBoard">
 				<div class="widget-post" aria-labelledby="post-header-title">
 					<div class="widget-post__header">
@@ -169,6 +244,7 @@ a, div {
 						</div>
 
 						<div class="widget-post__fishcatch " id="fish-kind">
+<<<<<<< Updated upstream
 							<label for="date">출조날짜:</label> <input type="date"
 								class="widget-post___input widget-post--date" id="date">
 							<label for="search">출조지역:</label> <input type="search"
@@ -191,6 +267,47 @@ a, div {
 								class="btn post-actions__upload attachments--btn">
 								<label for="upload-image" class="post-actions__label"><i
 									class="fa fa-camera" aria-hidden="true"></i>인증사진 등록</label>
+=======
+							<label for="competition">대회</label>
+								<input type="checkbox" class="widget-post___input widget-post--checkbox" id="competition">
+							<select name="compList" id="compList">
+								<option value="">대회선택</option>
+								<option value="0">2018대물포낚시대회1회</option>
+								<option value="1">2018속초문어낚시대회34회</option>
+								<option value="2">2018사천낚시대회13회</option>
+								<option value="3">2018도시어부배천수만잉어낚시대회32회</option>
+							</select>
+							<label for="date">출조날짜:</label> 
+								<input type="date" class="widget-post___input widget-post--date" id="today">
+							<label for="search">출조지역:</label> 
+								<input type="search" placeholder="예)거제도" class="widget-post___input widget-post--search search--location" id="address"> 
+							<label for="search">낚시방법:</label> 
+								<select name="fMethod">
+									<option value="">낚시방법선택</option>
+									<option value="0">방파제낚시</option>
+									<option value="1">던질낚시</option>
+									<option value="2">하구낚시</option>
+									<option value="3">갯바위낚시</option>
+									<option value="4">흘림낚시</option>
+									<option value="5">트롤링낚시</option>
+									<option value="6">루어낚시</option>
+									<option value="7">호소낚시</option>
+									<option value="8">계류낚시</option>
+									<option value="9">저수지낚시</option>
+								</select>
+							<br> 
+							<label for="search">어종:</label> 
+								<input type="search" name="fishName" class="widget-post___input widget-post--search search--fish" id="fishName" placeholder="예)놀래기"> 
+								<input type="hidden" name="fishId" id="fishResult"/>
+							<label for="fish-length">전장:</label> 
+								<input type="number" name="length" class="widget-post___input widget-post--length" id="fish-length" placeholder="길이(전장)" required><i id="unit">cm</i>
+							<label for="fish-weight">무게:</label> 
+								<input type="number" name="weight" class="widget-post___input widget-post--weight" id="fish-weight" placeholder="무게(체중)" required><i id="unit">kg</i> 
+							<label for="letgo">방생</label> <input type="checkbox" name="fishRelease" value="y" id="letgo"><br>
+							<button type="button" class="btn post-actions__upload attachments--btn">
+								<label for="upload-image" class="post-actions__label">
+								인증사진 등록&nbsp<i class="fa fa-camera" aria-hidden="true"></i></label>
+>>>>>>> Stashed changes
 							</button>
 							<input type="file" id="upload-image" accept="image/*" multiple>
 						</div>
@@ -383,7 +500,7 @@ a, div {
 			<!-- Main-Content 각자의 Side 페이지 작성  -->
 			<div id="side"></div>
 
-		</div>
+		<!-- </div> -->
 	</div>
 	<script>
 		$('.btn-expand-collapse').click(function(e) {
@@ -436,5 +553,81 @@ a, div {
 			map : map
 		});
 	</script>
+<<<<<<< Updated upstream
+=======
+	
+	<!-- Daum Address Search Script -->
+	<script>
+
+</script>
+	
+<!-- 어종 검색 자동완성 script -->
+	<script>
+	$(function() {
+		  
+	    $( "#fishName" ).autocomplete({
+	        source: function( request, response ) {
+	            $.ajax({
+	                url: '/team5/ranking/fishLength.do',
+	                //data: { mode : "KEYWORDCITYJSON" , keyword : $("#cityNm").val() },
+	                dataType: "json",
+	                success: function( data ) {
+	                    response( $.map( data, function( item ) {
+	                       	
+	                        if (item.kn.indexOf($("#fishName").val()) >= 0)
+	                        {
+	                            return {
+	                                label: item.kn.replace($( "#fishName" ).val(),"<span style='font-weight:bold;color:Blue;'>" + $( "#fishName" ).val() + "</span>"),
+	                                value: item.kn,
+	                                value2 : item.fishId
+	                                //cityCd:item.cityCd,
+	                                //nationCd:item.nationCd
+	                            }
+	                        } 
+	                    }));
+	                }
+	            });
+	        },
+	       
+	        /* 한글일 경우 아래키로 내리면 자동완성이 변경된는 것을 방지 */
+	        focus: function( event, ui ) {
+	         	event.preventDefault();
+	        	},
+	        minLength: 1,
+	        select: function( event, ui ) {
+	                fishValue(ui.item.value, ui.item.value2);  
+	        },
+	        change: function (event, ui) {
+                if (!( ui.item)) {
+                	event.target.value = "";
+               		alert("검색하신 어종이 존재하지 않습니다. 다시 입력해주세요.")
+               	}
+            },
+	        open: function() {
+	            $( this ).autocomplete("widget").width("323px");
+	            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+	        },
+	        close: function() {
+	            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+	        },
+	        error: function(xhr, ajaxOptions, thrownError){ alert(thrownError);  alert(xhr.responseText); }
+	    })
+	    .data('uiAutocomplete')._renderItem = function( ul, item ) {
+	        return $( "<li style='cursor:hand; cursor:pointer;'></li>" )
+	            .data( "item.autocomplete", item )
+	            .append("<a onclick=\"fishValue('" + item.value + "');\">" + unescape(item.label) + "</a>")
+	        .appendTo( ul );
+	    };
+	});
+	  
+	function fishValue(msg1, msg2) {
+	    $("#fishResult").val(msg2);
+	 	console.log($("#fishResult").val())
+	}
+	</script>
+
+
+
+>>>>>>> Stashed changes
 </body>
 </html>
