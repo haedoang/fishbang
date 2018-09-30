@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
-
+  		<c:import  url="../rankingMains/rankingCss.jsp" />
+  		<c:import  url="../rankingMains/rankingScript.jsp" />
 <div class="menu" >
     <ul>
       <li class="select"><a href="../rank/rankingMain1.jsp">어종별 대물 랭킹</a></li>
@@ -30,27 +31,38 @@
 <li>
 <form action="../rank/rankingMain2.jsp" role="search" class="search-form">
 		<input type="submit" value="" class="search-submit"> 
-		<input type="search" name="q" class="search-text" placeholder="선택하고 싶은 어종을 입력하세요." autocomplete="off">
+		<input type="search" name="q" class="search-text" placeholder="선택하고 싶은 어종을 입력하세요." autocomplete="on">
 </form>
 </li>
 </ul>
 </div>
-
  <table>
       <thead>
         <tr>
           <th colspan="5">어종별 랭킹</th>
         </tr>
       <thead>
-      <tbody>
-      <%for(int i = 1; i<20;i++) {%>
-        <tr>
-          <td class="species">광어</td>
-          <td><r>1위</r>     howon1042     42cm     3.3kg</td>
-          <td><r>2위</r>     suzin5512     40cm     3.1kg</td>
-          <td><r>3위</r>     kds1042     42cm     3.3kg</td>
-          <td class="myRanking"><r>내 순위</r> 433위 22cm 2kg </td>
+      <tbody>  
+      <c:forEach begin="1" end="20" var="k" varStatus="s">  
+      	<c:set var="rankN">rank${k}</c:set>
+      	${rankN}
+      	 <tr>
+          <td class="species">${rank1[0].fishName}</td>
+          <%int k=1;%>
+          <c:forEach var="i" items="${rank1}">
+	          <td><r><%=k++%>위</r>       ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
+          </c:forEach>
+        <td class="myRanking"><r>내 순위</r>     ${myrank1.rank}위     ${myrank1.fishLength}cm  ${myrank1.fishWeight}kg</td>
         </tr>
-        <%}%>
+        <tr>
+        </c:forEach>
+
+          <td class="species">${rank2[0].fishName}</td>
+          <%int k=1;%>
+          <c:forEach var="i" items="${rank1}">
+	          <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
+        </c:forEach>
+        <td class="myRanking"><r>내 순위</r> ${myrank1.rank}위     ${myrank1.fishLength}cm  ${myrank1.fishWeight}kg</td>
+        </tr>
       </tbody>
     </table>

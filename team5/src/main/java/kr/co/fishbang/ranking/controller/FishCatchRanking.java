@@ -25,13 +25,18 @@ public class FishCatchRanking extends HttpServlet{
         List<Board> rank=mapper.selectCatchRanking();
         Board myrank = mapper.selectCatchMyRanking(session.getId());
         
+        List<Board> side1 = mapper.selectSideRanking1("bb@."/*session.getId()*/);
+        List<Board> side2 = mapper.selectSideRanking2("bb@."/*session.getId()*/);
+        
         request.setAttribute("rank", rank);
         request.setAttribute("myrank", myrank);
+        request.setAttribute("side1", side1);
+        request.setAttribute("side2", side2);
       
 		
         
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/rankingMains/rankingFishTotal.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/rankingMain3.jsp");
 		
 		rd.forward(request, response);
 	}

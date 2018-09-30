@@ -20,6 +20,8 @@
 	<result column="fish_release" property="fishRelease"/>
 	<result column="post_verified" property="postVerified"/>
 	<result column="post_liked" property="postLiked"/>
+	<result column="catch_date" property="startday"/>
+	<result column="catch_date" property="endday"/>
 </resultMap>
 
 
@@ -40,13 +42,33 @@ where rownum <= 20
 <select id="selectLengthRanking" parameterType="String" resultMap="boardMap">
  <![CDATA[
 select *
-from (select user_id
+from (select user_id, fish_name, fish_length, fish_weight
 from tb_posting 
 where fish_name=#{fishName}
 order by fish_length desc, fish_weight desc)
 where rownum <= 3
  ]]>
 </select>
+
+<!-- <어종별 랭킹> : 어종별 랭킹 날짜 검색용(여러 어종) -->
+<select id="selectLengthRankingByDate" parameterType="Board" resultMap="boardMap">
+ <![CDATA[
+select *
+from (select user_id, fish_name, fish_length, fish_weight
+from tb_posting 
+where fish_name=#{fishName}
+and catch_date between #{startday} and #{endday}
+order by fish_length desc, fish_weight desc)
+where rownum <= 3
+ ]]>
+</select>
+
+<!-- 도감 검색용 DB -->
+<select id="selectFishBook" resultType="Dictionary">
+select fish_id fishId, kn
+from tb_fishbook
+</select>
+
 
 <!-- <어종별 랭킹> : 어종별 랭킹(자세한) -->
 <select id="selectLengthDetailRanking" parameterType="String" resultMap="boardMap">
@@ -60,15 +82,31 @@ where rownum <= 20
  ]]>
 </select>
 
-<!-- <어종별 랭킹> : 어종별 랭킹(나의 랭킹) -->
-<select id="selectLengthMyRanking" parameterType="Board" resultMap="boardMap">
+<!-- <어종별 랭킹> : 어종별 랭킹(자세한) 날짜 검색용 -->
+<select id="selectLengthDetailRankingByDate" parameterType="Board" resultMap="boardMap">
  <![CDATA[
 select *
 from (select user_id, fish_name, fish_length, fish_weight
 from tb_posting 
-where fish_name=#{fishName} and user_id=#{userId}
+where fish_name=#{fishName}
+and catch_date between #{startday} and #{endday}
 order by fish_length desc, fish_weight desc)
-where rownum <= 1
+where rownum <= 20
+ ]]>
+</select>
+
+
+
+<!-- <어종별 랭킹> : 어종별 랭킹(나의 랭킹) -->
+<select id="selectLengthMyRanking" parameterType="Board" resultMap="boardMap">
+ <![CDATA[
+select po.*
+from(select p.*, rownum rank
+from (select user_id, fish_name, fish_length, fish_weight
+from tb_posting 
+where fish_name=#{fishName}
+order by fish_length desc, fish_weight desc) p) po
+where user_id=#{userId} and rownum =1
  ]]>
 </select>
 

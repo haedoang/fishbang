@@ -23,7 +23,9 @@ public class Board {
 	
 	//랭킹 sql에 필용한 추가 필드들
 	private int cnt;
-	
+	private int rank;
+	private Date startday;
+	private Date endday;
 	
 	
 	
@@ -134,6 +136,24 @@ public class Board {
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+	public Date getStartday() {
+		return startday;
+	}
+	public void setStartday(Date startday) {
+		this.startday = startday;
+	}
+	public Date getEndday() {
+		return endday;
+	}
+	public void setEndday(Date endday) {
+		this.endday = endday;
 	}
 
 	

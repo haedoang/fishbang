@@ -24,7 +24,7 @@ public class FishCollectionRanking extends HttpServlet{
         HttpSession session = request.getSession();
         
         List<Board> rank = mapper.selectCollectionRanking();
-        Board myrank = mapper.selectCatchMyRanking(session.getId());
+        Board myrank = mapper.selectCatchMyRanking("cc@."/*session.getId()*/);
         int cnt = mapper.selectCollectionRankingCnt();
 
         request.setAttribute("rank", rank);
@@ -33,7 +33,7 @@ public class FishCollectionRanking extends HttpServlet{
         request.setAttribute("cnt", cnt);
         
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/rankingMains/rankingIllustratedBook.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/rankingMain4.jsp");
 		rd.forward(request, response);
 	}
 	
