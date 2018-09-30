@@ -15,7 +15,7 @@ import kr.co.fishbang.common.db.MyAppSqlConfig;
 import kr.co.fishbang.repository.domain.Board;
 import kr.co.fishbang.repository.mapper.RankingMapper;
 
-@WebServlet("/fishLengthDetail.do")
+@WebServlet("/ranking/fishLengthDetail.do")
 public class FishLengthRankingDetail extends HttpServlet{
 
 	@Override

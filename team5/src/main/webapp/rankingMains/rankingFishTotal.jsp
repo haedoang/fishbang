@@ -27,7 +27,7 @@
         </tr>
       <thead>
       <tbody>
-            <c:forEach var="i" items='${drank}' >
+            <c:forEach var="i" items='${rank}' >
         		<tr>
           		<td><%=k++%>위</td>
           		<td>${i.userId}</td>

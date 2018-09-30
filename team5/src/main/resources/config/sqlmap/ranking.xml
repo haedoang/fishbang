@@ -97,7 +97,7 @@ where rownum <= 20
 <!-- <전체 랭킹> : 나의 랭킹 -->
 <select id="selectCatchMyRanking" parameterType="String" resultMap="boardMap">
  <![CDATA[
-select user_id, count(*)
+select user_id, count(*) cnt
 from tb_posting 
 group by user_id
 having user_id=#{userId}
@@ -125,15 +125,12 @@ order by cnt desc
  ]]>
 </select>
 
-
-
-
 <!-- <도감 수집도 랭킹> : 나의 도감 수집도 -->
 <select id="selectCollectionMyRanking" parameterType="String" resultMap="boardMap">
 
  <![CDATA[
-select count(*)
-from(select p.user_id, p.fish_name, count(*) cnt
+select count(*) cnt
+from(select p.user_id, p.fish_name, count(*)
 from tb_posting p
 where user_id=#{userId}
 group by p.user_id, p.fish_name)
@@ -151,10 +148,18 @@ from tb_fishbook
 <!-- 사이드  -->
 <!-- 내가 잡은 상위 최다 어종-->
 <select id="selectSideRanking1" parameterType="String"  resultMap="boardMap">
-select p.user_id, p.fish_name, count(*) cnt
-from tb_posting p
+select user_id, fish_name, count(*) cnt
+from tb_posting
 where user_id=#{userId}
-group by p.user_id, p.fish_name
+group by user_id, fish_name
+order by cnt desc
+</select>
+<!-- 내가 많이 간 곳-->
+<select id="selectSideRanking2" parameterType="String"  resultMap="boardMap">
+select user_id, catch_location, count(*) cnt
+from tb_posting
+where user_id=#{userId}
+group by user_id, catch_location
 order by cnt desc
 </select>
 

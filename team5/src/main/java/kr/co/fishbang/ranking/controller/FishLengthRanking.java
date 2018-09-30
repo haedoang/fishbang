@@ -35,6 +35,7 @@ public class FishLengthRanking extends HttpServlet{
         //해쉬맵 사용하기.
         
         
+        
         //List<Board> rank = mapper.selectLengthRanking(ff.getFishName());
         //Board myRank = mapper.selectLengthMyRanking(board);
         

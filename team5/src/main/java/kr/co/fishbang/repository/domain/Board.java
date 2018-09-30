@@ -17,10 +17,16 @@ public class Board {
 	private double fishLength;
 	private double fishWeight;
 	private char fishRelease;
-
 	private String content;
 	private String postVerified;
 	private int postLiked;
+	
+	//랭킹 sql에 필용한 추가 필드들
+	private int cnt;
+	
+	
+	
+	
 	public int getPostingNo() {
 		return postingNo;
 	}
@@ -123,13 +129,13 @@ public class Board {
 	public void setPostLiked(int postLiked) {
 		this.postLiked = postLiked;
 	}
-	
-	
-	
-	
-	
-	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 
-
+	
 	
 }
