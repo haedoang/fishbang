@@ -25,7 +25,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	
-<!--  Fish Search Autocomplete --> -->
+<!--  Fish Search Autocomplete -->
 <script
   src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"
   integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
@@ -61,7 +61,7 @@
 }
 
 .main-content {
-    margin-top: 31px;
+    margin-top: 51px;
     margin-left: 200px;
 }
 
@@ -84,10 +84,6 @@
 a, div {
 	font-size: 100%;
 }
-<<<<<<< Updated upstream
-=======
-
-
 
 /* Write Widget CSS */
 .btn {
@@ -124,8 +120,7 @@ a, div {
 }
 
 .post-actions__attachments {
-	display: block;
-	float: right;
+	display: inline-block;
 	margin-bottom: 5px;
 	width: auto;
 }
@@ -134,7 +129,17 @@ input[type="file"] {
   display: none;
 }
 
->>>>>>> Stashed changes
+input[type="checkbox"]#competition{
+	width: 13px;
+}
+
+.post-actions__widget {
+    display: inline-block;
+    float: right;
+    text-align: right;
+    margin: 5px;
+}
+
 </style>
 </head>
 <body>
@@ -218,59 +223,19 @@ input[type="file"] {
 			<div id="feedBoard">
 				<div class="widget-post" aria-labelledby="post-header-title">
 					<div class="widget-post__header">
-						<h2 class="widget-post__title" id="post-header-title">
-							<i class="fa fa-pencil" aria-hidden="true"></i> 나의 조과 올리기
-						</h2>
-					</div>
-					<form id="widget-form" class="widget-post__form" name="form"
-						aria-label="post widget">
-						<div class="widget-post__actions post--actions">
-							<div class="post-actions__attachments">
-								<button type="button"
-									class="btn post-actions__fish attachments--btn"
+						<button type="button"
+									class="btn post-actions__fish"
 									aria-controls="stock-options" aria-haspopup="true">
 									<i class="fa fa-usd" aria-hidden="true"></i>조과 정보작성
 								</button>
-
-							</div>
-							<div class="post-actions__widget">
-								<button type="button"
-									class="btn post-actions__addfish attachments--btn">
-									<label for="addfish" class="post-actions__label"><i
-										class="" aria-hidden="true"></i>조과추가+</label>
-								</button>
-								<button class="btn post-actions__publish">조과등록</button>
-							</div>
-						</div>
+					</div>
+					<form id="widget-form" class="widget-post__form" name="form"
+						aria-label="post widget">
 
 						<div class="widget-post__fishcatch " id="fish-kind">
-<<<<<<< Updated upstream
-							<label for="date">출조날짜:</label> <input type="date"
-								class="widget-post___input widget-post--date" id="date">
-							<label for="search">출조지역:</label> <input type="search"
-								placeholder="예)거제도"
-								class="widget-post___input widget-post--search search--location"
-								id="search"> <label for="search">낚시방법:</label> <input
-								type="search" placeholder="예)방파제낚시"
-								class="widget-post___input widget-post--search search--method"
-								id="search"> <br> <label for="search">어종:</label> <input
-								type="search" placeholder="예)놀래미"
-								class="widget-post___input widget-post--search search--fish"
-								id="search"> <label for="fish-length">전장:</label> <input
-								type="number" class="widget-post___input widget-post--length"
-								id="fish-length" placeholder="길이(전장)"><i id="unit">cm</i>
-							<label for="fish-weight">무게:</label> <input type="number"
-								class="widget-post___input widget-post--weight" id="fish-weight"
-								placeholder="무게(체중)"><i id="unit">kg</i> <label
-								for="letgo">방생</label> <input type="checkbox" id="letgo"><br>
-							<button type="button"
-								class="btn post-actions__upload attachments--btn">
-								<label for="upload-image" class="post-actions__label"><i
-									class="fa fa-camera" aria-hidden="true"></i>인증사진 등록</label>
-=======
 							<label for="competition">대회</label>
-								<input type="checkbox" class="widget-post___input widget-post--checkbox" id="competition">
-							<select name="compList" id="compList">
+								<input type="checkbox" class="widget-post___input widget-post--checkbox" id="competition" >
+							<select name="compList" id="compList" disabled="true">
 								<option value="">대회선택</option>
 								<option value="0">2018대물포낚시대회1회</option>
 								<option value="1">2018속초문어낚시대회34회</option>
@@ -303,20 +268,25 @@ input[type="file"] {
 								<input type="number" name="length" class="widget-post___input widget-post--length" id="fish-length" placeholder="길이(전장)" required><i id="unit">cm</i>
 							<label for="fish-weight">무게:</label> 
 								<input type="number" name="weight" class="widget-post___input widget-post--weight" id="fish-weight" placeholder="무게(체중)" required><i id="unit">kg</i> 
-							<label for="letgo">방생</label> <input type="checkbox" name="fishRelease" value="y" id="letgo"><br>
-							<button type="button" class="btn post-actions__upload attachments--btn">
-								<label for="upload-image" class="post-actions__label">
-								인증사진 등록&nbsp<i class="fa fa-camera" aria-hidden="true"></i></label>
->>>>>>> Stashed changes
-							</button>
-							<input type="file" id="upload-image" accept="image/*" multiple>
-						</div>
-						<div class="widget-post__content">
-							<label for="post-content" class="sr-only">자유글 또는 조황에 대한
-								설명을 작성해주세요.</label>
-							<textarea name="post" id="post-content"
-								class="widget-post__textarea scroller"
-								placeholder="(#태그 사용가능)자유글 또는 조황에 대한 설명을 작성해주세요."></textarea>
+							<label for="letgo">방생</label> <input type="checkbox" name="fishRelease" value="y" id="letgo">
+								<div class="post-actions__attachments">
+									<button type="button" class="btn post-actions__upload attachments--btn">
+										<label for="upload-image" class="post-actions__label">
+										인증사진 등록&nbsp<i class="fa fa-camera" aria-hidden="true"></i></label>
+									</button>
+									<input type="file" id="upload-image" accept="image/*" multiple>
+								</div>	
+
+							<div class="widget-post__content">
+								<label for="post-content" class="sr-only">자유글 또는 조황에 대한
+									설명을 작성해주세요.</label>
+								<textarea name="post" id="post-content"
+									class="widget-post__textarea scroller"
+									placeholder="조황에 대한 설명을 작성해주세요."></textarea>
+							</div>
+							<div class="post-actions__widget">
+									<button class="btn post-actions__publish">조과등록</button>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -502,7 +472,20 @@ input[type="file"] {
 
 		<!-- </div> -->
 	</div>
-	<script>
+
+<!-- competition checkbox  -->
+<script>
+	$("#competition").change(function(){
+		if ($("#competition").prop('checked')){
+			$("select#compList").prop("disabled", false);
+		} else {
+			$("select#compList").prop("disabled", true);
+		}
+	})
+</script>
+
+<!-- Write Form Interaction -->
+<script>
 		$('.btn-expand-collapse').click(function(e) {
 			$('.navbar-primary').toggleClass('collapsed');
 		});
@@ -539,25 +522,23 @@ input[type="file"] {
 		uploadBtn.addEventListener('keydown', fakeUploadClick);
 	</script>
 
+<!-- Map display on Post  -->
+<script>
+	var mapOptions = {
+		center : new naver.maps.LatLng(37.3595704, 127.105399),
+		zoom : 10
+	};
 
-	<script>
-		var mapOptions = {
-			center : new naver.maps.LatLng(37.3595704, 127.105399),
-			zoom : 10
-		};
+	var map = new naver.maps.Map('map', mapOptions);
 
-		var map = new naver.maps.Map('map', mapOptions);
-
-		var marker = new naver.maps.Marker({
-			position : new naver.maps.LatLng(37.3595704, 127.105399),
-			map : map
-		});
-	</script>
-<<<<<<< Updated upstream
-=======
+	var marker = new naver.maps.Marker({
+		position : new naver.maps.LatLng(37.3595704, 127.105399),
+		map : map
+	});
+</script>
 	
-	<!-- Daum Address Search Script -->
-	<script>
+<!-- Daum Address Search Script -->
+<script>
 
 </script>
 	
@@ -625,9 +606,5 @@ input[type="file"] {
 	 	console.log($("#fishResult").val())
 	}
 	</script>
-
-
-
->>>>>>> Stashed changes
 </body>
 </html>
