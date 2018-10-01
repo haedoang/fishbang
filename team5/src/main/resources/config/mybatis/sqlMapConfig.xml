@@ -16,6 +16,7 @@
  	<typeAlias alias="User" type="kr.co.fishbang.repository.domain.User"/> 
  	<typeAlias alias="Profile" type="kr.co.fishbang.repository.domain.Profile"/> 
  	<typeAlias alias="Board" type="kr.co.fishbang.repository.domain.Board"/> 
+ 	<typeAlias alias="BoardFileAttach" type="kr.co.fishbang.repository.domain.BoardFileAttach"/> 
     <typeAlias alias="Dictionary" type="kr.co.fishbang.repository.domain.Dictionary"/> 
 	</typeAliases>
 	

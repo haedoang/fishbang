@@ -21,7 +21,7 @@ package kr.co.fishbang.repository.domain;
  */
 public class Dictionary {
 	
-private int fishNo;
+private String fishId;
 private String name;
  //class란 이름 사용불가 , fclass는 물고기과
 private String fclass;
@@ -40,11 +40,12 @@ private String grow;
 private String ls;
 private String color;
 private String length;
-				public int getFishNo() {
-					return fishNo;
+
+				public String getfishId() {
+					return fishId;
 				}
-				public void setFishNo(int fishNo) {
-					this.fishNo = fishNo;
+				public void setfishId(String fishId) {
+					this.fishId = fishId;
 				}
 				public String getName() {
 					return name;

@@ -7,7 +7,7 @@ public class Board {
 	private String userId;
 	private int competitionId;
 	private int methodNo;
-	private int fishId;
+	private String fishId;
 	private String fishName;
 	private Date regDate;
 	private Date catchDate;
@@ -53,10 +53,10 @@ public class Board {
 	public void setMethodNo(int methodNo) {
 		this.methodNo = methodNo;
 	}
-	public int getFishId() {
+	public String getFishId() {
 		return fishId;
 	}
-	public void setFishId(int fishId) {
+	public void setFishId(String fishId) {
 		this.fishId = fishId;
 	}
 	public String getFishName() {

@@ -21,7 +21,7 @@ import kr.co.fishbang.repository.domain.Board;
 import kr.co.fishbang.repository.domain.Dictionary;
 import kr.co.fishbang.repository.mapper.RankingMapper;
 
-@WebServlet("/ranking/serach.do")
+@WebServlet("/ranking/search.do")
 public class Search extends HttpServlet{
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
