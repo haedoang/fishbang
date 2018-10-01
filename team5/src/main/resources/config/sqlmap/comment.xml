@@ -3,5 +3,34 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.fishbang.repository.mapper.CommentMapper"> 
-
+<resultMap type="Comment" id="commentMap">
+	<result property="commentNo" column="comment_no"/>
+	<result property="postingNo" column="posting_no"/>
+	<result property="userId" column="user_id"/>
+	<result property="content" column="content"/>
+	<result property="regDate" column="reg_date"/>
+</resultMap>
+<insert id="insertBoardComment" parameterType="Comment">
+	insert into tb_board_comment(postring_no, comment_no, content, writer)
+	values(#{postingNo}, s_comment_no.nextval, #{content}, #{writer})
+	</insert>
+	
+	<select id="selectBoardComment" parameterType="int" resultMap="commentMap">
+	select *
+	from tb_board_comment
+	where postring_no =#{postingNo}
+	order by board_comment
+	</select>
+	
+	<update id="updateBoardComment" parameterType="Comment" >
+	update tb_board_comment
+	set content=#{content},
+	writer=#{writer}
+	where postring_no =#{postingNo} and  comment_no=#{commentNo} and writer=#{writer}
+	</update>
+	
+	<delete id="deleteBoardComment"  parameterType="Comment">
+	delete tb_board_comment
+	where postring_no =#{postingNo} and  comment_no=#{commentNo} and writer=#{writer}
+	</delete>
 </mapper>

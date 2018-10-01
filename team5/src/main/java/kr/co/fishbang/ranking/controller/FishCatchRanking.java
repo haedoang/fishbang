@@ -25,8 +25,9 @@ public class FishCatchRanking extends HttpServlet{
         List<Board> rank=mapper.selectCatchRanking();
         Board myrank = mapper.selectCatchMyRanking(session.getId());
         
-        List<Board> side1 = mapper.selectSideRanking1("bb@."/*session.getId()*/);
-        List<Board> side2 = mapper.selectSideRanking2("bb@."/*session.getId()*/);
+        List<Board> side1 = mapper.selectSideRanking1(session.getId());
+        List<Board> side2 = mapper.selectSideRanking2(session.getId());
+        System.out.println(session.getId());
         
         request.setAttribute("rank", rank);
         request.setAttribute("myrank", myrank);

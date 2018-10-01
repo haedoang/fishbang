@@ -39,7 +39,7 @@ public class FishLengthRankingDetail extends HttpServlet{
 	        request.setAttribute("fishName", fishName);
 	        
 	        if(request.getParameter("startday")!=null&request.getParameter("endday")!=null) {
-				SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				Date startday = sdf.parse(request.getParameter("startday"));	
 				Date endday = sdf.parse(request.getParameter("endday"));
 	        	

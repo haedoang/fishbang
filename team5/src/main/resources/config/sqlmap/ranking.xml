@@ -49,6 +49,13 @@ order by fish_length desc, fish_weight desc)
 where rownum <= 3
  ]]>
 </select>
+<!-- <어종별 랭킹> : 어종별 랭킹(여러 어종) 전체 개수 -->
+<select id="selectLengthRankingCnt" parameterType="String" resultType="int">
+select count(posting_no) 
+from tb_posting  
+where fish_name=#{fishName}
+</select>
+
 
 <!-- <어종별 랭킹> : 어종별 랭킹 날짜 검색용(여러 어종) -->
 <select id="selectLengthRankingByDate" parameterType="Board" resultMap="boardMap">
@@ -164,7 +171,7 @@ order by cnt desc
 </select>
 
 <!-- <도감 수집도 랭킹> : 나의 도감 수집도 -->
-<select id="selectCollectionMyRanking" parameterType="String" resultMap="boardMap">
+<select id="selectCollectionMyRanking" parameterType="String" resultType="int">
 
  <![CDATA[
 select count(*) cnt
