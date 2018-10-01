@@ -12,16 +12,8 @@
 <!-- javascript -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
 <script>
-$(window).scroll(function () {
-	if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
-		$(".foris").load("/team5/dictionary.do?m=2 #fishinfolayout");
-	
-	}
-	});
 
-	
 </script>
 
 
@@ -31,7 +23,7 @@ $(window).scroll(function () {
 #feedBoard{
 
 width:1000px;
-height:auto;
+height:3200px;
 margin-right:10px;
 float:left;
 display:block;
@@ -39,7 +31,7 @@ display:block;
 #side{
 
 width:355px;
-height:auto;
+height:3200px;
 margin-left:1000px;
 }
 
@@ -49,7 +41,7 @@ margin-left:1000px;
  
   width: 1200px;
         height: 3200px;
-     
+      border-bottom: 2px solid #72655F;
       border-right: 2px solid #72655F;
       border-left: 2px solid #72655F;
        margin-top: -20px;
@@ -138,21 +130,6 @@ margin-top : 8.7px;
 .formargin{
 margin-left : 50px;
 }
-/* .foris{
-margin-left : 50px;
- background-color:#FCFCFC;
- 
- 
-  width: 1200px;
-        height: 3200px;
-     
-      border-right: 2px solid #72655F;
-      border-left: 2px solid #72655F;
-       margin-top: -20px;
-        margin-right: 0%;
-        margin-left: 7%;
-
-} */
 
 
 
@@ -309,12 +286,12 @@ height: 25px;
   
   	
   	<div class ="contentlineass">
-  <ul class = "v" id = "v">
+  <ul class = "v">
   
 
  <c:forEach var = "b" items = "${dict}">
  <div class ="formargin">
- <li id ="fishinfolayout" class ="fishinfolayout">
+ <li class ="fishinfolayout">
  	<a href = "<c:url value = "fishBookPopup2.jsp"/>" class = "listCard_Link">
   		<div class = "fishinfoline">
   	
@@ -332,9 +309,6 @@ height: 25px;
  </li>
  </div>
  </c:forEach>
- <div class = "foris">
- 
- </div>
 
 
   
@@ -346,7 +320,32 @@ height: 25px;
 
 
 	</div>
-	
+	<p class = "pageNo">
+  	<a href = "dictionary.do?m=1"  class = "m" >1</a>
+  	<a href = "dictionary.do?m=2"  class = "m">2</a>
+  	<a href = "dictionary.do?m=3"  class = "m">3</a>
+  	<a href = "dictionary.do?m=4"  class = "m">4</a>
+  	<a href = "dictionary.do?m=5"  class = "m">5</a>
+  	<a href = "dictionary.do?m=6" class = "m">6</a>
+  	<a href = "dictionary.do?m=7" class = "m">7</a>
+  	<a href = "dictionary.do?m=8"  class = "m">8</a>
+  	<a href = "dictionary.do?m=9" class = "m">9</a>
+  	<a href = "dictionary.do?m=10"  class = "m">10</a>
+  	<a href = "dictionary.do?m=11"  class = "m">11</a>
+  	<a href = "dictionary.do?m=12" class = "m">12</a>
+  	<a href = "dictionary.do?m=13" class = "m">13</a>
+  	<a href = "dictionary.do?m=14"  class = "m">14</a>
+  	<a href = "dictionary.do?m=15"  class = "m">15</a>
+  	<a href = "dictionary.do?m=16"  class = "m">16</a>
+  	<a href = "dictionary.do?m=17"  class = "m">17</a>
+  	<a href = "dictionary.do?m=18"  class = "m">18</a>
+  	<a href = "dictionary.do?m=19"  class = "m">19</a>
+  	<a href = "dictionary.do?m=20" class = "m">20</a>
+  	<a href = "dictionary.do?m=21"  class = "m">21</a>
+  	<a href = "dictionary.do?m=22"  class = "m">22</a>
+  	<a href = "dictionary.do?m=23"  class = "m">23</a>
+  	<a href = "dictionary.do?m=24"  class = "m">24</a>
+  	</p>
   	<div id="side"> </div>
   	
   	

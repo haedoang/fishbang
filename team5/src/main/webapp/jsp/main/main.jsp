@@ -192,7 +192,7 @@ input[type="checkbox"]#competition{
 		</c:if>
 
 		<c:if test="${empty sessionScope.user.id}">
-			<a href="<c:url value="/dictionary.do?m=2"/>"><span
+			<a href="<c:url value="/dictionary.do?m=1"/>"><span
 				class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감</span></a>
 		</c:if>
 
