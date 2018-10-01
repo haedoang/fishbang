@@ -626,7 +626,7 @@ input[type="checkbox"]#competition{
                	}
             },
 	        open: function() {
-	            $( this ).autocomplete("widget").width("323px");
+	            $( this ).autocomplete("widget").width("134px");
 	            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
 	        },
 	        close: function() {
