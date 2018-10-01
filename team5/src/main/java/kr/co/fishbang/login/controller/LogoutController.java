@@ -25,7 +25,7 @@ public class LogoutController extends HttpServlet{
 		
 		
 		//메인으로 이동하기
-		response.sendRedirect(request.getContextPath()+"/main.do");
+		response.sendRedirect(request.getContextPath()+"/home.do");
 		
 	}
 		

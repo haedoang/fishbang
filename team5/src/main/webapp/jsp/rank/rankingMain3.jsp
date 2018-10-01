@@ -422,18 +422,20 @@ progress::-moz-progress-bar {
 	</div>
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav navbar-user navbar-right">
+			<c:if test="${empty sessionScope.user.id}">
+					<!-- 비로그인 시  -->
+					<li><a href="<c:url value="/home.do"/>"><span
+							class="glyphicon glyphicon-plus"></span> signup</a></li>
+					<li><a href="<c:url value="/home.do"/>"><span
+							class="glyphicon glyphicon-log-in"></span> login</a></li>
+				</c:if>
 
-			<!-- 비로그인 시  -->
-			<li><a href="<c:url value="/jsp/home/homepage.jsp"/>"><span
-					class="glyphicon glyphicon-plus"></span> signup</a></li>
-			<li><a href="<c:url value="/jsp/home/homepage.jsp"/>"><span
-					class="glyphicon glyphicon-log-in"></span> login</a></li>
-
-			<!-- 로그인 시  -->
-			<li><a href="<c:url value="/jsp/member/updateuserpage.jsp"/>"><span
-					class="glyphicon glyphicon-user"></span> fishbang@fish.bang</a></li>
-			<li><a href="<c:url value="/jsp/main/main.jsp"/>"><span
-					class="glyphicon glyphicon-log-out"></span> logout</a></li>
+				<c:if test="${not empty sessionScope.user.id}">
+					<li><a href="<c:url value="/updateuserform.do"/>"><span
+							class="glyphicon glyphicon-user"></span> ${sessionScope.user.id}</a></li>
+					<li><a href="<c:url value="/logout.do"/>"><span
+							class="glyphicon glyphicon-log-out"></span> logout</a></li>
+				</c:if>
 		</ul>
 	</div>
 	<!--/.nav-collapse -->
