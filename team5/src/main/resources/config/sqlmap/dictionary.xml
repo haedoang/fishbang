@@ -24,6 +24,7 @@
 	<!-- 데이터베이스에서 국명 꺼내오기 -->
 	<select id = "selectDictionary1"  resultType = "Dictionary">
 	
+			
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
                				    , P.*
@@ -182,7 +183,7 @@
                				    , P.*
                				 FROM tb_fishbook P
         				  )
-				WHERE RNUM BETWEEN 800 AND 850
+				WHERE RNUM BETWEEN 801 AND 850
 	</select>
 	
 	<select id = "selectDictionary18"  resultType = "Dictionary">

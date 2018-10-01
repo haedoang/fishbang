@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,6 +23,14 @@ $(window).scroll(function () {
 
 	
 </script>
+<script>
+function nwindow(){
+    var url="fishBookrPopup2.jsp";
+    window.open(url,"","width=624,height=700,left=600");
+}
+
+
+</script>
 
 
 <title>Insert title here</title>
@@ -31,7 +39,7 @@ $(window).scroll(function () {
 #feedBoard{
 
 width:1000px;
-height:auto;
+height:3200px;
 margin-right:10px;
 float:left;
 display:block;
@@ -39,7 +47,7 @@ display:block;
 #side{
 
 width:355px;
-height:auto;
+height:3200px;
 margin-left:1000px;
 }
 
@@ -49,7 +57,7 @@ margin-left:1000px;
  
   width: 1200px;
         height: 3200px;
-     
+      border-bottom: 2px solid #72655F;
       border-right: 2px solid #72655F;
       border-left: 2px solid #72655F;
        margin-top: -20px;
@@ -138,21 +146,9 @@ margin-top : 8.7px;
 .formargin{
 margin-left : 50px;
 }
-/* .foris{
+.foris{
 margin-left : 50px;
- background-color:#FCFCFC;
- 
- 
-  width: 1200px;
-        height: 3200px;
-     
-      border-right: 2px solid #72655F;
-      border-left: 2px solid #72655F;
-       margin-top: -20px;
-        margin-right: 0%;
-        margin-left: 7%;
-
-} */
+}
 
 
 
@@ -346,7 +342,32 @@ height: 25px;
 
 
 	</div>
-	
+	<p class = "pageNo">
+  	<a href = "<c:url value="/dictionary.do?m=1"/>"  class = "m" >1</a>
+  	<a href = "<c:url value="/dictionary.do?m=2"/>"  class = "m">2</a>
+  	<a href = "<c:url value="/dictionary.do?m=3"/>"  class = "m">3</a>
+  	<a href = "<c:url value="/dictionary.do?m=4"/>"  class = "m">4</a>
+  	<a href = "<c:url value="/dictionary.do?m=5"/>"  class = "m">5</a>
+  	<a href = "<c:url value="/dictionary.do?m=6"/>" class = "m">6</a>
+  	<a href = "<c:url value="/dictionary.do?m=7"/>" class = "m">7</a>
+  	<a href = "<c:url value="/dictionary.do?m=8"/>"  class = "m">8</a>
+  	<a href = "<c:url value="/dictionary.do?m=9"/>" class = "m">9</a>
+  	<a href = "<c:url value="/dictionary.do?m=10"/>"  class = "m">10</a>
+  	<a href = "<c:url value="/dictionary.do?m=11"/>"  class = "m">11</a>
+  	<a href = "<c:url value="/dictionary.do?m=12"/>" class = "m">12</a>
+  	<a href = "<c:url value="/dictionary.do?m=13"/>" class = "m">13</a>
+  	<a href = "<c:url value="/dictionary.do?m=14"/>"  class = "m">14</a>
+  	<a href = "<c:url value="/dictionary.do?m=15"/>"  class = "m">15</a>
+  	<a href = "<c:url value="/dictionary.do?m=16"/>"  class = "m">16</a>
+  	<a href = "<c:url value="/dictionary.do?m=17"/>"  class = "m">17</a>
+  	<a href = "<c:url value="/dictionary.do?m=18"/>"  class = "m">18</a>
+  	<a href = "<c:url value="/dictionary.do?m=19"/>"  class = "m">19</a>
+  	<a href = "<c:url value="/dictionary.do?m=20"/>" class = "m">20</a>
+  	<a href = "<c:url value="/dictionary.do?m=21"/>"  class = "m">21</a>
+  	<a href = "<c:url value="/dictionary.do?m=22"/>"  class = "m">22</a>
+  	<a href = "<c:url value="/dictionary.do?m=23"/>"  class = "m">23</a>
+  	<a href = "<c:url value="/dictionary.do?m=24"/>"  class = "m">24</a>
+  	</p>
   	<div id="side"> </div>
   	
   	
