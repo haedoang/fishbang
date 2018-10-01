@@ -62,9 +62,20 @@ text-align: center;
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-user navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> 로그인시 id 표기 </a></li>
-            <li><a href="#about"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
-            <li><a href="#about"><span class="glyphicon glyphicon-log-out"></span> logout</a></li>
+          <c:if test="${empty sessionScope.user.id}">
+					<!-- 비로그인 시  -->
+					<li><a href="<c:url value="/home.do"/>"><span
+							class="glyphicon glyphicon-plus"></span> signup</a></li>
+					<li><a href="<c:url value="/home.do"/>"><span
+							class="glyphicon glyphicon-log-in"></span> login</a></li>
+				</c:if>
+
+				<c:if test="${not empty sessionScope.user.id}">
+					<li><a href="<c:url value="/updateuserform.do"/>"><span
+							class="glyphicon glyphicon-user"></span> ${sessionScope.user.id}</a></li>
+					<li><a href="<c:url value="/logout.do"/>"><span
+							class="glyphicon glyphicon-log-out"></span> logout</a></li>
+				</c:if>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
