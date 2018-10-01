@@ -27,6 +27,7 @@ public class WritePostController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardMapper postingMapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(BoardMapper.class);
+		try {
 		
 		// File Attach
 		// File Attach Path ~/Users/wonchoi/⁨git/⁨fishbang⁩/upload
@@ -51,34 +52,48 @@ public class WritePostController extends HttpServlet{
 				);
 		
 		// Getting Parameters from FORM
-		int compNo = Integer.parseInt(mRequest.getParameter("compList"));
-		Date catchDate = null;
-		try {
-			catchDate = new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(mRequest.getParameter("catchDate"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		String userId = mRequest.getParameter("userId");
+		String compNo = mRequest.getParameter("compList");
+		String dateParam = mRequest.getParameter("catchDate");
+		SimpleDateFormat fmt = new SimpleDateFormat("yy-MM-dd");
+		Date catchDate;
+			catchDate = fmt.parse(dateParam);
 		String catchLocation = mRequest.getParameter("catchLocation");
-		int geoLat = Integer.parseInt(mRequest.getParameter("geoLat"));
-		int geoLng = Integer.parseInt(mRequest.getParameter("geoLng"));
+		String geoLat = mRequest.getParameter("geoLat");
+		String geoLng = mRequest.getParameter("geoLng");
 		String fishName = mRequest.getParameter("fishName");
 		String fishId = mRequest.getParameter("fishId");
-		int fishLength = Integer.parseInt(mRequest.getParameter("length"));
-		int fishWeight = Integer.parseInt(mRequest.getParameter("weight"));
-		char fishRelease = mRequest.getParameter("fishRelease").charAt(0);
+		String fishLength = mRequest.getParameter("length");
+		String fishWeight = mRequest.getParameter("weight");
+		String fishRelease = mRequest.getParameter("fishRelease");
 		String content = mRequest.getParameter("content");
+		
+		System.out.println(
+				"userId:"+userId+", "+
+				"compNo:"+compNo+", "+
+				"catchDate:"+catchDate+", "+
+				"catchLocation:"+catchLocation+", "+
+				"geoLat:"+geoLat+", "+
+				"geoLng:"+geoLng+", "+
+				"fishId:"+fishId+", "+
+				"fishLength:"+fishLength+", "+
+				"fishWeight:"+fishWeight+", "+
+				"fishRelease:"+fishRelease+", "+
+				"content:"+content
+				);
 		
 		// Posting Board Setter
 		Board posting = new Board();
-		posting.setCompetitionId(compNo);
+		posting.setUserId(userId);
+		if(compNo!=null) {posting.setCompetitionId(Integer.parseInt(compNo));};
 		posting.setCatchDate(catchDate);
 		posting.setCatchLocation(catchLocation);
-		posting.setGeoLat(geoLat);
-		posting.setGeoLng(geoLng);
+		if(!geoLat.isEmpty()) {posting.setGeoLat(Integer.parseInt(geoLat));};
+		if(!geoLng.isEmpty()) {posting.setGeoLng(Integer.parseInt(geoLng));};
 		posting.setFishName(fishName);
 		posting.setFishId(fishId);
-		posting.setFishLength(fishLength);
-		posting.setFishWeight(fishWeight);
+		posting.setFishLength(Double.valueOf(fishLength));
+		if(!fishWeight.isEmpty()) {posting.setFishWeight(Double.valueOf(fishWeight));};
 		posting.setFishRelease(fishRelease);
 		posting.setContent(content);
 		
@@ -87,7 +102,7 @@ public class WritePostController extends HttpServlet{
 		
 		// Get File Names from jsp
 		Enumeration<String> list = mRequest.getFileNames();
-		
+		System.out.println(list.toString());
 		// Get Posting No of the post 
 		int postingNo = posting.getPostingNo();
 		
@@ -98,6 +113,7 @@ public class WritePostController extends HttpServlet{
 			attFile.setPostingNo(postingNo);
 			
 			String fName = list.nextElement();
+			System.out.println(fName);
 			File f = mRequest.getFile(fName);
 			
 			if(f!=null) {
@@ -108,6 +124,10 @@ public class WritePostController extends HttpServlet{
 			} // if 
 		} // while
 		response.sendRedirect("/main.do");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	} // service() end
 	
 } // main ends

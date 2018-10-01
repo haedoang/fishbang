@@ -23,7 +23,8 @@ public class DictionaryController extends HttpServlet {
 		DictionaryMapper mapper = 
 				MyAppSqlConfig.getSqlSessionInstance().getMapper(DictionaryMapper.class);
 
-		int no = Integer.parseInt(request.getParameter("m"));
+	int no = Integer.parseInt(request.getParameter("m"));
+	
 		switch(no) {
 		
 		case 1: List<Dictionary> dict1 =  mapper.selectDictionary1();
@@ -47,14 +48,14 @@ public class DictionaryController extends HttpServlet {
 				"/jsp/dictionary/fishDictAll.jsp"
 				);
 		
-		rd3.forward(request, response);break;
+		rd3.forward(request, response);return;
 		case 4 : List<Dictionary> dict4 =  mapper.selectDictionary4();
 		request.setAttribute("dict", dict4);
 		RequestDispatcher rd4 = request.getRequestDispatcher(
 				"/jsp/dictionary/fishDictAll.jsp"
 				);
 		
-		rd4.forward(request, response);break;
+		rd4.forward(request, response);return;
 		
 		case 5 : List<Dictionary> dict5 =  mapper.selectDictionary5();
 		request.setAttribute("dict", dict5);
@@ -62,7 +63,7 @@ public class DictionaryController extends HttpServlet {
 				"/jsp/dictionary/fishDictAll.jsp"
 				);
 		
-		rd5.forward(request, response); break;
+		rd5.forward(request, response); return;
 		
 		case 6 : List<Dictionary> dict6 =  mapper.selectDictionary6();
 		request.setAttribute("dict", dict6);
@@ -70,7 +71,7 @@ public class DictionaryController extends HttpServlet {
 				"/jsp/dictionary/fishDictAll.jsp"
 				);
 		
-		rd6.forward(request, response);break;
+		rd6.forward(request, response);return;
 		case 7 : List<Dictionary> dict7 =  mapper.selectDictionary7();
 		request.setAttribute("dict", dict7);
 		RequestDispatcher rd7 = request.getRequestDispatcher(
@@ -91,7 +92,7 @@ public class DictionaryController extends HttpServlet {
 				"/jsp/dictionary/fishDictAll.jsp"
 				);
 		
-		rd9.forward(request, response);return;
+		rd9.forward(request, response);break;
 		case 10 : List<Dictionary> dict10 =  mapper.selectDictionary10();
 		request.setAttribute("dict", dict10);
 		RequestDispatcher rd10 = request.getRequestDispatcher(
@@ -204,4 +205,3 @@ public class DictionaryController extends HttpServlet {
 	}
 }
 }
-

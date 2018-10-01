@@ -20,7 +20,8 @@ package kr.co.fishbang.repository.domain;
  몸길이
  */
 public class Dictionary {
-	
+private int no;
+private String migration;
 private String fishId;
 private String name;
  //class란 이름 사용불가 , fclass는 물고기과
@@ -41,12 +42,6 @@ private String ls;
 private String color;
 private String length;
 
-				public String getfishId() {
-					return fishId;
-				}
-				public void setfishId(String fishId) {
-					this.fishId = fishId;
-				}
 				public String getName() {
 					return name;
 				}
@@ -148,6 +143,24 @@ private String length;
 				}
 				public void setLength(String length) {
 					this.length = length;
+				}
+				public int getNo() {
+					return no;
+				}
+				public void setNo(int no) {
+					this.no = no;
+				}
+				public String getMigration() {
+					return migration;
+				}
+				public void setMigration(String migration) {
+					this.migration = migration;
+				}
+				public String getFishId() {
+					return fishId;
+				}
+				public void setFishId(String fishId) {
+					this.fishId = fishId;
 				}
 				
 					

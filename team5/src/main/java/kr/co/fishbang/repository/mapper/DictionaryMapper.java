@@ -30,7 +30,8 @@ public interface DictionaryMapper {
 		public List<Dictionary> selectDictionary23();
 		public List<Dictionary> selectDictionary24();
 		public List<Dictionary> selectDictionary(int no1, int no2);
-		
+		public Dictionary selectDictionaryByNo(String fishId);
+		public List<Dictionary> selectFishBook();
 
 	}
 

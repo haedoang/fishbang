@@ -16,7 +16,7 @@ public class Board {
 	private int geoLng; 
 	private double fishLength;
 	private double fishWeight;
-	private char fishRelease;
+	private String fishRelease;
 	private String content;
 	private String postVerified;
 	private int postLiked;
@@ -107,10 +107,10 @@ public class Board {
 	public void setFishWeight(double fishWeight) {
 		this.fishWeight = fishWeight;
 	}
-	public char getFishRelease() {
+	public String getFishRelease() {
 		return fishRelease;
 	}
-	public void setFishRelease(char fishRelease) {
+	public void setFishRelease(String fishRelease) {
 		this.fishRelease = fishRelease;
 	}
 	public String getContent() {

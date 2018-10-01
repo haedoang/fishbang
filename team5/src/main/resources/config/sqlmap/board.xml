@@ -45,22 +45,22 @@
 	</select>
 	
 	<insert id="insertBoard" parameterType="Board">
-		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+		<selectKey keyProperty="postingNo" resultType="int" order="BEFORE">
 			select s_posting_no.nextVal from dual
 		</selectKey>
 		
 		insert into tb_posting(
 			posting_no, user_id, competition_id, method_no, fish_id, fish_name, catch_date, catch_location, geo_lat, geo_lng, fish_length, fish_weight, fish_release, content
 		) values(
-			#{postingNo}, #{userId}, #{competitionId}, #{methodNo}, #{fishId}, #{fishName}, #{catchDate}, #{catchLocation}, #{geoLat}, #{geoLng}, #{fishLenght}, #{fishWeight}, #{fishRelease}, #{content}
+			#{postingNo}, #{userId}, #{competitionId}, #{methodNo}, #{fishId}, #{fishName}, #{catchDate}, #{catchLocation}, #{geoLat}, #{geoLng}, #{fishLength}, #{fishWeight}, #{fishRelease}, #{content}
 		)
 	</insert>
 	
 	<insert id="insertFileAttach" parameterType="BoardFileAttach">
-		insert into tb_board_attach(
+		insert into tb_attach(
     		file_no, posting_no, file_path, original_name, system_name 
     	) values(
-    		s_file_no.nextval, #{postingNo}, #{filePath}, #{fileOriName}, #{fileSysName}
+    		s_file_no.nextval, #{postingNo}, #{filePath}, #{oriName}, #{sysName}
     	)
 	</insert>
 	
