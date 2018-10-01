@@ -20,6 +20,8 @@
 	<result column="fish_release" property="fishRelease"/>
 	<result column="post_verified" property="postVerified"/>
 	<result column="post_liked" property="postLiked"/>
+	<result column="catch_date" property="startday"/>
+	<result column="catch_date" property="endday"/>
 </resultMap>
 
 
@@ -40,13 +42,33 @@ where rownum <= 20
 <select id="selectLengthRanking" parameterType="String" resultMap="boardMap">
  <![CDATA[
 select *
-from (select user_id
+from (select user_id, fish_name, fish_length, fish_weight
 from tb_posting 
 where fish_name=#{fishName}
-order by fish_length desc)
+order by fish_length desc, fish_weight desc)
 where rownum <= 3
  ]]>
 </select>
+
+<!-- <어종별 랭킹> : 어종별 랭킹 날짜 검색용(여러 어종) -->
+<select id="selectLengthRankingByDate" parameterType="Board" resultMap="boardMap">
+ <![CDATA[
+select *
+from (select user_id, fish_name, fish_length, fish_weight
+from tb_posting 
+where fish_name=#{fishName}
+and catch_date between #{startday} and #{endday}
+order by fish_length desc, fish_weight desc)
+where rownum <= 3
+ ]]>
+</select>
+
+<!-- 도감 검색용 DB -->
+<select id="selectFishBook" resultType="Dictionary">
+select fish_id fishId, kn
+from tb_fishbook
+</select>
+
 
 <!-- <어종별 랭킹> : 어종별 랭킹(자세한) -->
 <select id="selectLengthDetailRanking" parameterType="String" resultMap="boardMap">
@@ -55,20 +77,36 @@ select *
 from (select user_id, fish_name, fish_length, fish_weight
 from tb_posting 
 where fish_name=#{fishName}
-order by fish_length desc)
+order by fish_length desc, fish_weight desc)
 where rownum <= 20
  ]]>
 </select>
 
-<!-- <어종별 랭킹> : 어종별 랭킹(나의 랭킹) -->
-<select id="selectLengthMyRanking" parameterType="Board" resultMap="boardMap">
+<!-- <어종별 랭킹> : 어종별 랭킹(자세한) 날짜 검색용 -->
+<select id="selectLengthDetailRankingByDate" parameterType="Board" resultMap="boardMap">
  <![CDATA[
 select *
 from (select user_id, fish_name, fish_length, fish_weight
 from tb_posting 
-where fish_name=#{fishName} and user_id=#{userId}
-order by fish_length desc )
-where rownum <= 1
+where fish_name=#{fishName}
+and catch_date between #{startday} and #{endday}
+order by fish_length desc, fish_weight desc)
+where rownum <= 20
+ ]]>
+</select>
+
+
+
+<!-- <어종별 랭킹> : 어종별 랭킹(나의 랭킹) -->
+<select id="selectLengthMyRanking" parameterType="Board" resultMap="boardMap">
+ <![CDATA[
+select po.*
+from(select p.*, rownum rank
+from (select user_id, fish_name, fish_length, fish_weight
+from tb_posting 
+where fish_name=#{fishName}
+order by fish_length desc, fish_weight desc) p) po
+where user_id=#{userId} and rownum =1
  ]]>
 </select>
 
@@ -86,10 +124,10 @@ where rownum <= 1
 <select id="selectCatchRanking"  resultMap="boardMap">
  <![CDATA[
 select *
-from (select user_id, count(*)
+from (select user_id, count(*) cnt
 from tb_posting 
 group by user_id
-order by count(*) desc)
+order by cnt desc)
 where rownum <= 20
  ]]>
 </select>
@@ -97,7 +135,7 @@ where rownum <= 20
 <!-- <전체 랭킹> : 나의 랭킹 -->
 <select id="selectCatchMyRanking" parameterType="String" resultMap="boardMap">
  <![CDATA[
-select user_id, count(*)
+select user_id, count(*) cnt
 from tb_posting 
 group by user_id
 having user_id=#{userId}
@@ -111,29 +149,56 @@ having user_id=#{userId}
 
 
 
-
+<!-- <도감 수집도 랭킹> : 전체 랭킹 -->
 <select id="selectCollectionRanking" parameterType="Board" resultMap="boardMap">
  <![CDATA[
 select *
-from (select count(*), user_id
-from(select DISTINCT p.user_id, f.KN, p.fish_name
-from tb_fishbook f, tb_posting p 
-where f.KN = p.fish_name) 
-group by user_id
-order by count(*) desc)
+from (select count(*) cnt, user_id
+from(select p.user_id, p.fish_name, count(*)
+from tb_posting p
+group by p.user_id, p.fish_name)
+group by user_id)
 where rownum <= 20
+order by cnt desc
  ]]>
+</select>
+
+<!-- <도감 수집도 랭킹> : 나의 도감 수집도 -->
+<select id="selectCollectionMyRanking" parameterType="String" resultMap="boardMap">
+
+ <![CDATA[
+select count(*) cnt
+from(select p.user_id, p.fish_name, count(*)
+from tb_posting p
+where user_id=#{userId}
+group by p.user_id, p.fish_name)
+ ]]>
+</select>
+
+<!-- <도감 수집도 랭킹> : 전체 도감 개수  -->
+<select id="selectCollectionRankingCnt" resultType="int">
+select count(*)
+from tb_fishbook
 </select>
 
 
 
-<select id="selectCollectionMyRanking" parameterType="Board" resultMap="boardMap">
- <![CDATA[
-select count(*)
-from(select DISTINCT p.user_id, f.KN, p.fish_name
-from tb_fishbook f, tb_posting p 
-where f.KN = p.fish_name and user_id='cc@.') 
- ]]>
+<!-- 사이드  -->
+<!-- 내가 잡은 상위 최다 어종-->
+<select id="selectSideRanking1" parameterType="String"  resultMap="boardMap">
+select user_id, fish_name, count(*) cnt
+from tb_posting
+where user_id=#{userId}
+group by user_id, fish_name
+order by cnt desc
+</select>
+<!-- 내가 많이 간 곳-->
+<select id="selectSideRanking2" parameterType="String"  resultMap="boardMap">
+select user_id, catch_location, count(*) cnt
+from tb_posting
+where user_id=#{userId}
+group by user_id, catch_location
+order by cnt desc
 </select>
 
 

@@ -24,6 +24,13 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+<!--  Fish Search Autocomplete -->
+<script
+  src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 
 <!-- fontawesone 로고 -->
 <link rel="stylesheet"
@@ -35,10 +42,27 @@
 
 <title>Main Board Feeds</title>
 <style>
+/* Fish Search Loading */
+.ui-autocomplete-loading
+{
+        background: white url('http://f.goodkiss.co.kr/sample/images/waiting.gif') right center no-repeat;
+}
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;   /* prevent horizontal scrollbar */
+    overflow-x: hidden; /* add padding to account for vertical scrollbar */
+    z-index:1000 !important;
+}
+
 /* <!-- Section Divider CSS --> */
 #mains {
 	border: 1px solid tomato;
 	height: 8000px;
+}
+
+.main-content {
+    margin-top: 51px;
+    margin-left: 200px;
 }
 
 #feedBoard {
@@ -60,6 +84,62 @@
 a, div {
 	font-size: 100%;
 }
+
+/* Write Widget CSS */
+.btn {
+	padding: .5em 1em;
+	height: 34px !important;
+	background-color: #232a96 !important;
+	color: #ffffff !important;
+	border: none;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.widget-post {
+	width: auto;
+	min-height: 100px;
+	height: auto;
+	border: 1px solid #4a98ea;
+	border-radius: 6px;
+	box-shadow: 0 1px 2px 1px rgba(130, 130, 130, 0.1);
+	background-color: #fff;
+	margin: auto;
+	overflow: hidden;
+}
+
+.widget-post__header {
+	padding: .2em .5em;
+	background-color: #4d93ea !important;
+	color: #3f5563 !important;
+}
+
+.widget-post___input.widget-post--date, .widget-post___input.widget-post--search, .widget-post___input.widget-post--select{
+	width: 150px;
+	margin-bottom: 10px;
+}
+
+.post-actions__attachments {
+	display: inline-block;
+	margin-bottom: 5px;
+	width: auto;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+input[type="checkbox"]#competition{
+	width: 13px;
+}
+
+.post-actions__widget {
+    display: inline-block;
+    float: right;
+    text-align: right;
+    margin: 5px;
+}
+
 </style>
 </head>
 <body>
@@ -112,7 +192,7 @@ a, div {
 		</c:if>
 
 		<c:if test="${empty sessionScope.user.id}">
-			<a href="<c:url value="/jsp/dictionary/fishDictAll.jsp"/>"><span
+			<a href="<c:url value="/dictionary.do?m=1"/>"><span
 				class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감</span></a>
 		</c:if>
 
@@ -139,67 +219,74 @@ a, div {
 	<!-- Main-Content 각자의 페이지 작성  -->
 	<div class="main-content">
 
-		<div id="mains">
+		<!-- <div id="mains"> -->
 			<div id="feedBoard">
 				<div class="widget-post" aria-labelledby="post-header-title">
 					<div class="widget-post__header">
-						<h2 class="widget-post__title" id="post-header-title">
-							<i class="fa fa-pencil" aria-hidden="true"></i> 나의 조과 올리기
-						</h2>
-					</div>
-					<form id="widget-form" class="widget-post__form" name="form"
-						aria-label="post widget">
-						<div class="widget-post__actions post--actions">
-							<div class="post-actions__attachments">
-								<button type="button"
-									class="btn post-actions__fish attachments--btn"
+						<button type="button"
+									class="btn post-actions__fish"
 									aria-controls="stock-options" aria-haspopup="true">
 									<i class="fa fa-usd" aria-hidden="true"></i>조과 정보작성
 								</button>
-
-							</div>
-							<div class="post-actions__widget">
-								<button type="button"
-									class="btn post-actions__addfish attachments--btn">
-									<label for="addfish" class="post-actions__label"><i
-										class="" aria-hidden="true"></i>조과추가+</label>
-								</button>
-								<button class="btn post-actions__publish">조과등록</button>
-							</div>
-						</div>
+					</div>
+					<form id="widget-form" class="widget-post__form" name="form"
+						aria-label="post widget">
 
 						<div class="widget-post__fishcatch " id="fish-kind">
-							<label for="date">출조날짜:</label> <input type="date"
-								class="widget-post___input widget-post--date" id="date">
-							<label for="search">출조지역:</label> <input type="search"
-								placeholder="예)거제도"
-								class="widget-post___input widget-post--search search--location"
-								id="search"> <label for="search">낚시방법:</label> <input
-								type="search" placeholder="예)방파제낚시"
-								class="widget-post___input widget-post--search search--method"
-								id="search"> <br> <label for="search">어종:</label> <input
-								type="search" placeholder="예)놀래미"
-								class="widget-post___input widget-post--search search--fish"
-								id="search"> <label for="fish-length">전장:</label> <input
-								type="number" class="widget-post___input widget-post--length"
-								id="fish-length" placeholder="길이(전장)"><i id="unit">cm</i>
-							<label for="fish-weight">무게:</label> <input type="number"
-								class="widget-post___input widget-post--weight" id="fish-weight"
-								placeholder="무게(체중)"><i id="unit">kg</i> <label
-								for="letgo">방생</label> <input type="checkbox" id="letgo"><br>
-							<button type="button"
-								class="btn post-actions__upload attachments--btn">
-								<label for="upload-image" class="post-actions__label"><i
-									class="fa fa-camera" aria-hidden="true"></i>인증사진 등록</label>
-							</button>
-							<input type="file" id="upload-image" accept="image/*" multiple>
-						</div>
-						<div class="widget-post__content">
-							<label for="post-content" class="sr-only">자유글 또는 조황에 대한
-								설명을 작성해주세요.</label>
-							<textarea name="post" id="post-content"
-								class="widget-post__textarea scroller"
-								placeholder="(#태그 사용가능)자유글 또는 조황에 대한 설명을 작성해주세요."></textarea>
+							<label for="competition">대회</label>
+								<input type="checkbox" class="widget-post___input widget-post--checkbox" id="competition" >
+							<select name="compList" id="compList" disabled="true">
+								<option value="">대회선택</option>
+								<option value="0">2018대물포낚시대회1회</option>
+								<option value="1">2018속초문어낚시대회34회</option>
+								<option value="2">2018사천낚시대회13회</option>
+								<option value="3">2018도시어부배천수만잉어낚시대회32회</option>
+							</select>
+							<label for="date">출조날짜:</label> 
+								<input type="date" class="widget-post___input widget-post--date" id="today">
+							<label for="search">출조지역:</label> 
+								<input type="search" placeholder="예)거제도" class="widget-post___input widget-post--search search--location" id="address"> 
+							<label for="search">낚시방법:</label> 
+								<select name="fMethod">
+									<option value="">낚시방법선택</option>
+									<option value="0">방파제낚시</option>
+									<option value="1">던질낚시</option>
+									<option value="2">하구낚시</option>
+									<option value="3">갯바위낚시</option>
+									<option value="4">흘림낚시</option>
+									<option value="5">트롤링낚시</option>
+									<option value="6">루어낚시</option>
+									<option value="7">호소낚시</option>
+									<option value="8">계류낚시</option>
+									<option value="9">저수지낚시</option>
+								</select>
+							<br> 
+							<label for="search">어종:</label> 
+								<input type="search" name="fishName" class="widget-post___input widget-post--search search--fish" id="fishName" placeholder="예)놀래기"> 
+								<input type="hidden" name="fishId" id="fishResult"/>
+							<label for="fish-length">전장:</label> 
+								<input type="number" name="length" class="widget-post___input widget-post--length" id="fish-length" placeholder="길이(전장)" required><i id="unit">cm</i>
+							<label for="fish-weight">무게:</label> 
+								<input type="number" name="weight" class="widget-post___input widget-post--weight" id="fish-weight" placeholder="무게(체중)" required><i id="unit">kg</i> 
+							<label for="letgo">방생</label> <input type="checkbox" name="fishRelease" value="y" id="letgo">
+								<div class="post-actions__attachments">
+									<button type="button" class="btn post-actions__upload attachments--btn">
+										<label for="upload-image" class="post-actions__label">
+										인증사진 등록&nbsp<i class="fa fa-camera" aria-hidden="true"></i></label>
+									</button>
+									<input type="file" id="upload-image" accept="image/*" multiple>
+								</div>	
+
+							<div class="widget-post__content">
+								<label for="post-content" class="sr-only">자유글 또는 조황에 대한
+									설명을 작성해주세요.</label>
+								<textarea name="post" id="post-content"
+									class="widget-post__textarea scroller"
+									placeholder="조황에 대한 설명을 작성해주세요."></textarea>
+							</div>
+							<div class="post-actions__widget">
+									<button class="btn post-actions__publish">조과등록</button>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -383,9 +470,22 @@ a, div {
 			<!-- Main-Content 각자의 Side 페이지 작성  -->
 			<div id="side"></div>
 
-		</div>
+		<!-- </div> -->
 	</div>
-	<script>
+
+<!-- competition checkbox  -->
+<script>
+	$("#competition").change(function(){
+		if ($("#competition").prop('checked')){
+			$("select#compList").prop("disabled", false);
+		} else {
+			$("select#compList").prop("disabled", true);
+		}
+	})
+</script>
+
+<!-- Write Form Interaction -->
+<script>
 		$('.btn-expand-collapse').click(function(e) {
 			$('.navbar-primary').toggleClass('collapsed');
 		});
@@ -422,19 +522,89 @@ a, div {
 		uploadBtn.addEventListener('keydown', fakeUploadClick);
 	</script>
 
+<!-- Map display on Post  -->
+<script>
+	var mapOptions = {
+		center : new naver.maps.LatLng(37.3595704, 127.105399),
+		zoom : 10
+	};
 
+	var map = new naver.maps.Map('map', mapOptions);
+
+	var marker = new naver.maps.Marker({
+		position : new naver.maps.LatLng(37.3595704, 127.105399),
+		map : map
+	});
+</script>
+	
+<!-- Daum Address Search Script -->
+<script>
+
+</script>
+	
+<!-- 어종 검색 자동완성 script -->
 	<script>
-		var mapOptions = {
-			center : new naver.maps.LatLng(37.3595704, 127.105399),
-			zoom : 10
-		};
-
-		var map = new naver.maps.Map('map', mapOptions);
-
-		var marker = new naver.maps.Marker({
-			position : new naver.maps.LatLng(37.3595704, 127.105399),
-			map : map
-		});
+	$(function() {
+		  
+	    $( "#fishName" ).autocomplete({
+	        source: function( request, response ) {
+	            $.ajax({
+	                url: '/team5/ranking/fishLength.do',
+	                //data: { mode : "KEYWORDCITYJSON" , keyword : $("#cityNm").val() },
+	                dataType: "json",
+	                success: function( data ) {
+	                    response( $.map( data, function( item ) {
+	                       	
+	                        if (item.kn.indexOf($("#fishName").val()) >= 0)
+	                        {
+	                            return {
+	                                label: item.kn.replace($( "#fishName" ).val(),"<span style='font-weight:bold;color:Blue;'>" + $( "#fishName" ).val() + "</span>"),
+	                                value: item.kn,
+	                                value2 : item.fishId
+	                                //cityCd:item.cityCd,
+	                                //nationCd:item.nationCd
+	                            }
+	                        } 
+	                    }));
+	                }
+	            });
+	        },
+	       
+	        /* 한글일 경우 아래키로 내리면 자동완성이 변경된는 것을 방지 */
+	        focus: function( event, ui ) {
+	         	event.preventDefault();
+	        	},
+	        minLength: 1,
+	        select: function( event, ui ) {
+	                fishValue(ui.item.value, ui.item.value2);  
+	        },
+	        change: function (event, ui) {
+                if (!( ui.item)) {
+                	event.target.value = "";
+               		alert("검색하신 어종이 존재하지 않습니다. 다시 입력해주세요.")
+               	}
+            },
+	        open: function() {
+	            $( this ).autocomplete("widget").width("323px");
+	            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+	        },
+	        close: function() {
+	            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+	        },
+	        error: function(xhr, ajaxOptions, thrownError){ alert(thrownError);  alert(xhr.responseText); }
+	    })
+	    .data('uiAutocomplete')._renderItem = function( ul, item ) {
+	        return $( "<li style='cursor:hand; cursor:pointer;'></li>" )
+	            .data( "item.autocomplete", item )
+	            .append("<a onclick=\"fishValue('" + item.value + "');\">" + unescape(item.label) + "</a>")
+	        .appendTo( ul );
+	    };
+	});
+	  
+	function fishValue(msg1, msg2) {
+	    $("#fishResult").val(msg2);
+	 	console.log($("#fishResult").val())
+	}
 	</script>
 </body>
 </html>
