@@ -86,8 +86,6 @@ var map = new daum.maps.Map(mapContainer, mapOption);
 // 장소 검색 객체를 생성합니다
 var ps = new daum.maps.services.Places();  
 
-// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-var infowindow = new daum.maps.InfoWindow({zIndex:1});
 
 // 키워드로 장소를 검색합니다
 searchPlaces();
@@ -177,18 +175,27 @@ function displayPlaces(places) {
         (function(marker, title) {
             daum.maps.event.addListener(marker, 'mouseover', function() {
                 displayInfowindow(marker, title);
+                console.log("Lat: "+placePosition.ib+"lng: "+placePosition.jb);
             });
-
+			
+            daum.maps.event.addListener(marker, 'onclick', function() {
+            	displayInfowindow(marker, title);
+                console.log("Lat: "+placePosition.ib+"lng: "+placePosition.jb);
+            });
+            
             daum.maps.event.addListener(marker, 'mouseout', function() {
                 infowindow.close();
+                console.log("Lat: "+placePosition.ib+"lng: "+placePosition.jb);
             });
 
             itemEl.onmouseover =  function () {
                 displayInfowindow(marker, title);
+                console.log("Lat: "+placePosition.ib+"lng: "+placePosition.jb);
             };
 
             itemEl.onmouseout =  function () {
                 infowindow.close();
+                console.log("Lat: "+placePosition.ib+"lng: "+placePosition.jb);
             };
         })(marker, places[i].place_name);
 
@@ -286,6 +293,8 @@ function displayPagination(pagination) {
     }
     paginationEl.appendChild(fragment);
 }
+// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+var infowindow = new daum.maps.InfoWindow({zIndex:1});
 
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 인포윈도우에 장소명을 표시합니다

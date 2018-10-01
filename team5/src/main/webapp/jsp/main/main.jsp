@@ -143,6 +143,40 @@ input[type="checkbox"]#competition{
     margin: 5px;
 }
 
+table{
+	border-collapse: collapse;
+	border-radius: 1em;
+	padding: 5px;
+	overflow: hidden;
+	width: 900px;
+	margin-left:auto; margin-right:auto;
+}
+
+th, td{
+	background: #8498ff;
+	padding: 10px;
+	color: darkblue;
+}
+
+#table-header{
+	font-weight: 300;
+	text-align: right;
+	border-right: 0px solid #fff;
+}
+
+td{
+	font-weight: bold;
+	color: black;
+	border-bottom: 2px solid #fff;
+	border-right: 2px solid #fff;
+	width: 12%;
+}
+
+td#attach-map{
+	background: #fff;
+	width: 50%;
+}
+
 </style>
 </head>
 <body>
@@ -263,11 +297,12 @@ input[type="checkbox"]#competition{
 									<option value="2">하구낚시</option>
 									<option value="3">갯바위낚시</option>
 									<option value="4">흘림낚시</option>
-									<option value="5">트롤링낚시</option>
-									<option value="6">루어낚시</option>
-									<option value="7">호소낚시</option>
-									<option value="8">계류낚시</option>
-									<option value="9">저수지낚시</option>
+									<option value="5">배낚시</option>
+									<option value="6">트롤링낚시</option>
+									<option value="7">루어낚시</option>
+									<option value="8">호소낚시</option>
+									<option value="9">계류낚시</option>
+									<option value="10">저수지낚시</option>
 								</select>
 								<input type="hidden" name="geoLat" id="getLatResult"/>
 								<input type="hidden" name="geoLng" id="getLngResult"/>
@@ -345,28 +380,48 @@ input[type="checkbox"]#competition{
 							</table>
 							<table>
 								<tr>
-									<td><img src="../../img/gamsung.jpg" width=300px></td>
-									<td><div id="map"
-											style="width: 300px; height: 300px; margin-left: 100px;">잡은
-											곳</div></td>
+									<td id="attach-map"><img src="../../img/gamsung.jpg" width=300px></td>
+									<td id="attach-map"><div id="map" style="width: 300px; height: 300px; margin: auto;">잡은곳</div></td>
 								</tr>
 							</table>
 						</span>
 						<div class="txtbottom">
-							<a href="#" class="text-liketext">대박</a> · <a href="#"
-								class="text-commenttext">댓글</a> · <a href="#"
-								class="text-sharetext">공유</a>
+							<a href="#" class="text-liketext">
+							<img src="http://social-prank.foxsash.com/assets/images/facebook/facebook_like_thumb.png">&nbsp;대박</a>
+							<a href="#" class="text-commenttext">댓글</a>  
+					<!-- 		<a href="#" class="text-sharetext">공유</a> -->
 						</div>
 					</div>
 					<div class="post_likes">
-						<img
-							src="http://social-prank.foxsash.com/assets/images/facebook/facebook_like_thumb.png">
-						<a href="#"><span class="text-likes">420 명이 대박을</span></a> <span
-							class="text-likethistext">을 눌렀어요</span> .
+						<img src="http://social-prank.foxsash.com/assets/images/facebook/facebook_like_thumb.png">
+						<span class="text-likes">420 </span>
+						<span class="text-likethistext">명이 대박을 누르고,</span>
+						<span class="text-comment">50 </span>
+						<span class="text-commentedthistext">개의 댓글이 달렸어요.</span>
 					</div>
-					<div class="post_shares">
+<!-- 					<div class="post_shares">
 						<i class="shares"></i> <a href="#"><span class="text-shares">42
 								공유됨</span></a>
+					</div> -->
+					<div class="post_write_comment">
+						<div class="img">
+							<img src="https://graph.facebook.com/davidaugustus42/picture"
+								width="32" height="32">
+						</div>
+						<div class="txt">
+							<div class="text_block">
+								<div class="comment">
+									<div class="pull-left text-wrcommenttext">댓글달기</div>
+									<div class="pull-right text-right">
+										<img
+											src="http://social-prank.foxsash.com/assets/images/facebook/fot_ico.png"
+											class="fot_ico"> <img
+											src="http://social-prank.foxsash.com/assets/images/facebook/smile_ico.png"
+											class="smile_ico">
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<ul class="comments" id="comments">
 						<li
@@ -455,26 +510,7 @@ input[type="checkbox"]#competition{
 							</div></li>
 					</ul>
 					<div class="clearfix"></div>
-					<div class="post_write_comment">
-						<div class="img">
-							<img src="https://graph.facebook.com/davidaugustus42/picture"
-								width="32" height="32">
-						</div>
-						<div class="txt">
-							<div class="text_block">
-								<div class="comment">
-									<div class="pull-left text-wrcommenttext">댓글달기</div>
-									<div class="pull-right text-right">
-										<img
-											src="http://social-prank.foxsash.com/assets/images/facebook/fot_ico.png"
-											class="fot_ico"> <img
-											src="http://social-prank.foxsash.com/assets/images/facebook/smile_ico.png"
-											class="smile_ico">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 					<div class="clearfix"></div>
 				</div>
 				<br>

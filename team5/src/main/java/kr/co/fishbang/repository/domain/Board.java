@@ -1,6 +1,7 @@
 package kr.co.fishbang.repository.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Board {
 	private int postingNo;
@@ -27,6 +28,10 @@ public class Board {
 	private Date startday;
 	private Date endday;
 	
+	// Collection Fields
+	private Profile profile;
+	private List<Comment> commentList;
+	private List<BoardFileAttach> fileAttachList;
 	
 	
 	public int getPostingNo() {

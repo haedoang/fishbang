@@ -36,7 +36,7 @@ $("#signup-toggle").click(function(){
 })
 
 //login form validation
-$("#login").on("click",function(e){
+$("#login").on("blur",function(e){
 	
 	//id validation
 	//공백
@@ -66,7 +66,7 @@ $("#login").on("click",function(e){
 	
 })
 //signup form.
-$("#signup").on("click",function(e){
+$("#signup").on("blur",function(e){
 	
 	//id validation
 	//공백
@@ -109,7 +109,7 @@ $("#signup").on("click",function(e){
 })
 
 //oninput id 중복체크
-$("#sEmail").on("input",function(e){
+$("#sEmail").on("blur",function(e){
 
 	var id = $("#sEmail").val();
 	$.ajax({
