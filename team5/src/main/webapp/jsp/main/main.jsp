@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,7 +21,10 @@
 
 
 <!-- javascript -->
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	
@@ -187,12 +190,12 @@ input[type="checkbox"]#competition{
 		<li>
 		
 		<c:if test="${not empty sessionScope.user.id}">
-		<a href="<c:url value="/jsp/dictionary/fisheryAll.jsp"/>"><span
+		<a href="<c:url value="/dictionary.do?m=1"/>"><span
 				class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기</span></a>
 		</c:if>
 
 		<c:if test="${empty sessionScope.user.id}">
-			<a href="<c:url value="/dictionary.do?m=2"/>"><span
+			<a href="<c:url value="/dictionary.do?m=1"/>"><span
 				class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감</span></a>
 		</c:if>
 
@@ -221,6 +224,7 @@ input[type="checkbox"]#competition{
 
 		<!-- <div id="mains"> -->
 			<div id="feedBoard">
+			<c:if test="${not empty sessionScope.user.id}">
 				<div class="widget-post" aria-labelledby="post-header-title">
 					<div class="widget-post__header">
 						<button type="button"
@@ -229,13 +233,18 @@ input[type="checkbox"]#competition{
 									<i class="fa fa-usd" aria-hidden="true"></i>조과 정보작성
 								</button>
 					</div>
-					<form id="widget-form" class="widget-post__form" name="form"
-						aria-label="post widget">
+					<form action="/team5/write.do" id="widget-form" class="widget-post__form" name="mform"
+						aria-label="post widget"
+						onsubmit="return doCheck()"
+						method="POST" 
+					  	enctype="multipart/form-data" 
+						>
 
 						<div class="widget-post__fishcatch " id="fish-kind">
+						<input type="hidden" name="userId" id="userId" value="${sessionScope.user.id}"/>
 							<label for="competition">대회</label>
 								<input type="checkbox" class="widget-post___input widget-post--checkbox" id="competition" >
-							<select name="compList" id="compList" disabled="true">
+							<select name="compList" id="compList" disabled="true" hidden="true">
 								<option value="">대회선택</option>
 								<option value="0">2018대물포낚시대회1회</option>
 								<option value="1">2018속초문어낚시대회34회</option>
@@ -243,9 +252,9 @@ input[type="checkbox"]#competition{
 								<option value="3">2018도시어부배천수만잉어낚시대회32회</option>
 							</select>
 							<label for="date">출조날짜:</label> 
-								<input type="date" class="widget-post___input widget-post--date" id="today">
+								<input type="date" class="widget-post___input widget-post--date" id="today" name="catchDate">
 							<label for="search">출조지역:</label> 
-								<input type="search" placeholder="예)거제도" class="widget-post___input widget-post--search search--location" id="address"> 
+								<input type="search" placeholder="예)거제도" class="widget-post___input widget-post--search search--location" id="address" name="catchLocation"> 
 							<label for="search">낚시방법:</label> 
 								<select name="fMethod">
 									<option value="">낚시방법선택</option>
@@ -260,27 +269,31 @@ input[type="checkbox"]#competition{
 									<option value="8">계류낚시</option>
 									<option value="9">저수지낚시</option>
 								</select>
+								<input type="hidden" name="geoLat" id="getLatResult"/>
+								<input type="hidden" name="geoLng" id="getLngResult"/>
 							<br> 
 							<label for="search">어종:</label> 
 								<input type="search" name="fishName" class="widget-post___input widget-post--search search--fish" id="fishName" placeholder="예)놀래기"> 
 								<input type="hidden" name="fishId" id="fishResult"/>
 							<label for="fish-length">전장:</label> 
-								<input type="number" name="length" class="widget-post___input widget-post--length" id="fish-length" placeholder="길이(전장)" required><i id="unit">cm</i>
+								<input type="number" name="length" class="widget-post___input widget-post--length" id="fish-length" placeholder="길이(전장)" step="0.01" required><i id="unit">cm</i>
 							<label for="fish-weight">무게:</label> 
-								<input type="number" name="weight" class="widget-post___input widget-post--weight" id="fish-weight" placeholder="무게(체중)" required><i id="unit">kg</i> 
-							<label for="letgo">방생</label> <input type="checkbox" name="fishRelease" value="y" id="letgo">
+								<input type="number" name="weight" class="widget-post___input widget-post--weight" id="fish-weight" placeholder="무게(체중)" step="0.01"><i id="unit">kg</i> 
+							<label for="letgo">방생</label> 
+							<input type="hidden" name="fishRelease" value="n" id="letgo">
+							<input type="checkbox" name="fishRelease" value="y" id="letgo">
 								<div class="post-actions__attachments">
 									<button type="button" class="btn post-actions__upload attachments--btn">
 										<label for="upload-image" class="post-actions__label">
 										인증사진 등록&nbsp<i class="fa fa-camera" aria-hidden="true"></i></label>
 									</button>
-									<input type="file" id="upload-image" accept="image/*" multiple>
+									<input type="file" id="upload-image" accept="image/*" name="attach" />
 								</div>	
 
 							<div class="widget-post__content">
 								<label for="post-content" class="sr-only">자유글 또는 조황에 대한
 									설명을 작성해주세요.</label>
-								<textarea name="post" id="post-content"
+								<textarea name="content" id="post-content"
 									class="widget-post__textarea scroller"
 									placeholder="조황에 대한 설명을 작성해주세요."></textarea>
 							</div>
@@ -290,6 +303,7 @@ input[type="checkbox"]#competition{
 						</div>
 					</form>
 				</div>
+			</c:if>
 				<div class="fb" id="download">
 					<div class="post">
 						<div class="top">
@@ -473,13 +487,40 @@ input[type="checkbox"]#competition{
 		<!-- </div> -->
 	</div>
 
+<!-- Catch Date Default as today -->
+<script>
+	$(document).ready(function(){
+		$('#today').datepicker({dateFormat: "yy-mm-dd"}).datepicker('setDate','today');
+	});
+</script>
+
+<!-- Write Form Check before submit  -->
+<script>
+	var f = document.mForm
+	
+	function doCheck(){
+		if(f.fishId==""){
+			alert("[필수 입력항목] 어종이 정상적으로 입력되지 않았습니다. 어종을 다시 검색해서 자동완성내 어종을 선택해주세요.")
+			f.fishName.focus();
+			return false;
+		}
+		if(f.length==""){
+			alert("[필수 입력항목] 등록하실 조과의 전장이 입력되지 않았습니다. 다시 입력해주세요.)")
+			f.length.focus();
+			return false;
+		}
+		
+		return true;
+	}
+</script>
+
 <!-- competition checkbox  -->
 <script>
 	$("#competition").change(function(){
 		if ($("#competition").prop('checked')){
-			$("select#compList").prop("disabled", false);
+			$("select#compList").prop({"disabled": false, "hidden": false});
 		} else {
-			$("select#compList").prop("disabled", true).val('');
+			$("select#compList").prop({"disabled": true, "hidden": true}).val('');
 		}
 	})
 </script>
@@ -532,7 +573,7 @@ input[type="checkbox"]#competition{
 	var map = new naver.maps.Map('map', mapOptions);
 
 	var marker = new naver.maps.Marker({
-		position : new naver.maps.LatLng(37.3595704, 127.105399),
+		position : new naver.maps.LatLng(0, 0),
 		map : map
 	});
 </script>
@@ -549,7 +590,7 @@ input[type="checkbox"]#competition{
 	    $( "#fishName" ).autocomplete({
 	        source: function( request, response ) {
 	            $.ajax({
-	                url: '/team5/ranking/fishLength.do',
+	                url: '/team5/ranking/search.do',
 	                //data: { mode : "KEYWORDCITYJSON" , keyword : $("#cityNm").val() },
 	                dataType: "json",
 	                success: function( data ) {
