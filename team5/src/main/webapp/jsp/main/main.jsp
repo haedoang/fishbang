@@ -479,7 +479,7 @@ input[type="checkbox"]#competition{
 		if ($("#competition").prop('checked')){
 			$("select#compList").prop("disabled", false);
 		} else {
-			$("select#compList").prop("disabled", true);
+			$("select#compList").prop("disabled", true).val('');
 		}
 	})
 </script>
