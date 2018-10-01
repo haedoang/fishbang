@@ -1,11 +1,10 @@
 package kr.co.fishbang.repository.mapper;
 
-
 import java.util.List;
 
 import kr.co.fishbang.repository.domain.Dictionary;
 
-	public interface DictionaryMapper {
+public interface DictionaryMapper {
 		public List<Dictionary> selectDictionary1();
 		public List<Dictionary> selectDictionary2();
 		public List<Dictionary> selectDictionary3();
