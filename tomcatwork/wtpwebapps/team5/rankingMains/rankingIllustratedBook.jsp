@@ -25,7 +25,7 @@
 <br>
 
 
-
+<%int k=1;%>
  <table>
       <thead>
         <tr>
@@ -33,13 +33,14 @@
         </tr>
       <thead>
       <tbody>
-      <%for(int i = 1; i<20;i++) {%>
+      <c:forEach var="i" items='${rank}' >
         <tr>
-          <td>1위</td>
-          <td>해동왕 (howon1042)</td>
-          <td>수집도 <progress value="50" max="100"></progress> 42%</td>
-          <td>240종</td>
+          <td><%=k++%>위</td>
+          <td>${i.userId}</td>
+          <td>수집도 <progress value="${i.cnt}" max='${cnt}'></progress>
+          ${Math.round(i.cnt/cnt*100*100)/100.0}%</td>
+          <td>${i.cnt}종</td>
         </tr>
-        <%}%>
+        </c:forEach>
       </tbody>
     </table>

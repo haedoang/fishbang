@@ -39,6 +39,7 @@
 		<mapper resource="config/sqlmap/profile.xml"/> 
 		<mapper resource="config/sqlmap/board.xml"/> 
 		<mapper resource="config/sqlmap/dictionary.xml"/> 
+		<mapper resource="config/sqlmap/ranking.xml"/> 
 	
 	</mappers>
 	
