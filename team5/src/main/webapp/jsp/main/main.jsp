@@ -16,8 +16,8 @@
 
 
 <!-- mapapi -->
-<script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=XdHi52ymtJ5BbGtyiEPn"></script>
+<!-- <script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=XdHi52ymtJ5BbGtyiEPn"></script> -->
 
 
 <!-- javascript -->
@@ -483,27 +483,43 @@ td#attach-map{
 <script>
 $(function(){
 	var fhtml = $("div.post").html();
-	console.log(fhtml);
 	$.ajax({
 		url : "/team5/feed",
 		dataType : "json",
 		success : function(data){
 			if(data!=undefined){
-				for(let feeds of data){
-					$("div.fb").html(fhtml);
-					$("img#profile").attr("src", feeds.profile.path+"/"+feeds.profile.sysThuName);
-					$("span.text-name").text(feeds.userId);
-					$("span.text-when").text(feeds.regDate);
-					$("td.catch-date").text(feeds.catchDate);
-					$("td.location").text(feeds.catchLocation);
-					$("td.method").text(feeds.methodNo);
-					$("td.fish-name").text(feeds.fishName);
-					$("td.length").text(feeds.fishLength+"cm");
-					$("td.weight").text(feeds.fishWeight+"kg");
-					$("td.weight").text(feeds.fishWeight);
-					$("span.text-likes").text(feeds.postLiked);
+					console.dir(data);
+					console.dir(data[0].postingNo);
+					for(var i=0;i<data.length;i++){
+						$("div.fb").append(fhtml);
+						$("img#profile").not("[data]").attr("data",data[i].postingNo);
+						$("span.text-name").not("[data]").attr("data",data[i].postingNo);
+						$("span.text-when").not("[data]").attr("data",data[i].postingNo);
+						$("td.catch-date").not("[data]").attr("data",data[i].postingNo);
+						$("td.location").not("[data]").attr("data",data[i].postingNo);
+						$("td.method").not("[data]").attr("data",data[i].postingNo);
+						$("td.fish-name").not("[data]").attr("data",data[i].postingNo);
+						$("td.length").not("[data]").attr("data",data[i].postingNo);
+						$("td.weight").not("[data]").attr("data",data[i].postingNo);
+						$("td.weight").not("[data]").attr("data",data[i].postingNo);
+						$("span.text-likes").not("[data]").attr("data",data[i].postingNo);
 					}
-				}
+					for(let feeds of data){
+						console.log(feeds.postingNo);
+						$("img[id='profile'][data='"+feeds.postingNo+"']").attr("src", feeds.profile.path+"/"+feeds.profile.sysThuName);
+						console.log(feeds.profile.path+"/"+feeds.profile.sysThuName);
+						$("span[class='text-name'][data='"+feeds.postingNo+"']").text(feeds.userId);
+						$("span[class='text-when'][data='"+feeds.postingNo+"']").text(feeds.regDate);
+						$("td[class='catch-date'][data='"+feeds.postingNo+"']").text(feeds.catchDate);
+						$("td[class='location'][data='"+feeds.postingNo+"']").text(feeds.catchLocation);
+						$("td[class='method'][data='"+feeds.postingNo+"']").text(feeds.methodNo);
+						$("td[class='fish-name'][data='"+feeds.postingNo+"']").text(feeds.fishName);
+						$("td[class='length'][data='"+feeds.postingNo+"']").text(feeds.fishLength+"cm");
+						$("td[class='weight'][data='"+feeds.postingNo+"']").text(feeds.fishWeight+"kg");
+						$("td[class='weight'][data='"+feeds.postingNo+"']").text(feeds.fishWeight);
+						$("span[class='text-likes'][data='"+feeds.postingNo+"']").text(feeds.postLiked);
+						};
+					};
 			}
 	})
 })
@@ -587,7 +603,7 @@ $(function(){
 	</script>
 
 <!-- Map display on Post  -->
-<script>
+<!-- <script>
 	var mapOptions = {
 		center : new naver.maps.LatLng(37.3595704, 127.105399),
 		zoom : 10
@@ -599,7 +615,7 @@ $(function(){
 		position : new naver.maps.LatLng(0, 0),
 		map : map
 	});
-</script>
+</script> -->
 	
 <!-- Daum Address Search Script -->
 <script>
