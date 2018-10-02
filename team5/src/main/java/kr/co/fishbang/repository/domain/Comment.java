@@ -6,9 +6,10 @@ public class Comment {
 	private int commentNo;
 	private int postingNo;
 	private String userId;
-	private String content;
+	private String commentContent;
 	private Date regDate;
 	
+
 	
 	public int getCommentNo() {
 		return commentNo;
@@ -28,11 +29,11 @@ public class Comment {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getContent() {
-		return content;
+	public String getCommentContent() {
+		return commentContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setCommentContent(String commentContent) {
+		this.commentContent = commentContent;
 	}
 	public Date getRegDate() {
 		return regDate;
