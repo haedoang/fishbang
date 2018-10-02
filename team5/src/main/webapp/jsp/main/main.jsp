@@ -256,8 +256,6 @@ td#attach-map{
 	<!-- Main-Content 각자의 페이지 작성  -->
 	<div class="main-content">
 
-		
-		
 			<div id="feedBoard">
 			<c:if test="${not empty sessionScope.user.id}">
 				<div class="widget-post" aria-labelledby="post-header-title">
@@ -342,7 +340,7 @@ td#attach-map{
 			</c:if>
 				<div class="fb" id="download">
 				
-				<div id="mains" style="display: none">
+				<div class="feedframe" id="mains" style="display: none">
 				<!-- AJAX START -->
 					<div class="post">
 						<div class="top">
@@ -357,15 +355,14 @@ td#attach-map{
 							<!-- USER ID -->
 								<strong><a href="#"><span class="text-name">다잡아</span></a></strong>
 								<span class="pull-right btn btn-xs btn-following">
-								<!-- ALWAYS 비공식  -->
+								<!-- ALWAYS 비공식  Button-->
 								<i class="fa fa-check" aria-hidden="true" style="color: white"></i>
 									공식</span>
+
 								<div class="date">
 								
 								<!-- REGDATE -->
-									<span class="text-when">어제 at 4:42am</span> ·<img
-										src="http://social-prank.foxsash.com/assets/images/facebook/icon_public.jpg"
-										width="16" height="16" id="visiblefor-icon">
+									<span class="text-when">어제 at 4:42am</span>
 								</div>
 							</div>
 						</div>
@@ -373,29 +370,29 @@ td#attach-map{
 						<span class="text-message">
 						
 						<!-- 조과정복 -->
-							<table>
+							<table class="fish-data">
 								<tr>
 									<td id="table-header">출조날짜: &nbsp;</td>
-									<td>2018.09.15 (금)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td class="catch-date">2018.09.15 (금)&nbsp;&nbsp;&nbsp;&nbsp;</td>
 									<td id="table-header">출조지역: &nbsp;</td>
-									<td>거제도 어느 방파제 &nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td class="location">거제도 어느 방파제 &nbsp;&nbsp;&nbsp;&nbsp;</td>
 									<td id="table-header">낚시방법: &nbsp;</td>
-									<td>방파제 낚시</td>
+									<td class="method">방파제 낚시</td>
 								</tr>
 								<tr>
 									<td id="table-header">어종(바다): &nbsp;</td>
-									<td>놀래미 &nbsp; &nbsp;&nbsp;</td>
+									<td class="fish-name">놀래미 &nbsp; &nbsp;&nbsp;</td>
 									<td id="table-header">전장: &nbsp;</td>
-									<td>20cm &nbsp; &nbsp;&nbsp;</td>
+									<td class="length">20<prep>cm</prep>&nbsp; &nbsp;&nbsp;</td>
 									<td id="table-header">무게: &nbsp;</td>
-									<td>(미입력)kg &nbsp; &nbsp;&nbsp;</td>
+									<td class="weight">(미입력)kg &nbsp; &nbsp;&nbsp;</td>
 								</tr>
 							</table>
 							<!-- 첨부파일 이미지 -->
-							<table>
+							<table class="attach-map">
 								<tr>
-									<td id="attach-map"><img src="../../img/gamsung.jpg" width=300px></td>
-									<td id="attach-map"><div id="map" style="width: 300px; height: 300px; margin: auto;">잡은곳</div></td>
+									<td class="attachpic" id="attach-map"><img src="../../img/gamsung.jpg" width=300px></td>
+									<td class="maplocation" id="attach-map"><div id="map" style="width: 300px; height: 300px; margin: auto;">잡은곳</div></td>
 								</tr>
 							</table>
 						</span>
@@ -456,10 +453,7 @@ td#attach-map{
 					<div class="post_write_comment">
 					
 					<!-- 댓글 작성자 프로파일 이미지  -->
-						<div class="img">
-							<img src="https://graph.facebook.com/davidaugustus42/picture"
-								width="32" height="32">
-						</div>
+
 						<div class="txt">
 							<div class="text_block">
 								<div class="comment">
@@ -486,7 +480,35 @@ td#attach-map{
 		
 
 <!-- AJAX로 Feed display -->
-
+<script>
+$(function(){
+	var fhtml = $("div.post").html();
+	console.log(fhtml);
+	$.ajax({
+		url : "/team5/feed",
+		dataType : "json",
+		success : function(data){
+			if(data!=undefined){
+				for(let feeds of data){
+					$("div.fb").html(fhtml);
+					$("img#profile").attr("src", feeds.profile.path+"/"+feeds.profile.sysThuName);
+					$("span.text-name").text(feeds.userId);
+					$("span.text-when").text(feeds.regDate);
+					$("td.catch-date").text(feeds.catchDate);
+					$("td.location").text(feeds.catchLocation);
+					$("td.method").text(feeds.methodNo);
+					$("td.fish-name").text(feeds.fishName);
+					$("td.length").text(feeds.fishLength+"cm");
+					$("td.weight").text(feeds.fishWeight+"kg");
+					$("td.weight").text(feeds.fishWeight);
+					$("span.text-likes").text(feeds.postLiked);
+					}
+				}
+			}
+	})
+})
+				
+</script>
 
 <!-- Catch Date Default as today -->
 <script>
