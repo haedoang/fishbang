@@ -38,10 +38,10 @@ public class MainMapController extends HttpServlet{
 			}
 			System.out.println(ii.getProfile());
 			
-//			Profile profile = ii.getProfile();
+			Profile profile = ii.getProfile();
 //			System.out.println("profile add: "+profile);
-//			System.out.println(profile.getPath());
-//			System.out.println(profile.getSysThuName());
+			System.out.println(profile.getPath());
+			System.out.println(profile.getSysThuName());
 			
 		}
 		

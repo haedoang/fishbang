@@ -22,7 +22,7 @@
 	 <result column="content" property="content" />
 	 <result column="post_verified" property="postVerified" />
 	 <result column="post_liked" property="postLiked" />
-	 <association property="profile" column="id" select="selectProfile"/>
+	 <association property="profile" column="user_id" select="selectProfile"/>
 	 <collection property="commentList" column="posting_no" select="selectCommentList"/>
 	 <collection property="fileAttachList" column="posting_no" select="selectFileAttachList"/>
 	</resultMap>
@@ -67,19 +67,12 @@
 		order by comment_no
 	</select>
 	
-	
-
-	
-		<select id="selectProfile" parameterType="String" resultMap="profileMap">
-		select *
-		from tb_profile
-		where id=#{user_id}
-		</select>
-	
-	
-	
-	
-	
+	<!-- 사용자 프로파일 사진 경로 가지고 오기 -->
+	<select id="selectProfile" parameterType="String" resultMap="profileMap">
+	select *
+	from tb_profile
+	where id=#{user_id}
+	</select>
 	
 	<!-- 게시판 리스트 보기 -->
 	<select id="displayAllFeeds" resultMap="boardMap">
