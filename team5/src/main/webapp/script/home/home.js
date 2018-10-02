@@ -36,7 +36,7 @@ $("#signup-toggle").click(function(){
 })
 
 //login form validation
-$("#login").on("blur",function(e){
+$("#login").on("input",function(e){
 	
 	//id validation
 	//공백

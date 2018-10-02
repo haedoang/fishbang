@@ -32,8 +32,15 @@ public class Board {
 	private Profile profile;
 	private List<Comment> commentList;
 	private List<BoardFileAttach> fileAttachList;
+	private BoardFileAttach fileAttach;
 	
 	
+	public BoardFileAttach getFileAttach() {
+		return fileAttach;
+	}
+	public void setFileAttach(BoardFileAttach fileAttach) {
+		this.fileAttach = fileAttach;
+	}
 	public int getPostingNo() {
 		return postingNo;
 	}
@@ -160,7 +167,25 @@ public class Board {
 	public void setEndday(Date endday) {
 		this.endday = endday;
 	}
-
+	public Profile getProfile() {
+		return profile;
+	}
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
+	}
+	public List<BoardFileAttach> getFileAttachList() {
+		return fileAttachList;
+	}
+	public void setFileAttachList(List<BoardFileAttach> fileAttachList) {
+		this.fileAttachList = fileAttachList;
+	}
+	
 	
 	
 }

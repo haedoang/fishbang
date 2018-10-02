@@ -30,9 +30,10 @@ public class WritePostController extends HttpServlet{
 		try {
 		
 		// File Attach
-		// File Attach Path ~/Users/wonchoi/⁨git/⁨fishbang⁩/upload
-		// Change Mac -> Win directory "c://fishbang//upload(dir)"
-		String uploadPath = "/Users/wonchoi/⁨git/⁨fishbang⁩/upload";
+		// File Attach Path ~/Users/wonchoi/git/fishbang/upload
+//		 Change Mac -> Win directory "c://fishbang//upload(dir)"
+//		String uploadPath = "/Users/wonchoi/git/fishbang/upload";
+		String uploadPath = "c:/fishbang/upload";
 		String path = "/board_fileattach";
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
 		String datePath = sdf.format(new Date());
@@ -123,7 +124,7 @@ public class WritePostController extends HttpServlet{
 				postingMapper.insertFileAttach(attFile);
 			} // if 
 		} // while
-		response.sendRedirect("/main.do");
+		response.sendRedirect(request.getContextPath()+"/main.do");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
