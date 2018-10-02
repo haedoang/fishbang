@@ -256,7 +256,8 @@ td#attach-map{
 	<!-- Main-Content 각자의 페이지 작성  -->
 	<div class="main-content">
 
-		<!-- <div id="mains"> -->
+		
+		
 			<div id="feedBoard">
 			<c:if test="${not empty sessionScope.user.id}">
 				<div class="widget-post" aria-labelledby="post-header-title">
@@ -340,18 +341,28 @@ td#attach-map{
 				</div>
 			</c:if>
 				<div class="fb" id="download">
+				
+				<div id="mains" style="display: none">
+				<!-- AJAX START -->
 					<div class="post">
 						<div class="top">
 							<div class="img fileinput-preview">
+							
+							<!-- PROFILE PICTURE FILE PATH -->
 								<img src="../../img/catch1.png" width="40" height="40"
 									id="profile">
 							</div>
 							<div class="name">
+							
+							<!-- USER ID -->
 								<strong><a href="#"><span class="text-name">다잡아</span></a></strong>
-								<span class="pull-right btn btn-xs btn-following"><i
-									class="fa fa-check" aria-hidden="true" style="color: white"></i>
+								<span class="pull-right btn btn-xs btn-following">
+								<!-- ALWAYS 비공식  -->
+								<i class="fa fa-check" aria-hidden="true" style="color: white"></i>
 									공식</span>
 								<div class="date">
+								
+								<!-- REGDATE -->
 									<span class="text-when">어제 at 4:42am</span> ·<img
 										src="http://social-prank.foxsash.com/assets/images/facebook/icon_public.jpg"
 										width="16" height="16" id="visiblefor-icon">
@@ -360,6 +371,8 @@ td#attach-map{
 						</div>
 						<div class="clearfix"></div>
 						<span class="text-message">
+						
+						<!-- 조과정복 -->
 							<table>
 								<tr>
 									<td id="table-header">출조날짜: &nbsp;</td>
@@ -378,6 +391,7 @@ td#attach-map{
 									<td>(미입력)kg &nbsp; &nbsp;&nbsp;</td>
 								</tr>
 							</table>
+							<!-- 첨부파일 이미지 -->
 							<table>
 								<tr>
 									<td id="attach-map"><img src="../../img/gamsung.jpg" width=300px></td>
@@ -386,65 +400,32 @@ td#attach-map{
 							</table>
 						</span>
 						<div class="txtbottom">
+						
+						<!-- 월척!클릭시 like 수 UP 버튼으로 만들어라 -->
 							<a href="#" class="text-liketext">
-							<img src="http://social-prank.foxsash.com/assets/images/facebook/facebook_like_thumb.png">&nbsp;대박</a>
-							<a href="#" class="text-commenttext">댓글</a>  
-					<!-- 		<a href="#" class="text-sharetext">공유</a> -->
+							<img src="http://social-prank.foxsash.com/assets/images/facebook/facebook_like_thumb.png">&nbsp;월척!</a>
+
 						</div>
 					</div>
 					<div class="post_likes">
+					
+					<!-- 월척! like 수 표시 -->
 						<img src="http://social-prank.foxsash.com/assets/images/facebook/facebook_like_thumb.png">
 						<span class="text-likes">420 </span>
-						<span class="text-likethistext">명이 대박을 누르고,</span>
+						<span class="text-likethistext">명이 월척을 누르고,</span>
+						
+					<!-- 댓글수 표시 -->
 						<span class="text-comment">50 </span>
 						<span class="text-commentedthistext">개의 댓글이 달렸어요.</span>
 					</div>
-<!-- 					<div class="post_shares">
-						<i class="shares"></i> <a href="#"><span class="text-shares">42
-								공유됨</span></a>
-					</div> -->
-					<div class="post_write_comment">
-						<div class="img">
-							<img src="https://graph.facebook.com/davidaugustus42/picture"
-								width="32" height="32">
-						</div>
-						<div class="txt">
-							<div class="text_block">
-								<div class="comment">
-									<div class="pull-left text-wrcommenttext">댓글달기</div>
-									<div class="pull-right text-right">
-										<img
-											src="http://social-prank.foxsash.com/assets/images/facebook/fot_ico.png"
-											class="fot_ico"> <img
-											src="http://social-prank.foxsash.com/assets/images/facebook/smile_ico.png"
-											class="smile_ico">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 					<ul class="comments" id="comments">
-						<li
-							class="UFIRow  UFILastComment UFILastCommentComponent UFILastComponent UFIComment display UFIComponent UFIUnseenItem"><div
-								class="clearfix">
+						<li class="UFIRow  UFILastComment UFILastCommentComponent UFILastComponent UFIComment display UFIComponent UFIUnseenItem">
+						<div class="clearfix">
 								<div class="_ohe lfloat">
-									<a
-										href="https://www.facebook.com/nivaldo.silva.7923030?fref=ufi"
-										class="img _8o _8s UFIImageBlockImage" tabindex="0"
-										aria-hidden="true"
-										data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$left.0"
-										aria-owns="js_m" aria-haspopup="true" aria-describedby="js_n"
-										id="js_o"><img
-										src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/p32x32/1507769_1386250438296116_2074273629_n.jpg?oh=fdbe28f85fc29943c38c2e00bc85c9e7&amp;oe=55F799C7&amp;__gda__=1445479768_f45df0b9dbfbfd416615a102489ac39c"
-										class="img UFIActorImage _54ru" alt=""
-										data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$left.0.0"></a>
 								</div>
-								<div class=""
-									data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right">
-									<div class="UFIImageBlockContent _42ef clearfix"
-										data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0">
-										<div class="_ohf rfloat"
-											data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$right">
+									<div class="UFIImageBlockContent _42ef clearfix">
+										<!-- <div class="_ohf rfloat">
 											<button
 												class="UFICommentCloseButtonFake _50zy _50-0 _50z- _5upp _42ft"
 												tabindex="-1" type="button" title="Remover"
@@ -452,76 +433,60 @@ td#attach-map{
 												<span
 													data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$right.0.1">Remover</span>
 											</button>
-										</div>
-										<div class=""
-											data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left">
-											<div class="UFICommentContentBlock"
-												data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0">
-												<div class="UFICommentContent"
-													data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.0">
-													<span
-														data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.0.0"><a
-														data-ft="{&quot;tn&quot;:&quot;;&quot;}"
-														class=" UFICommentActorName"
-														data-hovercard="/ajax/hovercard/hovercard.php?id=100007335194048&amp;extragetparams=%7B%22hc_location%22%3A%22ufi%22%7D"
-														dir="ltr"
-														href="https://www.facebook.com/nivaldo.silva.7923030?fref=ufi"
-														data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.0.0.0"><span
-															data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.0.0.0.0">Nivaldo
-																Silva</span></a></span><span
-														data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.0.1"><span
-														data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.0.1.0">
-													</span><span data-ft="{&quot;tn&quot;:&quot;K&quot;}"
-														data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.0.1.$comment-body"><span
-															class="UFICommentBody"
-															data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.0.1.$comment-body.0"><span
-																data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.0.1.$comment-body.0.$end:0:$text0:0">Delicia
-																	de mulher cc</span></span></span></span><span
-														data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.0.6"></span>
+										</div> -->
+										<div class="">
+											<div class="UFICommentContentBlock">
+												<div class="UFICommentContent">
+													<span>
+												<!-- 댓글 작성자 User ID CSS STYLE FONT-WEIGHT: BOLD-->
+													Nivaldo Silva
+													</span>
+														<span class="UFICommentBody">
+														<!-- 댓글 내용 -->
+														Delicia de mulher cc
+														</span>
 												</div>
-												<div class="fsm fwn fcg UFICommentActions"
-													data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.3">
-													<span
-														data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.3.$metadata:0"><a
-														class="uiLinkSubtle"
-														href="/groups/406892826118728/permalink/596675990473743/?comment_id=599044600236882&amp;offset=0&amp;total_comments=3&amp;comment_tracking=%7B%22tn%22%3A%22R%22%7D"
-														data-ft="{&quot;tn&quot;:&quot;N&quot;}"
-														data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.3.$metadata:0.$timestamp-message"><abbr
-															class="livetimestamp"
-															title="Quarta, 17 de junho de 2015 às 04:43"
-															data-utime="1434526981" data-shorten="true"
-															data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.3.$metadata:0.$timestamp-message.0">1
-																h</abbr></a></span><span
-														data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.3.$likeToggle:0:$MIDDOT:0">
-														· </span><a class="UFILikeLink"
-														data-ft="{&quot;tn&quot;:&quot;>&quot;}" href="#"
-														role="button" title="Curtir este comentário"
-														data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.3.$likeToggle:0:$action:0">Curtir</a>
-												</div>
-												<a
-													class="UFICommentCloseButton _50zy _50-0 _50z- _5upp _42ft"
-													href="#" aria-label="Ocultar" data-hover="tooltip"
-													data-tooltip-alignh="center"
-													data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$left.0.4"></a>
 											</div>
 										</div>
 									</div>
-								</div>
-							</div></li>
+							</div>
+							</li>
 					</ul>
 					<div class="clearfix"></div>
+					<div class="post_write_comment">
 					
-					<div class="clearfix"></div>
-				</div>
-				<br>
+					<!-- 댓글 작성자 프로파일 이미지  -->
+						<div class="img">
+							<img src="https://graph.facebook.com/davidaugustus42/picture"
+								width="32" height="32">
+						</div>
+						<div class="txt">
+							<div class="text_block">
+								<div class="comment">
+									<div class="pull-left text-wrcommenttext">
+									
+									<!-- form textarea input-->
+									댓글달기
+									</div>
 
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- AJAX END -->
 			</div>
+		</div>
+	</div>
+				<br>
 
 			<!-- Main-Content 각자의 Side 페이지 작성  -->
 			<div id="side"></div>
 
-		<!-- </div> -->
-	</div>
+		
+
+<!-- AJAX로 Feed display -->
+
 
 <!-- Catch Date Default as today -->
 <script>

@@ -36,7 +36,7 @@ $("#signup-toggle").click(function(){
 })
 
 //login form validation
-$("#login").on("input",function(e){
+$("#login").on("click",function(e){
 	
 	//id validation
 	//공백
@@ -66,7 +66,7 @@ $("#login").on("input",function(e){
 	
 })
 //signup form.
-$("#signup").on("blur",function(e){
+$("#signup").on("click",function(e){
 	
 	//id validation
 	//공백
@@ -110,7 +110,7 @@ $("#signup").on("blur",function(e){
 
 //oninput id 중복체크
 $("#sEmail").on("blur",function(e){
-
+	idcheck=""
 	var id = $("#sEmail").val();
 	$.ajax({
 		type:"POST",
@@ -172,6 +172,20 @@ var naverLogin = new naver.LoginWithNaverId(
 	/* 설정정보를 초기화하고 연동을 준비 */
 	naverLogin.init();
 
+	naverLogin.getLoginStatus(function (status) {
+		if (status) {
+			var email = naverLogin.user.getEmail();
+			var name = naverLogin.user.getNickName();
+			var profileImage = naverLogin.user.getProfileImage();
+			var birthday = naverLogin.user.getBirthday();			
+			var uniqId = naverLogin.user.getId();
+			var age = naverLogin.user.getAge();
+		} else {
+			console.log("AccessToken이 올바르지 않습니다.");
+		}
+
+	});
+
 //kakao
 	
 	
@@ -188,89 +202,8 @@ var naverLogin = new naver.LoginWithNaverId(
          alert(JSON.stringify(err));
       }
     });
-  //]]>	
-	
-	
-	
-	
-	
-/*
-	//login form alert
-	var doLogin =  () => {
 
-		var form = document.loginForm;
-		
-		if(form.loginEmail.value==""){
-			alert("Enter email or username");
-			form.loginEmail.focus();
-			return false
-		}
-		if(form.loginPassword.value==""){
-			alert("Enter password");
-			form.loginPassword.focus();
-			return false 
-		}
 	
-		form.action = "../main/main.jsp";
-		form.submit();
-			
-		
 	
-}*/	
-/*
-	//signup form alert 
-	var doSignup = () => {
-		
-		var form = document.signupForm
-		
-		if(form.signEmail.value==""){
-			alert("Enter your Email");
-			form.signEmail.focus();
-			return false
-		}
-		
-		if(form.signName.value==""){
-			alert("Enter username")
-			form.signName.focus()
-			return false
-		}
-		
-		if(form.signPassword.value==""){
-			alert("Enter password")
-			form.signPassword.focus()
-			return false 
-		}
-			
-		alert("회원가입이 완료되었습니다.")
-		form.action = "./homepage.jsp";
-		form.submit();
-	}
 	
-	//login enter 
-	var password =document.querySelector("#loginPassword")
-	password.onkeydown = function(e){
-		if(e.keyCode==13){
-			form.action = "../main/main.jsp";
-			form.submit();
-		}
-	}
-/*	//signup enter 
-	var password =document.querySelector("#signPassword")
-	password.onkeydown = function(e){
-		if(e.keyCode==13){
-			form.action = "./homepage.jsp";
-			form.submit();
-		}
-	}*/
-	
-	//jquery 활용 enter
-/*	$("#signPassword").keydown(function(e){
-		if(e.keyCode==13){
-			alert("회원가입이 완료되었습니다.")
-			$("form:nth-child(2)").action="./homepage.jsp";
-			$("form:nth-child(2)").submit();
-			
-		}
-	})
-	*/
 	
