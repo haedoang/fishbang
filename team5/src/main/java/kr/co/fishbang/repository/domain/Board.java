@@ -32,15 +32,15 @@ public class Board {
 	private Profile profile;
 	private List<Comment> commentList;
 	private List<BoardFileAttach> fileAttachList;
-	private BoardFileAttach fileAttach;
+//	private BoardFileAttach fileAttach;
 	
 	
-	public BoardFileAttach getFileAttach() {
-		return fileAttach;
-	}
-	public void setFileAttach(BoardFileAttach fileAttach) {
-		this.fileAttach = fileAttach;
-	}
+//	public BoardFileAttach getFileAttach() {
+//		return fileAttach;
+//	}
+//	public void setFileAttach(BoardFileAttach fileAttach) {
+//		this.fileAttach = fileAttach;
+//	}
 	public int getPostingNo() {
 		return postingNo;
 	}
