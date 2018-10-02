@@ -68,7 +68,6 @@ height:8000px;
 }
 #feedBoard{
 background : #fbfbfb;
-border : 5px double red;
 width:1000px;
 height:3000px;
 margin-right:10px;
@@ -86,9 +85,7 @@ margin-left:1000px;
 
 body{
 width: 1000px;
-border : 8px solid #c4cdd2;
 }
-
 
 table {
   border-spacing: 1;
@@ -448,6 +445,13 @@ progress::-moz-progress-bar {
   border-radius: 4px;
 }
 
+form button{
+	border: 2px solid ;
+	background-color: transparent !important;
+	border-radius: 10px;
+	font-weight: 800;
+	color: #686868;
+}
 
 
 </style>
@@ -537,19 +541,21 @@ progress::-moz-progress-bar {
 
 <ul class="icon" >
 <form action="/team5/ranking/fishLength.do" role="search" class="search-form">
-<li><span class="glyphicon glyphicon-calendar"></span>
-<input type="date" name="startday" value="2017-01-01" min="2017-01-01" max="2018-12-26"> ~ 
-<input type="Date" name="endday" value="2018-12-26" min="2018-06-26" max="2018-12-26">
-<button>전송</button>
-</li>
+	<li><span class="glyphicon glyphicon-calendar"></span>
+	<input type="date" name="startday" value="2017-01-01" min="2017-01-01" max="2018-12-26"> ~ 
+	<input type="Date" name="endday" value="2018-12-26" min="2018-06-26" max="2018-12-26">
+	<button>전송</button>
+	</li>
 </form>
 
 <li>
 <form action="/team5/ranking/fishLengthDetail.do" role="search" class="search-form">
-					
-<input type="search" name="fishName" class="widget-post___input widget-post--search search--fish" id="fishName" placeholder="예)놀래기"> 
-								<input type="hidden" name="fishId" id="fishResult" />
-								<button id="search">검색</button>
+	<span class="glyphicon glyphicon-search"></span>					
+	<input type="search" name="fishName" class="widget-post___input widget-post--search search--fish" id="fishName" placeholder="예)놀래기"> 
+	<input type="hidden" name="fishId" id="fishResult" />
+	<button id="search">검색</button>
+</form>
+
 </form>
 
 </li>
@@ -566,6 +572,8 @@ progress::-moz-progress-bar {
 
 
 
+      <c:set var="doneLoop" value="false"/>
+
   	<table>
   	    <thead>
         <tr>
@@ -573,11 +581,15 @@ progress::-moz-progress-bar {
         </tr>
       <thead>
       <tbody> 
-      <tr></tr>
-            <c:forEach var="map" items="${list}">
-             
-            <c:forEach var="item" items="${map}">
-       	<tr>
+
+        <c:forEach var="map" items="${list}" varStatus="status">
+    	<c:forEach var="item" items="${map}" >
+    	 <c:if test="${!status.first}">
+			<c:set var="doneLoop" value="true"/> 
+        </c:if>
+    	<c:if test="${not doneLoop}"> 
+       		<c:if test="${not empty item.value.rank[1].userId}">
+       		<tr>
       		<td>${item.value.fishName}</td>
       		<%int k=1;%>
 	       		<c:forEach var="i" items="${item.value.rank}">
@@ -587,11 +599,16 @@ progress::-moz-progress-bar {
 	   			<c:if test="<%=k==3%>"><td><r><%=k++%>위</r>     -</td></c:if>
 	   			<c:choose>
    				<c:when test="${empty item.value.myrank.rank}"><td class="myRanking"><r>내 순위</r> -</td></c:when>
-   				<c:otherwise><td class="myRanking"><r>내 순위</r> 상위 ${Math.round(item.value.myrank.rank/item.value.cnt*100)/100}%  위     ${item.value.myrank.fishLength}cm  ${item.value.myrank.fishWeight}kg</td></c:otherwise>
+   				<c:otherwise><td class="myRanking"><r>상위 ${Math.round(item.value.myrank.rank/item.value.cnt*100)}%</r>      ${item.value.myrank.fishLength}cm  ${item.value.myrank.fishWeight}kg</td></c:otherwise>
+   				
    				</c:choose>
-    	</tr>
-		</c:forEach>   		
-         </c:forEach>
+				</c:if>
+            	</tr>
+            	</c:if>
+ 			</c:forEach>  		
+		</c:forEach>  	
+
+
 		</tbody>
     </table>
 

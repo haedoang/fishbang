@@ -27,7 +27,7 @@ public class FishLengthRankingDetail extends HttpServlet{
 			RankingMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(RankingMapper.class);
 	        HttpSession session = request.getSession();
 	        Board board = new Board();
-	        String fishName= "고등어";
+	        String fishName= request.getParameter("fishName");
 	        String userId= "cc@.";
 	        board.setFishName(fishName);
 	        board.setUserId(userId);

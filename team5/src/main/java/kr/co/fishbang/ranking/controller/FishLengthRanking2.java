@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -38,63 +39,78 @@ public class FishLengthRanking2 extends HttpServlet {
     	HttpSession session = request.getSession();
     	RankingMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(RankingMapper.class);
         List<Board> fishrank =mapper.selectFishRanking();
+        List<Map<String, Rank>> list = new ArrayList<>();
+        Map<String, Rank> map = new HashMap<>();
         
         
 
 
         	if(request.getParameter("startday")!=null&request.getParameter("endday")!=null) {
 
+        	
 
-			
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date startday = sdf.parse(request.getParameter("startday"));
 			Date endday = sdf.parse(request.getParameter("endday"));
+			int [] cntArr =  new int[20];
 	        
-		 	
-		 	System.out.println(startday+"    :::::::::    "+endday);
-		 	
-		 	for(Board ff:fishrank) {
-		       
+ 	
+			 for(Board ff:fishrank) {
+			       
 		          Board board = new Board();
-		          board.setFishName(ff.getFishName());  
+		          board.setFishName(ff.getFishName());   
 		          board.setUserId("bb@."/*session.getId()*/);
+		          board.setStartday(startday);
+		          board.setEndday(endday);
 		          
 		          Board daysearch = new Board();
 		          daysearch.setFishName(ff.getFishName());
 			      daysearch.setStartday(startday);
 			      daysearch.setEndday(endday);
-		     
-		         
-		        request.setAttribute("rank"+Integer.toString(k),mapper.selectLengthRankingByDate(daysearch));
-		        request.setAttribute("myrank"+Integer.toString(k), mapper.selectLengthMyRanking(board));
-		        request.setAttribute("fishCnt"+Integer.toString(k), mapper.selectLengthRankingCnt(ff.getFishName()));
+
+		        Rank rankL = new Rank();
+		        rankL.setCnt(mapper.selectLengthRankingCnt(ff.getFishName()));
+		        rankL.setFishName(ff.getFishName());
+		        rankL.setMyrank(mapper.selectLengthMyRanking(board));
+		        rankL.setRank(mapper.selectLengthRankingByDate(daysearch));
+		        
+		        
+		        
+		        //cntArr[k-1] = Math.round(rankL.getMyrank().getCnt()/rankL.getCnt()*100);
+		        //System.out.println(Math.round(mapper.selectLengthMyRankingByDate(board).getCnt()/mapper.selectLengthRankingCnt(ff.getFishName())*100));
+		        map.put("rank"+Integer.toString(k), rankL);
+		        list.add(k-1, map);
+		        
+		        
+		        
+
 		        k++;
 		        }
-
+			 
+			 
+			 //int a [] =Arrays.sort(cntArr);
+//			 for(int i=0;i<a.length;i++) {
+//				 System.out.println(a[i]);
+//			 }
+			 
+			
+		    request.setAttribute("list",list);
+		    //request.setAttribute("sort", Arrays.sort(cntArr));
 	        RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/rankingMain.jsp");
 	        
 			rd.forward(request, response);
 
         	}else {
-	
+          k=1;
 
-	 	
-	 	
 
-        k=1;
-
-//        Map<String, List<Board>> rank = new HashMap<String, List<Board>>();
-//        Map<String, Board> myrank = new HashMap<String, Board>();
-//        Map<String, String> fishName = new HashMap<String, String>();
-          List<Map<String, Rank>> list = new ArrayList<>();
-          Map<String, Rank> map = new HashMap<>();
         
         
         
 
         
-        for(Board ff:fishrank) {
+          for(Board ff:fishrank) {
        
           Board board = new Board();
           board.setFishName(ff.getFishName());   
@@ -113,12 +129,7 @@ public class FishLengthRanking2 extends HttpServlet {
 	
         k++;
         }
-        int i = 1;
-    	for(Map<String, Rank> rr :list) {
-    		System.out.println(rr.get("rank"+Integer.toString(i)).getFishName());
-    		System.out.println(rr.get("rank"+Integer.toString(i)).getCnt());
-    		i++;
-    	}
+
 
         
 
@@ -129,6 +140,8 @@ public class FishLengthRanking2 extends HttpServlet {
         }
 		} catch (ParseException e) {;}
     }
+    
+
 
 
 }

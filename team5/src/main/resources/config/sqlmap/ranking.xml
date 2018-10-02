@@ -117,7 +117,19 @@ where user_id=#{userId} and rownum =1
  ]]>
 </select>
 
-
+<!-- <어종별 랭킹> : 어종별 랭킹(나의 랭킹) 날짜 검색용 -->
+<select id="selectLengthMyRankingByDate" parameterType="Board" resultMap="boardMap">
+ <![CDATA[
+select po.*
+from(select p.*, rownum rank
+from (select user_id, fish_name, fish_length, fish_weight
+from tb_posting 
+where fish_name=#{fishName}
+and catch_date between #{startday} and #{endday}
+order by fish_length desc, fish_weight desc) p) po
+where user_id=#{userId} and rownum =1
+ ]]>
+</select>
 
 
 
