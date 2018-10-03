@@ -1,4 +1,4 @@
-
+drop table tb_user purge;
 
 create table tb_user(
     id varchar2(25) primary key,
@@ -11,8 +11,8 @@ create table tb_user(
     nat varchar2(20) default null
 );
 
-
-
 create sequence s_user_no;
 
-
+update tb_user
+   set lev = 'a'
+  where id = 'admin@.';
