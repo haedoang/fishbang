@@ -28,6 +28,7 @@ public class DictionaryController extends HttpServlet {
 		switch(no) {
 		
 		case 1: List<Dictionary> dict1 =  mapper.selectDictionary1();
+		System.out.println(dict1);
 		request.setAttribute("dict", dict1);
 		RequestDispatcher rd1 = request.getRequestDispatcher(
 				"/jsp/dictionary/fishDictAll.jsp"

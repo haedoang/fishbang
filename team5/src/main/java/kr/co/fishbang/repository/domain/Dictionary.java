@@ -20,7 +20,9 @@ package kr.co.fishbang.repository.domain;
  몸길이
  */
 public class Dictionary {
+	private String imgPath;
 private int no;
+
 private String migration;
 private String fishId;
 private String name;
@@ -40,7 +42,22 @@ private String shape;
 private String grow;
 private String ls;
 private String color;
+@Override
+public String toString() {
+	return "Dictionary [imgPath=" + imgPath + ", no=" + no + ", migration=" + migration + ", fishId=" + fishId
+			+ ", name=" + name + ", fclass=" + fclass + ", spec=" + spec + ", sn=" + sn + ", habitat=" + habitat
+			+ ", content=" + content + ", season=" + season + ", distr=" + distr + ", food=" + food + ", spawn=" + spawn
+			+ ", kn=" + kn + ", en=" + en + ", shape=" + shape + ", grow=" + grow + ", ls=" + ls + ", color=" + color
+			+ ", length=" + length + "]";
+}
 private String length;
+
+public String getImgPath() {
+	return imgPath;
+}
+public void setImgPath(String imgPath) {
+	this.imgPath = imgPath;
+}
 
 				public String getName() {
 					return name;

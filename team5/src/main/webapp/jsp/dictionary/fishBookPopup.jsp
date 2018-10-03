@@ -8,15 +8,20 @@
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
+
+
 <style>
+
+
+
 body {
     background-color: #FCFCFC;
  
 }
 
 .cover {
-    height: 100%;
-    width: 100%;
+    height: 1600px;
+    width:1600px;
   
     z-index: 1;
 }
@@ -199,8 +204,7 @@ span {
     background-color: whitesmoke;
     
     text-align: center;
-    margin-left: 25%;
-    margin-right: 25%;
+  
 	height : auto;
     position: relative;
     -webkit-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
@@ -343,9 +347,8 @@ margin-left: -50%;
 }
 .explain{
 
-margin-top: 20px;
+margin-top: 50px;
 font-size :13px;
-position: absolute;
 text-align : left;
 }
 
@@ -387,28 +390,29 @@ table th {
   text-transform: uppercase;
 }
 table td {
-  white-space: nowrap;
-  overflow: block;
-
+	text-align:left;
+ 
 }
 td{
 
 word-break: break-all;
 }
 th{
-width: 95px;
-height: 40px;
-}
 
+}
+.forwindow{
+
+heigth : auto;
+}
 </style>
 
 
 </head>
 <body>
+<div class = "forwindow">
 
-<div class="row pop-up">
   <div class="box small-6 large-centered">
-    <a href="#" class="close-button">&#10006;</a>
+ 
     <h3>${dict.kn}</h3>
 							    <div class = "forimg">
 							   <div class="slider">
@@ -442,65 +446,55 @@ height: 40px;
                              </tr>
     <tr>
     <th>분포</th>
-   <td>${dict.distr}</td>
-   <td></td>
-   <td></td>
+   <td colspan="3">${dict.distr}</td>
+
    
    </tr>
    <tr>
         <th>서식지</th>
-       <td>${dict.habitat}</td>
-       <td></td>
-       <td></td>
+       <td colspan="3">${dict.habitat}</td>
+
        
        </tr>
        <tr>
             <th>회유</th>
-           <td>${dict.migration}</td>
-           <td></td>
-           <td></td>
+           <td colspan="3">${dict.migration}</td>
+
            
            </tr>
            <tr>
                 <th>먹이</th>
-               <td>${dict.food}</td>
-               <td></td>
-               <td></td>
+               <td colspan="3">${dict.food}</td>
+
                
                </tr>
                <tr>
                     <th>산란</th>
-                   <td>${dict.spawn}</td>
-                   <td></td>
-                   <td></td>
+                   <td colspan="3">${dict.spawn}</td>
+
                    
                    </tr>
                    <tr>
                         <th>성장</th>
-                       <td>${dict.grow}</td>
-                       <td></td>
-                       <td></td>
-                       
+                       <td colspan="3">${dict.grow}</td>
+
                        </tr>
                        <tr>
                             <th>형태</th>
-                           <td>${dict.shape}</td>
-                           <td></td>
-                           <td></td>
+                           <td colspan="3">${dict.shape}</td>
+
                            
                            </tr>
                            <tr>
                             <th>체색</th>
-                           <td>${dict.color}</td>
-                           <td></td>
-                           <td></td>
+                           <td colspan="3">${dict.color}</td>
+
                            
                            </tr>
                            <tr>
                             <th>길이</th>
-                           <td>${dict.length}</td>
-                           <td></td>
-                           <td></td>
+                           <td colspan="3">${dict.length}</td>
+
                            
                            </tr>
                            
@@ -509,6 +503,7 @@ height: 40px;
    </table>
    </div>
   </div>
+</div>
 </div>
 
 

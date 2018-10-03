@@ -12,18 +12,41 @@
 <!-- javascript -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<!-- 
-<script>
-$(window).scroll(function () {
-	if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
-		$(".foris").load("/team5/dictionary.do?m=2 #fishinfolayout");
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script>
+ 
 	
-	}
-	});
+		$("a").click(function(){
+			 var fishId = $(".listCard_Link").attr("a");
+			window.open(fishId, "팝업", "left=10, top=10, width=500, height=500");
+		});
 
-	
-</script>
- -->
+</script> -->
+
+ <script>
+     $(document).ready(function(){
+         $(".listCard_Link").click(function(){
+        	    var fishId = $(this).attr("name")
+             window.open(fishId,"window", "width = 833, height = 1400, resizeable=no, location=no, menubar=no,  status=yes, toolbar=no");
+         });
+         
+     });
+  /*    $(documnet).ready(function(){
+    	  $(".listCard_Link").click(function(){
+      	    var fishId = $(this).attr("name")
+      	    var cw = 840;
+      	    var ch = 1400;
+      	    sw = screen.availWidth;
+      	    sh = screen.availHeight;
+      	    px = (sw-cw)/2;
+      	    py = (sh-ch)/2;
+      	  window.open(fishId,"window", "left = '+px+',top='+py+',width='+cw+',height='+ch+',toolbar=no,status=no, scrollbars=no");
+      	    
+     }); */
+     
+     
+     
+            </script>
 
 <title>Insert title here</title>
 <style>
@@ -92,6 +115,8 @@ font-size : 10px;
 }
 
 .fishimg{
+border-radius : 7px;
+margin-left : 2.5px;
 overflow : hidden;
  transform: scale(1);
   -webkit-transform: scale(1);
@@ -102,7 +127,7 @@ overflow : hidden;
 
 
 
-border: 1px solid black;
+
 width : 188px;
 height : 150px;
 }
@@ -244,6 +269,8 @@ margin-left : 70%;
 }
 
 
+
+
 </style>
 </head>
 <body>
@@ -329,11 +356,12 @@ margin-left : 70%;
  <div class ="formargin">
  
  <li id ="fishinfolayout" class ="fishinfolayout">
- 	<a href = '/team5/dictionaryByNo.do?fishId=${b.fishId}' class = "listCard_Link">
+ 	<div name= '/team5/dictionaryByNo.do?fishId=${b.fishId}' class = "listCard_Link">
   		<div class = "fishinfoline">
   	
   			<div class = "fishimg">
-  				<img src = "/team5/src/main/resources/godonga1.png" width = "185" height = "150" alt = "이미지파일이어딨지?">
+  		
+  				<img src="${b.imgPath}" width = "185" height = "150" alt = "이미지파일이어딨지?">
   			</div>
   		<div class = "just">
   		<p class = "fishname1">${b.kn}<br>${b.en}</p>
@@ -341,7 +369,8 @@ margin-left : 70%;
   		<p class = "fishviewcnt">물고기과,조회수넣기</p>
   		</div>
   				</div>
-  				</a>
+  				</div>
+  
   
  </li>
  </div>
@@ -360,6 +389,7 @@ margin-left : 70%;
 
 
 	</div>
+
 	<p class = "pageNo">
   	<a href = "<c:url value="/dictionary.do?m=1"/>"  class = "m" >1</a>
   	<a href = "<c:url value="/dictionary.do?m=2"/>"  class = "m">2</a>

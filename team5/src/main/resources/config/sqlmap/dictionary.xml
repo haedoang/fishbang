@@ -19,6 +19,7 @@
 	<result property = "ls" column = "ls"/>
 	<result property = "color" column = "color"/>
 	<result property = "length" column = "length"/>
+	<result property = "imgPath" column = "imgpath"/>
 	
 	
 	</resultMap>
@@ -257,6 +258,7 @@
         				  )
 				WHERE RNUM BETWEEN 1151 AND 1187
 	</select>
+	
 	
 	
 
