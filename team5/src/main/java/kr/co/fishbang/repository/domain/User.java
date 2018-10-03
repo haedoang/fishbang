@@ -7,16 +7,13 @@ public class User {
 	private int no;			//s_user_no (seq)
 	private String name;	//nn
 	private String password; //nn
-	private String profile; //def unknown
-	private String thumbnail; //def unknown
 	private String contact;	//def unknown
 	private Date birth;		//def null
 	private char lev;		//default c , root = s 
 	private String nat;		//def unknown
 	
 	
-	
-	
+
 	public String getId() {
 		return id;
 	}
@@ -41,18 +38,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getProfile() {
-		return profile;
-	}
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
-	public String getThumbnail() {
-		return thumbnail;
-	}
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
-	}
+
 	public String getContact() {
 		return contact;
 	}

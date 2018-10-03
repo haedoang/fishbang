@@ -57,22 +57,28 @@
 			</div>
 
 			<div class="input-container__single">
+			<c:choose>
+					<c:when test="${not empty sessionScope.user.birth}">
 				<label for="nationality">Nationality:</label><br> 
-					<input id="userNat" type="hidden" value="${sessionScope.user.nat}"/>
-					<select id="nat" name="nat" required>
-						<option value="">국적을 선택하세요</option>
-						<option id="Afghanistan" value="Afghanistan">Afghanistan </option>
-						<option id="Chile" value="Chile">Chile</option>
-						<option id="China"value="China">China</option>
-						<option id="France" value="France">France  </option>
-						<option id="Germany" value="Germany">Germany</option>
-						<option id="Italy" value="Italy">Italy </option>
-						<option id="United Kingdom" value="United Kingdom">United Kingdom</option>
-						<option id="USA" value="USA">USA</option>
-						<option id="Korea" value="Korea">Korea</option>
-						<option id="Japan" value="Japan">Japan</option>
-						<option id="Other" value="Other">Other</option>
+					<input id="userNat" type="text" name="nat" value="${sessionScope.user.nat}"/>
+					</c:when>
+					<c:otherwise>
+						<select id="nat" name="nat" required>
+							<option id="menu" value="">국적을 선택하세요</option>
+							<option id="Afghanistan" value="Afghanistan">Afghanistan </option>
+							<option id="Chile" value="Chile">Chile</option>
+							<option id="China"value="China">China</option>
+							<option id="France" value="France">France  </option>
+							<option id="Germany" value="Germany">Germany</option>
+							<option id="Italy" value="Italy">Italy </option>
+							<option id="United Kingdom" value="United Kingdom">United Kingdom</option>
+							<option id="USA" value="USA">USA</option>
+							<option id="Korea" value="Korea">Korea</option>
+							<option id="Japan" value="Japan">Japan</option>
+							<option id="Other" value="Other">Other</option>
 					</select>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			
 			<div class="input-container__single">
