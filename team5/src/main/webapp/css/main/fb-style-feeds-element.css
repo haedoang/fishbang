@@ -296,6 +296,11 @@ i.shares{
 	margin: 0 10px;
 }
 
+div.comment{
+	height: 23px;
+	padding: 0px;
+}
+
 	/*  Chat */
 	
 /* 	input,textarea {

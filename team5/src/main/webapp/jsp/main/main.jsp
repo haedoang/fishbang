@@ -59,7 +59,6 @@
 
 /* <!-- Section Divider CSS --> */
 #mains {
-	border: 1px solid tomato;
 	height: 8000px;
 }
 
@@ -89,6 +88,11 @@ a, div {
 }
 
 /* Write Widget CSS */
+h4{
+	color: darkblue;
+	text-indent: 10px;
+}
+
 .btn {
 	padding: .5em 1em;
 	height: 34px !important;
@@ -142,7 +146,19 @@ input[type="checkbox"]#competition{
     text-align: right;
     margin: 5px;
 }
+/* Comments */
 
+/* Feeds Frame */
+.fb-inner{
+	bottom-margin: 5px;
+	border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 6px;
+}
+
+div#br{
+	background: #fff;
+}
 table{
 	border-collapse: collapse;
 	border-radius: 1em;
@@ -172,9 +188,25 @@ td{
 	width: 12%;
 }
 
-td#attach-map{
+td#attach-map, td#feedcontent{
+	align: center;
+	text-align: center;
 	background: #fff;
 	width: 50%;
+}
+
+td#feedcontent{
+	text-align: left;
+}
+
+div.comment{
+	height: 23px;
+	padding: 0px;
+}
+
+textarea#post-comment{
+	height:23px;
+	padding: 0px;
 }
 
 </style>
@@ -264,11 +296,7 @@ td#attach-map{
 			<c:if test="${not empty sessionScope.user.id}">
 				<div class="widget-post" aria-labelledby="post-header-title">
 					<div class="widget-post__header">
-						<button type="button"
-									class="btn post-actions__fish"
-									aria-controls="stock-options" aria-haspopup="true">
-									<i class="fa fa-usd" aria-hidden="true"></i>조과 정보작성
-								</button>
+						<h4>조과 정보작성</h4>
 					</div>
 					<form action="/team5/write.do" id="widget-form" class="widget-post__form" name="mform"
 						aria-label="post widget"
@@ -323,7 +351,7 @@ td#attach-map{
 								<div class="post-actions__attachments">
 									<button type="button" class="btn post-actions__upload attachments--btn">
 										<label for="upload-image" class="post-actions__label">
-										인증사진 등록&nbsp<i class="fa fa-camera" aria-hidden="true"></i></label>
+										인증사진 등록&nbsp;<i class="fa fa-camera" aria-hidden="true"></i></label>
 									</button>
 									<input type="file" id="upload-image" accept="image/*" name="attach" />
 								</div>	
@@ -343,15 +371,15 @@ td#attach-map{
 				</div>
 			</c:if>
 				<div class="fb" id="download">
-				
-				<div class="feedframe" id="mains" style="display: none">
+				<div class="feedframe" id="mains">
 				<!-- AJAX START -->
+				<div class="fb-inner" id="download-inner" style="display: none">
 					<div class="post">
 						<div class="top">
 							<div class="img fileinput-preview">
 							
 							<!-- PROFILE PICTURE FILE PATH -->
-								<img src="../../img/catch1.png" width="40" height="40"
+								<img src="/team5/img/catch1.png" width="40" height="40"
 									id="profile">
 							</div>
 							<div class="name">
@@ -359,6 +387,7 @@ td#attach-map{
 							<!-- USER ID -->
 								<strong><a href="#"><span class="text-name">다잡아</span></a></strong>
 								<span class="pull-right btn btn-xs btn-following">
+								
 								<!-- ALWAYS 비공식  Button-->
 								<i class="fa fa-check" aria-hidden="true" style="color: white"></i>
 									공식</span>
@@ -373,7 +402,7 @@ td#attach-map{
 						<div class="clearfix"></div>
 						<span class="text-message">
 						
-						<!-- 조과정복 -->
+						<!-- 조과정보 -->
 							<table class="fish-data">
 								<tr>
 									<td id="table-header">출조날짜: &nbsp;</td>
@@ -391,12 +420,16 @@ td#attach-map{
 									<td id="table-header">무게: &nbsp;</td>
 									<td class="weight">(미입력)kg &nbsp; &nbsp;&nbsp;</td>
 								</tr>
+								
 							</table>
 							<!-- 첨부파일 이미지 -->
 							<table class="attach-map">
 								<tr>
-									<td class="attachpic" id="attach-map"><img src="../../img/gamsung.jpg" width=300px></td>
+									<td class="attachpic" id="attach-map"><img src="/team5/img/gamsung.jpg" width=300px></td>
 									<td class="maplocation" id="attach-map"><div id="map" style="width: 300px; height: 300px; margin: auto;">잡은곳</div></td>
+								</tr>
+								<tr>
+									<td class="content" id="feedcontent" colspan="2"></td>
 								</tr>
 							</table>
 						</span>
@@ -438,7 +471,7 @@ td#attach-map{
 										<div class="">
 											<div class="UFICommentContentBlock">
 												<div class="UFICommentContent">
-													<span>
+													<span class="UFICommentContent-user">
 												<!-- 댓글 작성자 User ID CSS STYLE FONT-WEIGHT: BOLD-->
 													Nivaldo Silva
 													</span>
@@ -461,17 +494,21 @@ td#attach-map{
 						<div class="txt">
 							<div class="text_block">
 								<div class="comment">
+									<form action="/team5/comment.do">
+										<textarea name="comment" id="post-comment" class="widget-post__textarea scroller" placeholder="댓글달기"></textarea>
+									</form>
 									<div class="pull-left text-wrcommenttext">
 									
 									<!-- form textarea input-->
-									댓글달기
 									</div>
 
 								</div>
 							</div>
 						</div>
 					</div>
+				<div id="br"><br></div>
 				</div>
+				
 				<!-- AJAX END -->
 			</div>
 		</div>
@@ -484,92 +521,23 @@ td#attach-map{
 		
 
 <!-- AJAX로 Feed display -->
-<script>
-$(function(){
-	var fhtml = $("div.post").html();
-	$.ajax({
-		url : "/team5/feed",
-		dataType : "json",
-		success : function(data){
-			if(data!=undefined){
-					console.dir(data);
-					console.dir(data[0].postingNo);
-					for(var i=0;i<data.length;i++){
-						$("div.fb").append(fhtml);
-						$("img#profile").not("[data]").attr("data",data[i].postingNo);
-						$("span.text-name").not("[data]").attr("data",data[i].postingNo);
-						$("span.text-when").not("[data]").attr("data",data[i].postingNo);
-						$("td.catch-date").not("[data]").attr("data",data[i].postingNo);
-						$("td.location").not("[data]").attr("data",data[i].postingNo);
-						$("td.method").not("[data]").attr("data",data[i].postingNo);
-						$("td.fish-name").not("[data]").attr("data",data[i].postingNo);
-						$("td.length").not("[data]").attr("data",data[i].postingNo);
-						$("td.weight").not("[data]").attr("data",data[i].postingNo);
-						$("td.weight").not("[data]").attr("data",data[i].postingNo);
-						$("span.text-likes").not("[data]").attr("data",data[i].postingNo);
-					}
-					for(let feeds of data){
-						console.log(feeds.postingNo);
-						$("img[id='profile'][data='"+feeds.postingNo+"']").attr("src", feeds.profile.path+"/"+feeds.profile.sysThuName);
-						console.log(feeds.profile.path+"/"+feeds.profile.sysThuName);
-						$("span[class='text-name'][data='"+feeds.postingNo+"']").text(feeds.userId);
-						$("span[class='text-when'][data='"+feeds.postingNo+"']").text(feeds.regDate);
-						$("td[class='catch-date'][data='"+feeds.postingNo+"']").text(feeds.catchDate);
-						$("td[class='location'][data='"+feeds.postingNo+"']").text(feeds.catchLocation);
-						$("td[class='method'][data='"+feeds.postingNo+"']").text(feeds.methodNo);
-						$("td[class='fish-name'][data='"+feeds.postingNo+"']").text(feeds.fishName);
-						$("td[class='length'][data='"+feeds.postingNo+"']").text(feeds.fishLength+"cm");
-						$("td[class='weight'][data='"+feeds.postingNo+"']").text(feeds.fishWeight+"kg");
-						$("td[class='weight'][data='"+feeds.postingNo+"']").text(feeds.fishWeight);
-						$("span[class='text-likes'][data='"+feeds.postingNo+"']").text(feeds.postLiked);
-						};
-					};
-			}
-	})
-})
-				
-</script>
+<script src="<c:url value="/script/main/feedDisplay.js"/>"></script>
 
-<!-- Catch Date Default as today -->
-<script>
-	$(document).ready(function(){
-		$('#today').datepicker({dateFormat: "yy-mm-dd"}).datepicker('setDate','today');
-	});
-</script>
 
-<!-- Write Form Check before submit  -->
-<script>
-	var f = document.mForm
+<!-- Write Form Script -->
+<script src="<c:url value="/script/main/writeform.js"/>"></script>
+
+<script src="<c:url value="/script/main/fishsearch.js"/>"></script>
+
 	
-	function doCheck(){
-		if(f.fishId==""){
-			alert("[필수 입력항목] 어종이 정상적으로 입력되지 않았습니다. 어종을 다시 검색해서 자동완성내 어종을 선택해주세요.")
-			f.fishName.focus();
-			return false;
-		}
-		if(f.length==""){
-			alert("[필수 입력항목] 등록하실 조과의 전장이 입력되지 않았습니다. 다시 입력해주세요.)")
-			f.length.focus();
-			return false;
-		}
-		
-		return true;
-	}
-</script>
-
-<!-- competition checkbox  -->
+<!-- Daum Address Search Script -->
 <script>
-	$("#competition").change(function(){
-		if ($("#competition").prop('checked')){
-			$("select#compList").prop({"disabled": false, "hidden": false});
-		} else {
-			$("select#compList").prop({"disabled": true, "hidden": true}).val('');
-		}
-	})
-</script>
 
+</script>
+	
+<!-- 어종 검색 자동완성 script -->
 <!-- Write Form Interaction -->
-<script>
+<!-- <script>
 		$('.btn-expand-collapse').click(function(e) {
 			$('.navbar-primary').toggleClass('collapsed');
 		});
@@ -604,7 +572,7 @@ $(function(){
 		});
 
 		uploadBtn.addEventListener('keydown', fakeUploadClick);
-	</script>
+	</script> -->
 
 <!-- Map display on Post  -->
 <!-- <script>
@@ -618,77 +586,9 @@ $(function(){
 	var marker = new naver.maps.Marker({
 		position : new naver.maps.LatLng(0, 0),
 		map : map
+
 	});
 </script> -->
-	
-<!-- Daum Address Search Script -->
-<script>
 
-</script>
-	
-<!-- 어종 검색 자동완성 script -->
-	<script>
-	$(function() {
-		  
-	    $( "#fishName" ).autocomplete({
-	        source: function( request, response ) {
-	            $.ajax({
-	                url: '/team5/ranking/search.do',
-	                //data: { mode : "KEYWORDCITYJSON" , keyword : $("#cityNm").val() },
-	                dataType: "json",
-	                success: function( data ) {
-	                    response( $.map( data, function( item ) {
-	                       	
-	                        if (item.kn.indexOf($("#fishName").val()) >= 0)
-	                        {
-	                            return {
-	                                label: item.kn.replace($( "#fishName" ).val(),"<span style='font-weight:bold;color:Blue;'>" + $( "#fishName" ).val() + "</span>"),
-	                                value: item.kn,
-	                                value2 : item.fishId
-	                                //cityCd:item.cityCd,
-	                                //nationCd:item.nationCd
-	                            }
-	                        } 
-	                    }));
-	                }
-	            });
-	        },
-	       
-	        /* 한글일 경우 아래키로 내리면 자동완성이 변경된는 것을 방지 */
-	        focus: function( event, ui ) {
-	         	event.preventDefault();
-	        	},
-	        minLength: 1,
-	        select: function( event, ui ) {
-	                fishValue(ui.item.value, ui.item.value2);  
-	        },
-	        change: function (event, ui) {
-                if (!( ui.item)) {
-                	event.target.value = "";
-               		alert("검색하신 어종이 존재하지 않습니다. 다시 입력해주세요.")
-               	}
-            },
-	        open: function() {
-	            $( this ).autocomplete("widget").width("134px");
-	            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-	        },
-	        close: function() {
-	            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-	        },
-	        error: function(xhr, ajaxOptions, thrownError){ alert(thrownError);  alert(xhr.responseText); }
-	    })
-	    .data('uiAutocomplete')._renderItem = function( ul, item ) {
-	        return $( "<li style='cursor:hand; cursor:pointer;'></li>" )
-	            .data( "item.autocomplete", item )
-	            .append("<a onclick=\"fishValue('" + item.value + "');\">" + unescape(item.label) + "</a>")
-	        .appendTo( ul );
-	    };
-	});
-	  
-	function fishValue(msg1, msg2) {
-	    $("#fishResult").val(msg2);
-	 	console.log($("#fishResult").val())
-	}
-	</script>
 </body>
 </html>
