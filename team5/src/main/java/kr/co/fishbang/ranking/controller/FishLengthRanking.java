@@ -28,15 +28,20 @@ import kr.co.fishbang.common.db.MyAppSqlConfig;
 import kr.co.fishbang.repository.domain.Board;
 import kr.co.fishbang.repository.domain.Dictionary;
 import kr.co.fishbang.repository.domain.Rank;
+import kr.co.fishbang.repository.domain.User;
 import kr.co.fishbang.repository.mapper.RankingMapper;
 
 @WebServlet("/ranking/fishLength.do")
-public class FishLengthRanking2 extends HttpServlet {
+public class FishLengthRanking extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
     	int k=1;	 	
     	HttpSession session = request.getSession();
+        String userId="";
+        if(session.getAttribute("user")!=null) {
+         userId =((User)session.getAttribute("user")).getId();
+		}
     	RankingMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(RankingMapper.class);
         List<Board> fishrank =mapper.selectFishRanking();
         List<Map<String, Rank>> list = new ArrayList<>();
@@ -53,14 +58,13 @@ public class FishLengthRanking2 extends HttpServlet {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date startday = sdf.parse(request.getParameter("startday"));
 			Date endday = sdf.parse(request.getParameter("endday"));
-			int [] cntArr =  new int[20];
 	        
  	
 			 for(Board ff:fishrank) {
 			       
 		          Board board = new Board();
 		          board.setFishName(ff.getFishName());   
-		          board.setUserId("bb@."/*session.getId()*/);
+		          board.setUserId(userId);
 		          board.setStartday(startday);
 		          board.setEndday(endday);
 		          
@@ -72,7 +76,7 @@ public class FishLengthRanking2 extends HttpServlet {
 		        Rank rankL = new Rank();
 		        rankL.setCnt(mapper.selectLengthRankingCnt(ff.getFishName()));
 		        rankL.setFishName(ff.getFishName());
-		        rankL.setMyrank(mapper.selectLengthMyRanking(board));
+		        rankL.setMyrank(mapper.selectLengthMyRankingByDate(board));
 		        rankL.setRank(mapper.selectLengthRankingByDate(daysearch));
 		        
 		        
@@ -97,7 +101,7 @@ public class FishLengthRanking2 extends HttpServlet {
 			
 		    request.setAttribute("list",list);
 		    //request.setAttribute("sort", Arrays.sort(cntArr));
-	        RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/rankingMain.jsp");
+	        RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/FishLengthRanking.jsp");
 	        
 			rd.forward(request, response);
 
@@ -114,7 +118,7 @@ public class FishLengthRanking2 extends HttpServlet {
        
           Board board = new Board();
           board.setFishName(ff.getFishName());   
-          board.setUserId("bb@."/*session.getId()*/);
+          board.setUserId(userId);
 
         	Rank rankL = new Rank();
         	rankL.setCnt(mapper.selectLengthRankingCnt(ff.getFishName()));
@@ -135,7 +139,7 @@ public class FishLengthRanking2 extends HttpServlet {
 
         request.setAttribute("list",list);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/rankingMain.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/FishLengthRanking.jsp");
 		rd.forward(request, response);
         }
 		} catch (ParseException e) {;}

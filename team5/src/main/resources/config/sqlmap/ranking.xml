@@ -151,15 +151,109 @@ where rownum <= 20
  ]]>
 </select>
 
+
+<!--<전체 랭킹> : 가장 물고기를 많이 잡은 사람  : 날짜 검색용-->
+<select id="selectCatchRankingByDate"  parameterType="Board" resultMap="boardMap">
+ <![CDATA[
+select *
+from (select user_id, count(*) cnt
+from tb_posting 
+where catch_date between #{startday} and #{endday}
+group by user_id
+order by cnt desc)
+where rownum <= 20
+ ]]>
+</select>
+
+<!--<전체 랭킹> : 가장 물고기를 많이 잡은 사람  : 디테일-->
+<select id="selectCatchRankingDetail" parameterType="String" resultMap="boardMap">
+ <![CDATA[
+select *
+from (select user_id, count(*) cnt
+from tb_posting 
+where fish_name=#{fishName}
+group by user_id
+order by cnt desc)
+where rownum <= 20
+ ]]>
+</select>
+
+<!--<전체 랭킹> : 가장 물고기를 많이 잡은 사람  : 디테일 날짜 검색용-->
+<select id="selectCatchRankingDetailByDate" parameterType="Board" resultMap="boardMap">
+ <![CDATA[
+select *
+from (select user_id, count(*) cnt
+from tb_posting 
+where fish_name=#{fishName}
+and catch_date between #{startday} and #{endday}
+group by user_id
+order by cnt desc)
+where rownum <= 20
+ ]]>
+</select>
+
+
+
+
+
 <!-- <전체 랭킹> : 나의 랭킹 -->
 <select id="selectCatchMyRanking" parameterType="String" resultMap="boardMap">
  <![CDATA[
-select user_id, count(*) cnt
+select po.*
+from (select p.*, ROWNUM rank
+from (select user_id, count(*) cnt
 from tb_posting 
-group by user_id
-having user_id=#{userId}
+group by user_id) p)po
+where user_id=#{userId}
  ]]>
 </select>
+
+<!-- <전체 랭킹> : 나의 랭킹 : 날짜 검색용-->
+<select id="selectCatchMyRankingByDate" parameterType="Board" resultMap="boardMap">
+ <![CDATA[
+select po.*
+from (select p.*, ROWNUM rank
+from (select user_id, count(*) cnt
+from tb_posting 
+where catch_date between #{startday} and #{endday}
+group by user_id) p)po
+where user_id=#{userId}
+ ]]>
+</select>
+
+<!-- <전체 랭킹> : 나의 랭킹 자세한-->
+<select id="selectCatchMyRankingDetail" parameterType="Board" resultMap="boardMap">
+ <![CDATA[
+select po.*
+from (select p.*, ROWNUM rank
+from (select user_id, count(*) cnt
+from tb_posting 
+where fish_name=#{fishName}
+group by user_id) p)po
+where user_id=#{userId}
+ ]]>
+</select>
+
+<!-- <전체 랭킹> : 나의 랭킹 : 날짜 검색용 : 자세한-->
+<select id="selectCatchMyRankingDetailByDate" parameterType="Board" resultMap="boardMap">
+ <![CDATA[
+select po.*
+from (select p.*, ROWNUM rank
+from (select user_id, count(*) cnt
+from tb_posting 
+where fish_name=#{fishName}
+and catch_date between #{startday} and #{endday}
+group by user_id) p)po
+where user_id=#{userId}
+ ]]>
+</select>
+
+
+
+
+
+
+
 
 
 
@@ -182,9 +276,24 @@ order by cnt desc
  ]]>
 </select>
 
+<!-- <도감 수집도 랭킹> : 전체 랭킹 : 날짜 검색-->
+<select id="selectCollectionRankingByDate" parameterType="Board" resultMap="boardMap">
+ <![CDATA[
+select *
+from (select count(*) cnt, user_id
+from(select p.user_id, p.fish_name, count(*)
+from tb_posting p
+where catch_date between #{startday} and #{endday}
+group by p.user_id, p.fish_name)
+group by user_id)
+where rownum <= 20
+order by cnt desc
+ ]]>
+</select>
+
+
 <!-- <도감 수집도 랭킹> : 나의 도감 수집도 -->
 <select id="selectCollectionMyRanking" parameterType="String" resultType="int">
-
  <![CDATA[
 select count(*) cnt
 from(select p.user_id, p.fish_name, count(*)
@@ -194,11 +303,34 @@ group by p.user_id, p.fish_name)
  ]]>
 </select>
 
+<!-- <도감 수집도 랭킹> : 나의 도감 수집도 : 날짜 검색-->
+<select id="selectCollectionMyRankingByDate" parameterType="Board" resultType="int">
+ <![CDATA[
+ select count(*) cnt
+from(select p.user_id, p.fish_name, count(*)
+from tb_posting p
+where user_id=#{userId}
+and catch_date between #{startday} and #{endday}
+group by p.user_id, p.fish_name)
+ ]]>
+</select>
+
+
+
+
+
+
+
+
+
+
 <!-- <도감 수집도 랭킹> : 전체 도감 개수  -->
 <select id="selectCollectionRankingCnt" resultType="int">
 select count(*)
 from tb_fishbook
 </select>
+
+
 
 
 
@@ -211,6 +343,9 @@ where user_id=#{userId}
 group by user_id, fish_name
 order by cnt desc
 </select>
+
+
+
 <!-- 내가 많이 간 곳-->
 <select id="selectSideRanking2" parameterType="String"  resultMap="boardMap">
 select user_id, catch_location, count(*) cnt

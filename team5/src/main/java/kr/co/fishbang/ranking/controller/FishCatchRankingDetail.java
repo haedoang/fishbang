@@ -19,26 +19,25 @@ import kr.co.fishbang.repository.domain.Board;
 import kr.co.fishbang.repository.domain.User;
 import kr.co.fishbang.repository.mapper.RankingMapper;
 
-@WebServlet("/ranking/fishCatch.do")
-public class FishCatchRanking extends HttpServlet{
+@WebServlet("/ranking/fishCatchDetail.do")
+public class FishCatchRankingDetail extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 		RankingMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(RankingMapper.class);
         HttpSession session = request.getSession();
-        String fishName= request.getParameter("fishName");
-        
         String userId="";
         if(session.getAttribute("user")!=null) {
          userId =((User)session.getAttribute("user")).getId();
 		}
-		
+        String fishName= request.getParameter("fishName");
         List<Board> side1 = mapper.selectSideRanking1(userId);
         List<Board> side2 = mapper.selectSideRanking2(userId);
+        
         request.setAttribute("side1", side1);
         request.setAttribute("side2", side2);
-
+        
         
         
 	     	if(request.getParameter("startday")!=null&request.getParameter("endday")!=null) {
@@ -50,33 +49,35 @@ public class FishCatchRanking extends HttpServlet{
 				
 				board.setStartday(startday);
 				board.setEndday(endday);
+				board.setFishName(fishName);
 				daysearch.setStartday(startday);
 				daysearch.setEndday(endday);
 				daysearch.setUserId(userId);
+				daysearch.setFishName(fishName);
 				
-				List<Board> rank = mapper.selectCatchRankingByDate(board);
-				Board myrank = mapper.selectCatchMyRankingByDate(daysearch);
+				List<Board> rank = mapper.selectCatchRankingDetailByDate(board);
+				Board myrank = mapper.selectCatchMyRankingDetailByDate(daysearch);
 		        request.setAttribute("rank", rank);
 		        request.setAttribute("myrank", myrank);
 		        request.setAttribute("fishName", fishName);
-		 			
 		        
-				
-				
 		        RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/FishCatchRanking.jsp");
 				
 				rd.forward(request, response);
 	     	}else {
-		        List<Board> rank=mapper.selectCatchRanking();
-		        Board myrank = mapper.selectCatchMyRanking(userId);
+				Board board = new Board();
 		        
-		        System.out.println(session.getId());
-		        
+				board.setFishName(fishName);
+				board.setUserId(userId);
+				
+				List<Board> rank = mapper.selectCatchRankingDetail(fishName);	
+				Board myrank = mapper.selectCatchMyRankingDetail(board);
+				
 		        request.setAttribute("rank", rank);
 		        request.setAttribute("myrank", myrank);
 		        request.setAttribute("fishName", fishName);
 		 			
-		        
+
 				
 		        RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/FishCatchRanking.jsp");
 				
@@ -86,5 +87,4 @@ public class FishCatchRanking extends HttpServlet{
 	}
 	
 	
-
 }

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.fishbang.common.db.MyAppSqlConfig;
 import kr.co.fishbang.repository.domain.Board;
+import kr.co.fishbang.repository.domain.User;
 import kr.co.fishbang.repository.mapper.RankingMapper;
 
 @WebServlet("/ranking/fishLengthDetail.do")
@@ -28,35 +29,51 @@ public class FishLengthRankingDetail extends HttpServlet{
 	        HttpSession session = request.getSession();
 	        Board board = new Board();
 	        String fishName= request.getParameter("fishName");
-	        String userId= "cc@.";
-	        board.setFishName(fishName);
-	        board.setUserId(userId);
-	        Board myrank = mapper.selectLengthMyRanking(board);
+	        String userId="";
+	        if(session.getAttribute("user")!=null) {
+	         userId =((User)session.getAttribute("user")).getId();
+			}
 	        
+	        int cnt = mapper.selectLengthRankingCnt(fishName);
 	
-	
-	        request.setAttribute("myrank", myrank);
-	        request.setAttribute("fishName", fishName);
+
 	        
 	        if(request.getParameter("startday")!=null&request.getParameter("endday")!=null) {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				Date startday = sdf.parse(request.getParameter("startday"));	
 				Date endday = sdf.parse(request.getParameter("endday"));
+				
+				
+		        board.setFishName(fishName);
+		        board.setUserId(userId);
+		        board.setStartday(startday);
+		        board.setEndday(endday);
+		        Board myrank = mapper.selectLengthMyRankingByDate(board);
 	        	
 	        	Board daysearch = new Board();
 	        	daysearch.setStartday(startday);
 	        	daysearch.setEndday(endday);
 	        	daysearch.setFishName(fishName);
 	        	List<Board> rank=mapper.selectLengthDetailRankingByDate(daysearch);
-	        	request.setAttribute("rank", rank);
 	        	
-	        	RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/rankingMain2.jsp");	
+		        request.setAttribute("myrank", myrank);
+		        request.setAttribute("fishName", fishName);
+	        	request.setAttribute("rank", rank);
+	        	request.setAttribute("cnt", cnt);
+	        	
+	        	RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/FishLengthRankingDetail.jsp");	
 				rd.forward(request, response);
 	        }else {
+		        board.setFishName(fishName);
+		        board.setUserId(userId);
+		        Board myrank = mapper.selectLengthMyRanking(board);
 		        List<Board> rank=mapper.selectLengthDetailRanking(fishName);
 		        request.setAttribute("rank", rank);
+		        request.setAttribute("fishName", fishName);
+		        request.setAttribute("myrank", myrank);
+	        	request.setAttribute("cnt", cnt);
 	
-		        RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/rankingMain2.jsp");
+	        	RequestDispatcher rd = request.getRequestDispatcher("/jsp/rank/FishLengthRankingDetail.jsp");
 			    rd.forward(request, response);
 	        }
 		
