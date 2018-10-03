@@ -19,7 +19,7 @@
 				aria-controls="memberInfo" role="tab" data-toggle="tab">회원정보 관리</a></li>
 			<li role="presentation"><a href="#boardInfo"
 				aria-controls="boardInfo" role="tab" data-toggle="tab">게시글 관리</a></li>
-			<li role="presentation"><a href="#eventInfo"
+			<li role="presentation"><a id="comp" href="#eventInfo"
 				aria-controls="eventInfo" role="tab" data-toggle="tab">대회 관리</a></li>
 			<li role="presentation"><a href="#others" aria-controls="others"
 				role="tab" data-toggle="tab">others</a></li>
@@ -168,16 +168,9 @@
 				<div class="row">
 					<div class="col-md-6" style="border: 1px solid tomato">
 						<h6>대회 목록</h6>
-						<table class="table table-bordered table-hover table-condensed">
-							<tr>
-								<th>대회 번호</th>
-								<th>대회 이름</th>
-								<th>대회 날짜</th>
-								<th>대회 장소</th>
-								<th>낚시 방법</th>
-								<th>관리</th>
-							</tr>
-
+						<input id="btn" type="button" value="조회"/>
+						<table id="competition_table" class="table table-bordered table-hover table-condensed">
+							
 						</table>
 					</div>
 					<div class="col-md-6" style="border: 1px solid yellow">
@@ -199,7 +192,7 @@
 							<tr>
 								<th>낚시 방법</th>
 								<td>
-								<select>
+								<select id="method">
 									<option value="1">방파제낚시</option>
 									<option value="2">던질낚시</option>
 									<option value="3">하구낚시</option>
@@ -233,28 +226,68 @@
 			$('#myTab a:first').tab('show');		
 		})
 		
+		//대회 등록
+		$("#submit").on("click",function(){
+			
+			var param = {
+					competitionId   : 5,
+					competitionName : $('input[name=title]').val(),
+					regDate			: $('input[name=date]').val(),
+					catchLocation   : $('input[name=location]').val(),
+					methodNo        : $("#method").val()			
+			}
+			$.ajax({
+				method:"POST",
+				url:"/team5/competition-insert.do",
+				async:true,
+				data: "param="+param,
+				success:function(data) {
+					console.log('성공');
+					console.log(param);
+				}
+			})
+			
+		})
+	
+	 		
+		
 		//대회 조회 ajax
-		$(function(){
-	 		$.ajax({
-	 			url:"/team5/id-check.do",
-	 			async:true,
-	 			success:function(data){
-	 				
-	 			}
-	 		})
-	 		
-	 		
-	 	
 		
 	 	
-	 	
-		//대회등록 ajax
-		$("#submit").click(function(){
-			/* alert('a'); */
-
-			
-
+		$("#comp").on("click",function(){
+	 		$.ajax({
+	 			method:"POST",
+	 			url:"/team5/competition-list.do",
+	 			async:true,
+	 			dataType:"JSON",
+	 			success:function(data) {
+					console.log(data);
+					
+					$("#competition_table").append("<tr><th>대회 번호</th><th>대회 이름</th><th>대회 날짜</th><th>대회 장소</th><th>낚시 방법</th><th>관리</th></tr>")
+					data.map(function(cData, i){
+						id = cData.competitionId;
+						name = cData.competitionName;
+						regDate = cData.regDate;
+						loc = cData.catchLocation;
+						methodNo = cData.methodNo;
+						
+						$("#competition_table").append('<tr><td id="id'+i+'"></td>'+
+								'<td id="name'+i+'"></td>'+
+								'<td id="regDate'+i+'"></td>'+
+								'<td id="loc'+i+'"></td>'+
+								'<td id="methodNo'+i+'"></td>'+
+								'<td><button id="btn'+i+'">삭제</button></td></tr>');
+						$("#id"+i).text(id);
+						$("#name"+i).text(name);
+						$("#regDate"+i).text(regDate);
+						$("#loc"+i).text(loc);
+						$("#methodNo"+i).text(methodNo);
+						
+					})
+	 			}
 		})
+		})
+	
 		
 		
 	

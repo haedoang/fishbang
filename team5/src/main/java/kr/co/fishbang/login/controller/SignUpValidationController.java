@@ -32,7 +32,8 @@ public class SignUpValidationController extends HttpServlet{
 		}else {
 			out.print("success");
 		}
-		
+			
+		out.close();
 	}
 
 	

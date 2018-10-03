@@ -19,6 +19,7 @@
  	<typeAlias alias="BoardFileAttach" type="kr.co.fishbang.repository.domain.BoardFileAttach"/> 
     <typeAlias alias="Dictionary" type="kr.co.fishbang.repository.domain.Dictionary"/> 
     <typeAlias alias="Comment" type="kr.co.fishbang.repository.domain.Comment"/>
+    <typeAlias alias="Competition" type="kr.co.fishbang.repository.domain.Competition"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -43,6 +44,7 @@
 		<mapper resource="config/sqlmap/dictionary.xml"/> 
 		<mapper resource="config/sqlmap/ranking.xml"/> 
 		<mapper resource="config/sqlmap/comment.xml"/>
+		<mapper resource="config/sqlmap/competition.xml"/>
 	
 	</mappers>
 	

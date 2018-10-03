@@ -19,8 +19,10 @@
 		  from tb_competition
 		 order by competition_id asc	
 	</select>
+	
+	
 	<!-- 관리자:: 대회 등록 하기  -->
-	<insert id="insertCompetition">
+	<insert id="insertCompetition" parameterType="Competition">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
     	select s_competition_id.nextval from dual
     	</selectKey>

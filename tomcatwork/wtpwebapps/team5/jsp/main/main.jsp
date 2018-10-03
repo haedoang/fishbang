@@ -197,6 +197,10 @@ td#attach-map{
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-user navbar-right">
 
+				<c:if test="${sessionScope.user.id=='admin@.'}">
+					<li><a href="<c:url value="/admin.do"/>"><span
+							class="glyphicon glyphicon-cog"></span>&nbsp;관리자 페이지로 이동</a></li>
+				</c:if>
 
 				<c:if test="${empty sessionScope.user.id}">
 					<!-- 비로그인 시  -->

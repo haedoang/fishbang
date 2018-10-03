@@ -13,3 +13,7 @@ create table tb_profile(
 );
 
 create sequence s_profile_no;
+
+alter table tb_profile
+modify foreign key(id) references tb_user(id) on delete cascade;
+
