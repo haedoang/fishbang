@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
@@ -25,16 +26,18 @@ import net.coobird.thumbnailator.Thumbnails;
 
 @WebServlet("/updateuser.do")
 public class UpdateUserController extends HttpServlet{
-
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		
+		String realPath= request.getRealPath("/");
 		//1 프로필 사진
 		//저장경로 c://fishbang//upload(dir)
-		String uploadPath = "c:/fishbang/upload";	//업로드 PATH 
+		String uploadPath = realPath+"img/uploads";	//업로드 PATH 
 		String path = "/profile";
 		
 		File file = new File(uploadPath+path);
-		
+		System.out.println("이미지경로 확인"+uploadPath+path);
 		if(file.exists() == false) { 
 			file.mkdirs();
 		}
@@ -90,30 +93,23 @@ public class UpdateUserController extends HttpServlet{
 			user.setPassword(encryptPass);
 			
 			//date parsing
+			System.out.println(mRequest.getParameter("birth"));
 			Date birth = new SimpleDateFormat("yyyy-MM-dd").parse(mRequest.getParameter("birth"));
 			user.setBirth(birth);
 			
-			
 			UserMapper userMapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(UserMapper.class);
-	/*		
-			System.out.println(mRequest.getParameter("birth"));
-			System.out.println(mRequest.getParameter("contact"));
-			System.out.println(mRequest.getParameter("nat"));
-			System.out.println(mRequest.getParameter("password"));
-			System.out.println();
-			System.out.println(user.getId());
-			System.out.println(user.getContact());
-			System.out.println(user.getNat());
-			System.out.println(user.getPassword());
-			System.out.println(user.getBirth());*/
 			
 			userMapper.updateUser(user);
 			
+			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
-			
 			out.print("<script>alert('회원정보가 정상적으로 수정되었습니다.');"
-					+ "location.href='"+request.getContextPath()+"/main.do"+"'</script>");	
+					+ "location.href='"+request.getContextPath()+"/updateuserform.do"+"'</script>");	
 			
+			out.close();
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("user",user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

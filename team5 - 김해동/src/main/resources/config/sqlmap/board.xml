@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.fishbang.repository.mapper.BoardMapper"> 
+	<resultMap type="Board" id="boardMap">
+	 <result column="posting_no" property="postingNo" />
+	 <result column="user_id" property="userId" />
+	 <result column="competition_id" property="competitionId" />
+	 <result column="method_no" property="methodNo" />
+	 <result column="fish_id" property="fishId" />
+	 <result column="fish_name" property="fishName" />
+	 <result column="reg_date" property="regDate" />
+	 <result column="catch_date" property="catchDate" />
+	 <result column="catch_location" property="catchLocation" />
+	 <result column="geo_lat" property="geoLat" /> 
+	 <result column="geo_lng" property="geoLng" /> 
+	 <result column="fish_length" property="fishLength" />
+	 <result column="fish_weight" property="fishWeight" />
+	 <result column="fish_release" property="fishRelease" />
+	 <result column="content" property="content" />
+	 <result column="post_verified" property="postVerified" />
+	 <result column="post_liked" property="postLiked" />
+	</resultMap>
+	
+	<resultMap type="BoardFileAttach" id="boardfileattachMap">
+	<result column="file_no" property="fileNo" />
+	<result column="posting_no" property="postingNo" />
+	<result column="original_name" property="oriName" />
+	<result column="system_name" property="sysName" />
+	</resultMap>
+	
+	<select id="displayAllFeeds" resultMap="boardMap">
+		select *
+		  from tb_posting
+		order by posting_no desc 
+	</select>
+	
+	<select id="displayByMycatch" parameterType="Board" resultMap="boardMap">
+		select *
+		  from tb_posting
+		 where user_id = #{userId}
+		 and where fish_id = #{fishId}
+		order by fish_length desc 
+	</select>
+	
+	<insert id="insertBoard" parameterType="Board">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select s_posting_no.nextVal from dual
+		</selectKey>
+		
+		insert into tb_posting(
+			posting_no, user_id, competition_id, method_no, fish_id, fish_name, catch_date, catch_location, geo_lat, geo_lng, fish_length, fish_weight, fish_release, content
+		) values(
+			#{postingNo}, #{userId}, #{competitionId}, #{methodNo}, #{fishId}, #{fishName}, #{catchDate}, #{catchLocation}, #{geoLat}, #{geoLng}, #{fishLenght}, #{fishWeight}, #{fishRelease}, #{content}
+		)
+	</insert>
+	
+	<insert id="insertFileAttach" parameterType="BoardFileAttach">
+		insert into tb_board_attach(
+    		file_no, posting_no, file_path, original_name, system_name 
+    	) values(
+    		s_file_no.nextval, #{postingNo}, #{filePath}, #{fileOriName}, #{fileSysName}
+    	)
+	</insert>
+	
+	
+	<!-- 관리자:: 게시글 삭제  -->
+	<delete id="deletePosting" parameterType="int">
+		delete from tb_posting
+		 where posting_no=#{postingNo}
+	</delete>
+	
+	<!-- 관리자:: 게시글 수정 -->	
+	<update id="updateVerified" parameterType="Board">
+		update tb_posting
+		   set post_verified=#{postVerified}
+		 where posting_no=#{postingNo}
+	</update>
+	
+	
+</mapper>

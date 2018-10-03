@@ -3,6 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace = "kr.co.fishbang.repository.mapper.DictionaryMapper">
 	<resultMap type="Dictionary" id = "dictionaryMap">
+	
 	<result property = "no" column = "no"/>
 	<result property = "fishId" column = "fish_id"/>
 	<result property = "sn" column = "sn"/>
@@ -17,13 +18,16 @@
 	<result property = "food" column = "food"/>
 	<result property = "ls" column = "ls"/>
 	<result property = "color" column = "color"/>
+	<result property = "length" column = "length"/>
+	<result property = "imgPath" column = "imgpath"/>
 	
 	
 	</resultMap>
 
 	<!-- 데이터베이스에서 국명 꺼내오기 -->
-	<select id = "selectDictionary1"  resultType = "Dictionary">
+	<select id = "selectDictionary1"  resultMap = "dictionaryMap">
 	
+			
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
                				    , P.*
@@ -32,7 +36,7 @@
 				WHERE RNUM BETWEEN 1 AND 50
 	</select>
 	
-		<select id = "selectDictionary2"  resultType = "Dictionary">
+		<select id = "selectDictionary2"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -41,7 +45,7 @@
         				  )
 				WHERE RNUM BETWEEN 51 AND 100
 	</select>
-		<select id = "selectDictionary3"  resultType = "Dictionary">
+		<select id = "selectDictionary3"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -50,7 +54,7 @@
         				  )
 				WHERE RNUM BETWEEN 101 AND 150
 	</select>
-		<select id = "selectDictionary4"  resultType = "Dictionary">
+		<select id = "selectDictionary4"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -59,7 +63,7 @@
         				  )
 				WHERE RNUM BETWEEN 151 AND 200
 	</select>
-		<select id = "selectDictionary5"  resultType = "Dictionary">
+		<select id = "selectDictionary5"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -68,7 +72,7 @@
         				  )
 				WHERE RNUM BETWEEN 201 AND 250
 	</select>
-		<select id = "selectDictionary6"  resultType = "Dictionary">
+		<select id = "selectDictionary6"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -77,7 +81,7 @@
         				  )
 				WHERE RNUM BETWEEN 251 AND 300
 	</select>
-		<select id = "selectDictionary7"  resultType = "Dictionary">
+		<select id = "selectDictionary7"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -86,7 +90,7 @@
         				  )
 				WHERE RNUM BETWEEN 301 AND 350
 	</select>
-		<select id = "selectDictionary8"  resultType = "Dictionary">
+		<select id = "selectDictionary8"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -95,7 +99,7 @@
         				  )
 				WHERE RNUM BETWEEN 351 AND 400
 	</select>
-		<select id = "selectDictionary9"  resultType = "Dictionary">
+		<select id = "selectDictionary9"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -105,7 +109,7 @@
 				WHERE RNUM BETWEEN 401 AND 450
 	</select>
 	
-		<select id = "selectDictionary10"  resultType = "Dictionary">
+		<select id = "selectDictionary10"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -115,7 +119,7 @@
 				WHERE RNUM BETWEEN 451 AND 500
 	</select>
 	
-		<select id = "selectDictionary11"  resultType = "Dictionary">
+		<select id = "selectDictionary11"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -125,7 +129,7 @@
 				WHERE RNUM BETWEEN 501 AND 550
 	</select>
 	
-		<select id = "selectDictionary12"  resultType = "Dictionary">
+		<select id = "selectDictionary12"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -135,7 +139,7 @@
 				WHERE RNUM BETWEEN 551 AND 600
 	</select>
 	
-	<select id = "selectDictionary13"  resultType = "Dictionary">
+	<select id = "selectDictionary13"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -145,7 +149,7 @@
 				WHERE RNUM BETWEEN 601 AND 650
 	</select>
 	
-	<select id = "selectDictionary14"  resultType = "Dictionary">
+	<select id = "selectDictionary14"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -155,7 +159,7 @@
 				WHERE RNUM BETWEEN 651 AND 700
 	</select>
 	
-	<select id = "selectDictionary15"  resultType = "Dictionary">
+	<select id = "selectDictionary15"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -165,7 +169,7 @@
 				WHERE RNUM BETWEEN 701 AND 750
 	</select>
 	
-	<select id = "selectDictionary16"  resultType = "Dictionary">
+	<select id = "selectDictionary16"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -175,17 +179,17 @@
 				WHERE RNUM BETWEEN 751 AND 800
 	</select>
 	
-	<select id = "selectDictionary17"  resultType = "Dictionary">
+	<select id = "selectDictionary17"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
                				    , P.*
                				 FROM tb_fishbook P
         				  )
-				WHERE RNUM BETWEEN 800 AND 850
+				WHERE RNUM BETWEEN 801 AND 850
 	</select>
 	
-	<select id = "selectDictionary18"  resultType = "Dictionary">
+	<select id = "selectDictionary18" resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -195,7 +199,7 @@
 				WHERE RNUM BETWEEN 851 AND 900
 	</select>
 	
-	<select id = "selectDictionary19"  resultType = "Dictionary">
+	<select id = "selectDictionary19"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -205,7 +209,7 @@
 				WHERE RNUM BETWEEN 901 AND 950
 	</select>
 	
-	<select id = "selectDictionary20"  resultType = "Dictionary">
+	<select id = "selectDictionary20"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -215,7 +219,7 @@
 				WHERE RNUM BETWEEN 951 AND 1000
 	</select>
 	
-	<select id = "selectDictionary21"  resultType = "Dictionary">
+	<select id = "selectDictionary21"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -225,7 +229,7 @@
 				WHERE RNUM BETWEEN 1001 AND 1050
 	</select>
 	
-	<select id = "selectDictionary22"  resultType = "Dictionary">
+	<select id = "selectDictionary22" resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -235,7 +239,7 @@
 				WHERE RNUM BETWEEN 1051 AND 1100
 				</select>
 	
-	<select id = "selectDictionary23"  resultType = "Dictionary">
+	<select id = "selectDictionary23"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -245,7 +249,7 @@
 				WHERE RNUM BETWEEN 1101 AND 1150
 	</select>
 	
-		<select id = "selectDictionary24"  resultType = "Dictionary">
+		<select id = "selectDictionary24"  resultMap = "dictionaryMap">
 	
 			SELECT *
  				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
@@ -257,13 +261,16 @@
 	
 	
 	
-	<select id = "selectDictionary"  parameterType = "int" resultType = "Dictionary">
+
+	<select id = "selectDictionaryByNo" parameterType = "Dictionary" resultType = "Dictionary">
+	select * 
+	from tb_fishbook
+	where fish_id = #{fishId}
 	
-			SELECT *
- 				 FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO asc) RNUM
-               				    , P.*
-               				 FROM tb_fishbook P
-        				  )
-				WHERE RNUM BETWEEN #{no1} AND #{no2}
 	</select>
+	<!-- 도감 검색용 DB -->
+		<select id="selectFishBook" resultType="Dictionary">
+		select fish_id fishId, kn
+		from tb_fishbook
+		</select>
 	</mapper>

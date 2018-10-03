@@ -40,5 +40,10 @@
 			<type>2</type>
 			<location>C:/fishbang/upload</location>
 		</link>
+		<link>
+			<name>src/main/webapp/img/uploads</name>
+			<type>2</type>
+			<location>C:/fishbang/tomcatwork/wtpwebapps/team5/img/upload</location>
+		</link>
 	</linkedResources>
 </projectDescription>

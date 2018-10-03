@@ -7,15 +7,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<c:url value="/css/main/mainMenu.css"/>">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<!-- css.. -->
+<link rel="stylesheet" href="<c:url value="/css/main/mainMenu.css"/>">
+<link rel="stylesheet" href="<c:url value="/css/main/main.css"/>">
+<!-- /* Facebook Feed Style*/  -->
+<link rel="stylesheet"
+	href="<c:url value="/css/main/fb-style-feeds-element.css"/>">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"
+<!-- mapapi -->
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=XdHi52ymtJ5BbGtyiEPn"></script>
+
+
+<!-- javascript -->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+<!--  Fish Search Autocomplete -->
+<script
+  src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"
   integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
   crossorigin="anonymous"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-
 
 <!-- fontawesone 로고 -->
 <link rel="stylesheet"
@@ -24,27 +44,30 @@
 	crossorigin="anonymous">
 
 
-<!-- javascript -->
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-
-
-<!--  
-  		<c:import  url="../../rankingMains/rankingCss.jsp" />
-  		<c:import  url="../../rankingMains/rankingScript.jsp" />
-  		<c:import  url="../../rankingMains/rankingSideCss.jsp" />
--->
-
-
 <title>Insert title here</title>
 <style>
+/* Fish Search Loading */
+.ui-autocomplete-loading
+{
+        background: white url('http://f.goodkiss.co.kr/sample/images/waiting.gif') right center no-repeat;
+}
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;   /* prevent horizontal scrollbar */
+    overflow-x: hidden; /* add padding to account for vertical scrollbar */
+    z-index:1000 !important;
+}
+
+input#fishName{
+	size: 15;
+	margin-right: 5px;
+}
+
 #mains{
 height:8000px;
 }
 #feedBoard{
 background : #fbfbfb;
-border : 5px double red;
 width:1000px;
 height:3000px;
 margin-right:10px;
@@ -62,9 +85,7 @@ margin-left:1000px;
 
 body{
 width: 1000px;
-border : 8px solid #c4cdd2;
 }
-
 
 table {
   border-spacing: 1;
@@ -424,6 +445,15 @@ progress::-moz-progress-bar {
   border-radius: 4px;
 }
 
+form button{
+	border: 2px solid ;
+	background-color: transparent !important;
+	border-radius: 10px;
+	font-weight: 800;
+	color: #686868;
+}
+
+
 </style>
 </head>
 <body>
@@ -511,27 +541,21 @@ progress::-moz-progress-bar {
 
 <ul class="icon" >
 <form action="/team5/ranking/fishLength.do" role="search" class="search-form">
-<li><span class="glyphicon glyphicon-calendar"></span>
-<input type="date" name="startday" value="2017-01-01" min="2017-01-01" max="2018-12-26"> ~ 
-<input type="Date" name="endday" value="2018-12-26" min="2018-06-26" max="2018-12-26">
-<button>전송</button>
-</li>
+	<li><span class="glyphicon glyphicon-calendar"></span>
+	<input type="date" name="startday" value="2017-01-01" min="2017-01-01" max="2018-12-26"> ~ 
+	<input type="Date" name="endday" value="2018-12-26" min="2018-06-26" max="2018-12-26">
+	<button>전송</button>
+	</li>
 </form>
 
 <li>
 <form action="/team5/ranking/fishLengthDetail.do" role="search" class="search-form">
-		<input type="submit" value="" class="search-submit"> 
-		<input type="search" name="q" class="search-text"  id="search" placeholder="선택하고 싶은 어종을 입력하세요." autocomplete="off">
-		
-								
-	<div class="ui-widget">
-    <label for="fishName">Input City:</label>
-    <input id="fishName" />
-    
-    
-    <input type="search" name="fishName" class="widget-post___input widget-post--search search--fish" id="fishName" placeholder="예)놀래기"> 
-	<input type="hidden" name="fishId" id="fishResult"/>
-</div>
+	<span class="glyphicon glyphicon-search"></span>					
+	<input type="search" name="fishName" class="widget-post___input widget-post--search search--fish" id="fishName" placeholder="예)놀래기"> 
+	<input type="hidden" name="fishId" id="fishResult" />
+	<button id="search">검색</button>
+</form>
+
 </form>
 
 </li>
@@ -541,426 +565,56 @@ progress::-moz-progress-bar {
 
 
 </div>
- <table>
-      <thead>
+
+
+
+
+
+
+
+      <c:set var="doneLoop" value="false"/>
+
+  	<table>
+  	    <thead>
         <tr>
           <th colspan="5">어종별 랭킹</th>
         </tr>
       <thead>
       <tbody> 
-      <!--
-      <c:forEach begin="1" end="20" var="k" varStatus="s">  
-      	<c:set var="rankN">rank${k}</c:set>
-      	${rankN}
-      	 <tr>
-          <td class="species">${rank1[0].fishName}</td>
-          <%int k=1;%>
-			<c:forEach var="i" items="${rank1}">
-	          <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-			</c:forEach>
-        <td class="myRanking"><r>내 순위</r> ${myrank1.rank}위     ${myrank1.fishLength}cm  ${myrank1.fishWeight}kg</td>
-        </tr>
-        </c:forEach>
-          --> 
-		<c:choose>
-		<c:when test="${empty rank1[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank1[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank1}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k<5 and empty rank1[k-2].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank1.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank1.rank}위     ${myrank1.fishLength}cm  ${myrank1.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank2[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank2[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank2}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg <%=k%></td>
-            </c:forEach>
-          <c:choose>
-          <c:when test="${empty myrank2.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank2.rank}위     ${myrank2.fishLength}cm  ${myrank2.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		<c:choose>
-		<c:when test="${empty rank3[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank3[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank3}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank3[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank3.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank3.rank}위     ${myrank3.fishLength}cm  ${myrank3.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		<c:choose>
-		<c:when test="${empty rank4[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank4[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank4}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank4[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank4.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank20.rank}위     ${myrank4.fishLength}cm  ${myrank4.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		<c:choose>
-		<c:when test="${empty rank5[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank5[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank5}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank5[k-2].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank5.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank5.rank}위     ${myrank5.fishLength}cm  ${myrank5.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		<c:choose>
-		<c:when test="${empty rank6[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank6[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank6}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank6[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank6.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank6.rank}위     ${myrank6.fishLength}cm  ${myrank6.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank7[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank7[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank7}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank7[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank7.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank7.rank}위     ${myrank7.fishLength}cm  ${myrank7.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank8[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank8[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank8}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank8[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank8.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank8.rank}위     ${myrank8.fishLength}cm  ${myrank20.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank9[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank9[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank9}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank9[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank9.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank9.rank}위     ${myrank9.fishLength}cm  ${myrank9.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank10[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank10[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank10}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank10[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank10.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank10.rank}위     ${myrank10.fishLength}cm  ${myrank10.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank11[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank11[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank11}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank11[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank11.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank11.rank}위     ${myrank11.fishLength}cm  ${myrank20.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank12[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank12[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank12}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank12[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank12.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank12.rank}위     ${myrank12.fishLength}cm  ${myrank12.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank13[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank13[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank13}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank13[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank13.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank13.rank}위     ${myrank13.fishLength}cm  ${myrank13.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank14[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank14[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank14}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank14[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank14.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank14.rank}위     ${myrank14.fishLength}cm  ${myrank14.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank15[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank15[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank15}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank15[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank15.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank15.rank}위     ${myrank15.fishLength}cm  ${myrank15.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank16[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank16[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank16}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank16[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank16.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank16.rank}위     ${myrank16.fishLength}cm  ${myrank16.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank17[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank17[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank17}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank17[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank17.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank17.rank}위     ${myrank17.fishLength}cm  ${myrank17.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank18[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank18[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank18}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank18[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank18.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank18.rank}위     ${myrank18.fishLength}cm  ${myrank18.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank19[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank19[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank19}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank19[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank19.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank19.rank}위     ${myrank19.fishLength}cm  ${myrank19.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		
-		<c:choose>
-		<c:when test="${empty rank20[0].userId}"></c:when>
-		<c:otherwise>
-		<tr>
-          <td class="species">${rank20[0].fishName}</td>
-            <%int k=1;%>
-            <c:forEach var="i" items="${rank20}">
-	            <td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
-            </c:forEach>
-            <c:if test="${k!=4 and empty rank20[k-1].userId}"><td style="font-weight:700"><r><%=k++%>위</r>     -</td></c:if>
-          <c:choose>
-          <c:when test="${empty myrank20.rank}"><td class="myRanking"><r>내 순위</r>        -</td></c:when>
-          <c:otherwise><td class="myRanking"><r>내 순위</r> ${myrank20.rank}위     ${myrank20.fishLength}cm  ${myrank20.fishWeight}kg</td></c:otherwise>
-          </c:choose>
-		</tr>
-		</c:otherwise>
-		</c:choose>
-		
 
-      
-        
-      </tbody>
+        <c:forEach var="map" items="${list}" varStatus="status">
+    	<c:forEach var="item" items="${map}" >
+    	 <c:if test="${!status.first}">
+			<c:set var="doneLoop" value="true"/> 
+        </c:if>
+    	<c:if test="${not doneLoop}"> 
+       		<c:if test="${not empty item.value.rank[1].userId}">
+       		<tr>
+      		<td>${item.value.fishName}</td>
+      		<%int k=1;%>
+	       		<c:forEach var="i" items="${item.value.rank}">
+	       		<td><r><%=k++%>위</r>     ${i.userId}     ${i.fishLength}cm     ${i.fishWeight}kg</td>
+	   			</c:forEach>
+	   			<c:if test="<%=k==2%>"><td><r><%=k++%>위</r>     -</td></c:if>
+	   			<c:if test="<%=k==3%>"><td><r><%=k++%>위</r>     -</td></c:if>
+	   			<c:choose>
+   				<c:when test="${empty item.value.myrank.rank}"><td class="myRanking"><r>내 순위</r> -</td></c:when>
+   				<c:otherwise><td class="myRanking"><r>상위 ${Math.round(item.value.myrank.rank/item.value.cnt*100)}%</r>      ${item.value.myrank.fishLength}cm  ${item.value.myrank.fishWeight}kg</td></c:otherwise>
+   				
+   				</c:choose>
+				</c:if>
+            	</tr>
+            	</c:if>
+ 			</c:forEach>  		
+		</c:forEach>  	
+
+
+		</tbody>
     </table>
+
+
+
+    
 
   		
   	</div>
@@ -984,13 +638,14 @@ $('.btn-expand-collapse').click(function(e) {
 <script>
 	$(function() {
 		  
-	    $( "#fishName" ).autocomplete({
+	    $("#fishName").autocomplete({
 	        source: function( request, response ) {
 	            $.ajax({
-	                url: '/team5/ranking/fishLength.do',
+	                url: '/team5/ranking/search.do',
 	                //data: { mode : "KEYWORDCITYJSON" , keyword : $("#cityNm").val() },
 	                dataType: "json",
 	                success: function( data ) {
+	                	console.log(data)
 	                    response( $.map( data, function( item ) {
 	                       	
 	                        if (item.kn.indexOf($("#fishName").val()) >= 0)
@@ -1023,7 +678,7 @@ $('.btn-expand-collapse').click(function(e) {
                	}
             },
 	        open: function() {
-	            $( this ).autocomplete("widget").width("323px");
+	            $( this ).autocomplete("widget").width("120px");
 	            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
 	        },
 	        close: function() {

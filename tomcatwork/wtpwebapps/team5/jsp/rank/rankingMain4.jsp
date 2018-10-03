@@ -522,7 +522,7 @@ progress::-moz-progress-bar {
 
 		<pre>
 		나의 수집도
-		  <progress value="${myrank.cnt}" max="${cnt}"></progress>  ${Math.round(myrank.cnt/cnt*100*100)/100.0}%
+		  <progress value="${myrank}" max="${cnt}"></progress>  ${myrank}종 ${Math.round(myrank/cnt*100*100)/100.0}%
 		</pre>
 		<div class="head">다음 목표 타깃</div>
 		<div class="list">

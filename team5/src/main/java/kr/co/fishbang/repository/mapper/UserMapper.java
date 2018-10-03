@@ -1,5 +1,7 @@
 package kr.co.fishbang.repository.mapper;
 
+import java.util.List;
+
 import kr.co.fishbang.repository.domain.User;
 
 public interface UserMapper {
@@ -24,6 +26,19 @@ public interface UserMapper {
 	
 	//회원정보 수정
 	void updateUser(User user);
+	
+	
+	
+	/* admin user mapper */
+	
+	//관리자 :: 회원정보 검색 
+	List<User> selectUserDetail();
+		
+	//관리자 :: 회원등급 수정
+	void updateUserLevel(User user);
+		
+	//관리자 :: 회원 삭제
+	void deleteUser(String id);
 	
 	
 	

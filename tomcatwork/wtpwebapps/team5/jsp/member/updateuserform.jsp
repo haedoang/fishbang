@@ -86,13 +86,17 @@
 	class="btn-expand-collapse"><span
 	class="glyphicon glyphicon-menu-left"></span></a>
 <ul class="navbar-primary-menu">
-	<li><a href="<c:url value="/jsp/dictionary/fisheryAll.jsp"/>"><span
-			class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기(로그인시)</span></a>
+	<li>
 
+			<c:if test="${not empty sessionScope.user.id}">
+		<a href="<c:url value="/dictionary.do?m=1"/>"><span
+				class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기</span></a>
+		</c:if>
 
-
-		<a href="<c:url value="/jsp/dictionary/fishDictAll.jsp"/>"><span
-			class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감(비로그인)</span></a>
+		<c:if test="${empty sessionScope.user.id}">
+			<a href="<c:url value="/dictionary.do?m=1"/>"><span
+				class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감</span></a>
+		</c:if>
 
 
 

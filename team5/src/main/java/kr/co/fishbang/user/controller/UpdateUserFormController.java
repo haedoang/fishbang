@@ -33,7 +33,8 @@ public class UpdateUserFormController extends HttpServlet{
 		System.out.println(profile.getSysProName());
 		System.out.println(profile.getSysThuName());*/
 		
-		session.setAttribute("profile", profile);
+/*		session.setAttribute("profile", profile);
+*/		request.setAttribute("profile", profile);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/member/updateuserform.jsp");
 		rd.forward(request, response);

@@ -3,6 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.fishbang.repository.mapper.BoardMapper"> 
+
 	<resultMap type="Board" id="boardMap">
 	 <result column="posting_no" property="postingNo" />
 	 <result column="user_id" property="userId" />
@@ -21,14 +22,143 @@
 	 <result column="content" property="content" />
 	 <result column="post_verified" property="postVerified" />
 	 <result column="post_liked" property="postLiked" />
+	 <association property="profile" column="user_id" select="selectProfile"/>
+	 <collection property="commentList" column="posting_no" select="selectCommentList"/>
+	 <collection property="fileAttachList" column="posting_no" select="selectFileAttachList"/>
 	</resultMap>
 	
+	<resultMap type="BoardFileAttach" id="fileAttachMap">
+	<result column="file_no" property="fileNo" />
+	<result column="posting_no" property="postingNo" />
+	<result column="file_path" property="filePath" />
+	<result column="original_name" property="oriName" />
+	<result column="system_name" property="sysName" />
+	</resultMap>
+	
+	<resultMap type="Comment" id="commentMap">
+	<result property="commentNo" column="comment_no"/>
+	<result property="postingNo" column="posting_no"/>
+	<result property="userId" column="user_id"/>
+	<result property="commentContent" column="comment_content"/>
+	<result property="regDate" column="reg_date"/>
+	</resultMap>
+	
+
+	<resultMap id="profileMap" type="Profile">
+		<result column="no" property="no"/>
+		<result column="id" property="id"/>
+		<result column="ori_name" property="oriName"/>
+		<result column="sys_pro_name" property="sysProName"/>
+		<result column="sys_thu_name" property="sysThuName"/>
+		<result column="path" property="path"/>
+	</resultMap>
+	
+	<select id="selectFileAttachList" parameterType="int" resultMap="fileAttachMap">
+		select *
+		from tb_attach
+		where posting_no=#{postingNo}
+		order by file_no
+	</select>
+	
+	<select id="selectCommentList" parameterType="int" resultMap="commentMap">
+		select * 
+		from tb_pcomment
+		where posting_no=#{postingNo}
+		order by comment_no
+	</select>
+	
+	<!-- 사용자 프로파일 사진 경로 가지고 오기 -->
+	<select id="selectProfile" parameterType="String" resultMap="profileMap">
+	select *
+	from tb_profile
+	where id=#{user_id}
+	</select>
+	
+	<!-- 게시판 리스트 보기 -->
 	<select id="displayAllFeeds" resultMap="boardMap">
 		select *
 		  from tb_posting
 		order by posting_no desc 
 	</select>
 	
+
+	<!-- 게시판 글쓰기 -->
+	<insert id="insertBoard" parameterType="Board">
+		<selectKey keyProperty="postingNo" resultType="int" order="BEFORE">
+			select s_posting_no.nextVal from dual
+		</selectKey>
+		
+		insert into tb_posting(
+			posting_no, user_id, competition_id, method_no, fish_id, fish_name, catch_date, catch_location, geo_lat, geo_lng, fish_length, fish_weight, fish_release, content
+		) values(
+			#{postingNo}, #{userId}, #{competitionId}, #{methodNo}, #{fishId}, #{fishName}, #{catchDate}, #{catchLocation}, #{geoLat}, #{geoLng}, #{fishLength}, #{fishWeight}, #{fishRelease}, #{content}
+		)
+	</insert>
+	
+	
+	
+	<!-- 게시판 수정 -->
+	<update id="updateBoard" parameterType="Board">
+		update tb_postiong
+		set method_no=#{methodNo}, fish_id=#{fishId}, fish_name=#{fishName}, catch_date=#{catchDate}, catch_location=#{catchLocation}, 
+		geo_lat=#{geoLat}, geo_lng=#{geoLng}, fish_length=#{fishLength}, fish_weight=#{fishWeight}, fish_release=#{fishRelease}, content=#{content}
+		where posting_no=#{postiongNo} and user_id = #{userId}
+	</update>
+	
+	<!-- 게시판 삭제 -->
+	<delete id="deleteBoard" parameterType="Board">
+		delete tb_postiong
+		where  posting_no=#{postiongNo} and user_id = #{userId}
+	</delete>
+	
+	
+	
+	
+	<!-- 댓글  -->
+	<!-- 댓글 쓰기 -->
+	<insert id="insertBoardComment" parameterType="Comment">
+	insert into tb_pcomment(posting_no, comment_no, comment_content, user_id)
+	values(#{postingNo}, s_pcomment_no.nextval, #{content}, #{writer})
+	</insert>
+	
+	<!-- 댓글 리스트 보기 -->
+	<select id="selectBoardComment" parameterType="int" resultMap="commentMap">
+	select *
+	from tb_pcomment
+	where posting_no =#{postingNo}
+	order by comment_no
+	</select>
+	
+
+	
+	<!-- 댓글 수정 -->
+	<update id="updateBoardComment" parameterType="Comment" >
+	update tb_pcomment
+	set commet_content=#{commentContent},
+	user_id=#{userId}
+	where postring_no =#{postingNo} and  comment_no=#{commentNo} and user_id=#{userId}
+	</update>
+	
+
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteBoardComment"  parameterType="Comment">
+	delete tb_pcomment
+	where posting_no =#{postingNo} and  comment_no=#{commentNo} and user_id=#{userId}
+	</delete>
+	
+	
+	<!-- 첨부파일 -->
+	<!-- 파일 저장 -->
+	<insert id="insertFileAttach" parameterType="BoardFileAttach">
+		insert into tb_attach(
+    		file_no, posting_no, file_path, original_name, system_name 
+    	) values(
+    		s_file_no.nextval, #{postingNo}, #{filePath}, #{oriName}, #{sysName}
+    	)
+	</insert>
+	
+	<!-- 어장 도감 활성화 -->
 	<select id="displayByMycatch" parameterType="Board" resultMap="boardMap">
 		select *
 		  from tb_posting
@@ -36,6 +166,5 @@
 		 and where fish_id = #{fishId}
 		order by fish_length desc 
 	</select>
-	
 	
 </mapper>

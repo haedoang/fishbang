@@ -23,7 +23,7 @@
 			type="file" accept="image/png, image/jpeg"/>
 
 		<div id="profile-pic" class="profile-pic__container"
-		style="background-image: url('./img/upload${sessionScope.profile.path}/${sessionScope.profile.sysProName}')">
+		style="background-image: url('./img/uploads${profile.path}/${profile.sysProName}')">
 		<%-- style="background-image: url('c:/fishbang/upload${sessionScope.profile.path}/${sessionScope.profile.sysProName}')"> --%>
 			<div id="profile-trigger" class="profile-pic__foreground">profile
 				picture</div>

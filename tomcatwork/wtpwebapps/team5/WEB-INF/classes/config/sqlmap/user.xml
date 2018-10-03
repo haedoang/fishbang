@@ -4,12 +4,6 @@
 
 <mapper namespace="kr.co.fishbang.repository.mapper.UserMapper"> 
 
-	<!-- 회원 정보 전체 검색 -->
-	<select id="selectUserDetail" resultType="User">
-		select * 
-		  from tb_user
-		 order by no desc
-	</select>
 	
 	<!-- login -->
 	<select id="selectUser" parameterType="User" resultType="User">
@@ -73,7 +67,28 @@
 		 where id=#{id}
 	</update>
 
+
+
+	<!-- 관리자:: 회원 전체 정보 검색 -->
+	<select id="selectUserDetail" resultType="User">
+		select * 
+		  from tb_user
+		 order by no asc
+	</select>
 	
+
+	<!-- 관리자용 ''  회원 등급 수정 -->
+	<update id="updateUserLevel" parameterType="User">
+		update tb_user
+		   set lev=#{lev}
+		 where id=#{id}
+	</update>
+	
+	<!-- 관리자용 '' 회원 삭제 -->
+	<delete id="deleteUser" parameterType="String">
+		delete from tb_user
+		 where id=#{id}
+	</delete>
 	
 	
 	
