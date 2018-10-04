@@ -339,22 +339,34 @@ form button{
 	class="btn-expand-collapse"><span
 	class="glyphicon glyphicon-menu-left"></span></a>
 <ul class="navbar-primary-menu">
-	<li><a href="<c:url value="/jsp/dictionary/fisheryAll.jsp"/>"><span
-			class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기(로그인시)</span></a>
+		<li>
+		
+		<c:if test="${not empty sessionScope.user.id}">
+		<a href="<c:url value="/dictionary.do?m=1"/>"><span
+				class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기</span></a>
+		</c:if>
+
+		<c:if test="${empty sessionScope.user.id}">
+			<a href="<c:url value="/dictionary.do?m=1"/>"><span
+				class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감</span></a>
+		</c:if>
 
 
-
-		<a href="<c:url value="/jsp/dictionary/fishDictAll.jsp"/>"><span
-			class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감(비로그인)</span></a>
-
-
-
-		<a href="#"><span class="glyphicon glyphicon-tint"></span><span
-			class="nav-label">날씨,물때정보(option)</span></a> <a
-		href="<c:url value="/jsp/rank/rankingMain.jsp"/>"><span
-			class="glyphicon glyphicon-thumbs-up"></span><span class="nav-label">조과랭킹</span></a>
-		<a href="#"><span class="glyphicon glyphicon-question-sign"></span><span
-			class="nav-label">고객센터(option)</span></a></li>
+			<a href="#">
+				<span class="glyphicon glyphicon-tint"></span>
+				<span class="nav-label">날씨,물때정보(option)</span>
+			</a>
+			 
+			<a href="<c:url value="/ranking/fishLength.do"/>">
+				<span class="glyphicon glyphicon-thumbs-up"></span>
+				<span class="nav-label">조과랭킹</span>
+			</a>
+			
+			<a href="#">
+				<span class="glyphicon glyphicon-question-sign"></span>
+				<span class="nav-label">고객센터(option)</span>
+			</a>
+		</li>
 </ul>
 </nav>
 <div class="main-content">
@@ -407,7 +419,7 @@ form button{
 
 
 
-      <c:set var="doneLoop" value="false"/>
+     <c:set var="doneLoop" value="false"/>
 
   	<table>
   	    <thead>
@@ -433,8 +445,8 @@ form button{
 	   			<c:if test="<%=k==2%>"><td><r><%=k++%>위</r>     -</td></c:if>
 	   			<c:if test="<%=k==3%>"><td><r><%=k++%>위</r>     -</td></c:if>
 	   			<c:choose>
-   				<c:when test="${empty item.value.myrank.rank && not empty sessionScope.user}"><td class="myRanking"><r>내 순위</r> -</td></c:when>
-   				<c:when test="${empty item.value.myrank.rank && empty sessionScope.user}"><td></td></c:when>
+   				<c:when test="${empty item.value.myrank.rank && not empty sessionScope.user.id}"><td class="myRanking"><r>내 순위</r> -</td></c:when>
+   				<c:when test="${empty sessionScope.user.id}"><td></td></c:when>
    				<c:otherwise><td class="myRanking"><r>상위 ${Math.round(item.value.myrank.rank/item.value.cnt*100)}%</r>      ${item.value.myrank.fishLength}cm  ${item.value.myrank.fishWeight}kg</td></c:otherwise>
    				
    				</c:choose>
@@ -537,3 +549,5 @@ $('.btn-expand-collapse').click(function(e) {
 	</script>
 </body>
 </html>
+
+

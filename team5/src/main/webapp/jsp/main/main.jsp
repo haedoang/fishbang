@@ -294,7 +294,7 @@ span.UFICommentContent-user{
 				<span class="nav-label">날씨,물때정보(option)</span>
 			</a>
 			 
-			<a href="<c:url value="/jsp/rank/rankingMain.jsp"/>">
+			<a href="<c:url value="/ranking/fishLength.do"/>">
 				<span class="glyphicon glyphicon-thumbs-up"></span>
 				<span class="nav-label">조과랭킹</span>
 			</a>
@@ -443,8 +443,8 @@ span.UFICommentContent-user{
 							<!-- 첨부파일 이미지 -->
 							<table class="attach-map">
 								<tr>
-									<td class="attachpic" id="attach-map"><img src="/team5/img/gamsung.jpg" width=300px></td>
-									<td class="maplocation" id="attach-map"><div id="map" style="width: 300px; height: 300px; margin: auto;">잡은곳</div></td>
+									<td class="attachpic" id="attach-map"><img id="attachpic" src="/team5/img/gamsung.jpg" width=600px></td>
+								<!-- 	<td class="maplocation" id="attach-map"><div id="map" style="width: 300px; height: 300px; margin: auto;">잡은곳</div></td>  -->
 								</tr>
 								<tr>
 									<td class="content" id="feedcontent" colspan="2"></td>

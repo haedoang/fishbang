@@ -36,6 +36,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>src/main/webapp/img/pic</name>
+			<type>2</type>
+			<location>C:/app/tomcat-work/wtpwebapps/team5/img/pic</location>
+		</link>
+		<link>
 			<name>src/main/webapp/img/upload</name>
 			<type>2</type>
 			<location>/Applications/Eclipse/Eclipse JEE.app/Contents/MacOS/C::/fishbang/upload</location>

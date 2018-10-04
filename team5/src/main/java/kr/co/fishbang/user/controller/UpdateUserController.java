@@ -34,7 +34,7 @@ public class UpdateUserController extends HttpServlet{
 	
 		System.out.println("realPath: "+realPath);
 		//1 프로필 사진
-		//저장경로 c://fishbang//upload(dir)
+		
 		String uploadPath = realPath+"img/uploads";	//업로드 PATH 
 		String path = "/profile";
 		

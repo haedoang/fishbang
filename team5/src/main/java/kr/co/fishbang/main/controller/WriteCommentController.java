@@ -17,6 +17,7 @@ public class WriteCommentController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		System.out.println(request.getParameter("postingNo"));
 		int postingNo = Integer.parseInt(request.getParameter("postingNo"));
 		String commwrId = request.getParameter("commwrId");

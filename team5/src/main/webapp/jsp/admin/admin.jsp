@@ -12,7 +12,7 @@
 <body>
 	<div class="container-fluid">관리자 페이지입니다.</div>
 	<div class="container">
-		container
+		<br><br>
 
 		<ul class="nav nav-tabs" role="tablist" id="myTab">
 			<li role="presentation" class="active"><a href="#memberInfo"
@@ -166,14 +166,14 @@
 			<div role="tabpanel" class="tab-pane" id="eventInfo">
 				<h3>대회 관리 페이지입니다.</h3>
 				<div class="row">
-					<div class="col-md-6" style="border: 1px solid tomato">
+					<div class="col-md-6">
 						<h6>대회 목록</h6>
-						<input id="btn" type="button" value="조회"/>
+				
 						<table id="competition_table" class="table table-bordered table-hover table-condensed">
 							
 						</table>
 					</div>
-					<div class="col-md-6" style="border: 1px solid yellow">
+					<div class="col-md-6">
 						<h6>대회 등록하기</h6>
 						<form id="cForm" method="post">
 							<table class="table table-bordered table-hover table-condensed">
@@ -263,7 +263,7 @@
 	 			success:function(data) {
 					console.log(data);
 					
-					$("#competition_table").append("<tr><th>대회 번호</th><th>대회 이름</th><th>대회 날짜</th><th>대회 장소</th><th>낚시 방법</th><th>관리</th></tr>")
+					$("#competition_table").append("<tr><th>no</th><th>title</th><th>date</th><th>location</th><th>method</th><th>setting</th></tr>")
 					data.map(function(cData, i){
 						id = cData.competitionId;
 						name = cData.competitionName;

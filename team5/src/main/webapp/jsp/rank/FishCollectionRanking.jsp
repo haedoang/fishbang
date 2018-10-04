@@ -337,22 +337,34 @@ form button{
 	class="btn-expand-collapse"><span
 	class="glyphicon glyphicon-menu-left"></span></a>
 <ul class="navbar-primary-menu">
-	<li><a href="<c:url value="/jsp/dictionary/fisheryAll.jsp"/>"><span
-			class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기(로그인시)</span></a>
+		<li>
+		
+		<c:if test="${not empty sessionScope.user.id}">
+		<a href="<c:url value="/dictionary.do?m=1"/>"><span
+				class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기</span></a>
+		</c:if>
+
+		<c:if test="${empty sessionScope.user.id}">
+			<a href="<c:url value="/dictionary.do?m=1"/>"><span
+				class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감</span></a>
+		</c:if>
 
 
-
-		<a href="<c:url value="/jsp/dictionary/fishDictAll.jsp"/>"><span
-			class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감(비로그인)</span></a>
-
-
-
-		<a href="#"><span class="glyphicon glyphicon-tint"></span><span
-			class="nav-label">날씨,물때정보(option)</span></a> <a
-		href="<c:url value="/jsp/rank/rankingMain.jsp"/>"><span
-			class="glyphicon glyphicon-thumbs-up"></span><span class="nav-label">조과랭킹</span></a>
-		<a href="#"><span class="glyphicon glyphicon-question-sign"></span><span
-			class="nav-label">고객센터(option)</span></a></li>
+			<a href="#">
+				<span class="glyphicon glyphicon-tint"></span>
+				<span class="nav-label">날씨,물때정보(option)</span>
+			</a>
+			 
+			<a href="<c:url value="/ranking/fishLength.do"/>">
+				<span class="glyphicon glyphicon-thumbs-up"></span>
+				<span class="nav-label">조과랭킹</span>
+			</a>
+			
+			<a href="#">
+				<span class="glyphicon glyphicon-question-sign"></span>
+				<span class="nav-label">고객센터(option)</span>
+			</a>
+		</li>
 </ul>
 </nav>
 <div class="main-content">

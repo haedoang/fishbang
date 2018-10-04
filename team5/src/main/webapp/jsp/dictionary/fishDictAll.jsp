@@ -307,16 +307,36 @@ margin-left : 70%;
     </nav>
 <nav class="navbar-primary">
   <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
-  <ul class="navbar-primary-menu">
-    <li>
-      <a href="#"><span class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기(로그인시)</span></a>
-      <a href="#"><span class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감(비로그인)</span></a>
-      <a href="#"><span class="glyphicon glyphicon-tint"></span><span class="nav-label">날씨,물때정보(option)</span></a>
-      <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span><span class="nav-label">조과랭킹</span></a>
-      <a href="#"><span class="glyphicon glyphicon-question-sign"></span><span class="nav-label">고객센터(option)</span></a>
+	<ul class="navbar-primary-menu">
+		<li>
+		
+		<c:if test="${not empty sessionScope.user.id}">
+		<a href="<c:url value="/dictionary.do?m=1"/>"><span
+				class="glyphicon glyphicon-book"></span><span class="nav-label">내어장보기</span></a>
+		</c:if>
 
-    </li>
-  </ul>
+		<c:if test="${empty sessionScope.user.id}">
+			<a href="<c:url value="/dictionary.do?m=1"/>"><span
+				class="glyphicon glyphicon-book"></span><span class="nav-label">어류도감</span></a>
+		</c:if>
+
+
+			<a href="#">
+				<span class="glyphicon glyphicon-tint"></span>
+				<span class="nav-label">날씨,물때정보(option)</span>
+			</a>
+			 
+			<a href="<c:url value="/jsp/rank/rankingMain.jsp"/>">
+				<span class="glyphicon glyphicon-thumbs-up"></span>
+				<span class="nav-label">조과랭킹</span>
+			</a>
+			
+			<a href="#">
+				<span class="glyphicon glyphicon-question-sign"></span>
+				<span class="nav-label">고객센터(option)</span>
+			</a>
+		</li>
+	</ul>
 </nav>
 <div class="main-content">	
 
@@ -360,8 +380,12 @@ margin-left : 70%;
   		<div class = "fishinfoline">
   	
   			<div class = "fishimg">
-  		
+  			
   				<img src="${b.imgPath}" width = "185" height = "150" alt = "이미지파일이어딨지?">
+  			  	
+  			  	<c:if test="${b.imgPath}">
+  				<img src="https://en.pimg.jp/033/097/620/1/33097620.jpg" width = "185" height = "150" alt = "이미지파일이어딨지?">
+  				</c:if>
   			</div>
   		<div class = "just">
   		<p class = "fishname1">${b.kn}<br>${b.en}</p>

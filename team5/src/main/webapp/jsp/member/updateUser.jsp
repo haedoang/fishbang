@@ -63,6 +63,7 @@
 					<input id="userNat" type="text" name="nat" value="${sessionScope.user.nat}"/>
 					</c:when>
 					<c:otherwise>
+					<label for="nationality">Nationality:</label><br>
 						<select id="nat" name="nat" required>
 							<option id="menu" value="">국적을 선택하세요</option>
 							<option id="Afghanistan" value="Afghanistan">Afghanistan </option>

@@ -55,6 +55,7 @@ $(function(){
 						$("div[class='fb-inner'][data]").removeAttr("style");
 						$("div.post").not("[data]").attr("data",data[i].postingNo);
 						$("img#profile").not("[data]").attr("data",data[i].postingNo);
+						$("img#attachpic").not("[data]").attr("data",data[i].postingNo);
 						$("span.text-name").not("[data]").attr("data",data[i].postingNo);
 						$("span.text-when").not("[data]").attr("data",data[i].postingNo);
 						$("td.catch-date").not("[data]").attr("data",data[i].postingNo);
@@ -87,6 +88,10 @@ $(function(){
 					for(let feeds of data){
 						console.log(feeds.postingNo);
 						console.log("/team5/img/uploads"+feeds.profile.path+"/"+feeds.profile.sysThuName);
+						if(feeds.fileAttachList[0]!=undefined){
+							console.log("/team5/img/pic/img"+feeds.fileAttachList[0].filePath+"/"+feeds.fileAttachList[0].sysName);
+							$("img[id='attachpic'][data='"+feeds.postingNo+"']").attr("src", "/team5/img/pic/img"+feeds.fileAttachList[0].filePath+"/"+feeds.fileAttachList[0].sysName);
+						};
 						$("img[id='profile'][data='"+feeds.postingNo+"']").attr("src", "/team5/img/uploads"+feeds.profile.path+"/"+feeds.profile.sysThuName);
 						$("span[class='text-name'][data='"+feeds.postingNo+"']").text(feeds.userId);
 						$("span[class='text-when'][data='"+feeds.postingNo+"']").text(feeds.regDate);
@@ -99,6 +104,7 @@ $(function(){
 						$("td[class='content'][data='"+feeds.postingNo+"']").text(feeds.content);
 						$("span[class='text-likes'][data='"+feeds.postingNo+"']").text(feeds.postLiked);
 						$("span[class='text-comment'][data='"+feeds.postingNo+"']").text(feeds.commentList.length);
+						
 						
 						for(let comments of feeds.commentList){
 							console.log(feeds.commentList.length);

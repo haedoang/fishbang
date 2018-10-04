@@ -22,7 +22,7 @@ public class SignUpController extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//home에서 던져줌...
 		
-
+		request.setCharacterEncoding("utf-8");
 		UserMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(UserMapper.class);
 		User user = new User();
 		

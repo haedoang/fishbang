@@ -33,7 +33,8 @@ public class WritePostController extends HttpServlet{
 		// File Attach Path ~/Users/wonchoi/git/fishbang/upload
 //		 Change Mac -> Win directory "c://fishbang//upload(dir)"
 //		String uploadPath = "/Users/wonchoi/git/fishbang/upload";
-		String uploadPath = "c:/fishbang/upload";
+		String uploadPath = request.getRealPath("/img/pic/img");
+		/*String uploadPath = "c:/fishbang/upload";*/
 		String path = "/board_fileattach";
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
 		String datePath = sdf.format(new Date());
@@ -110,7 +111,8 @@ public class WritePostController extends HttpServlet{
 		while(list.hasMoreElements()) {
 			BoardFileAttach attFile = new BoardFileAttach();
 			
-			attFile.setFilePath(uploadPath+path+datePath);
+			/*attFile.setFilePath(uploadPath+path+datePath);*/
+			attFile.setFilePath(path+datePath);
 			attFile.setPostingNo(postingNo);
 			
 			String fName = list.nextElement();

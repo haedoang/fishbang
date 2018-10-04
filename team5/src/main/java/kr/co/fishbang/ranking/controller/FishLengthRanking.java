@@ -61,7 +61,7 @@ public class FishLengthRanking extends HttpServlet {
 	        
  	
 			 for(Board ff:fishrank) {
-			       
+			       System.out.println(ff.getFishName());
 		          Board board = new Board();
 		          board.setFishName(ff.getFishName());   
 		          board.setUserId(userId);
@@ -108,14 +108,9 @@ public class FishLengthRanking extends HttpServlet {
         	}else {
           k=1;
 
-
-        
-        
-        
-
         
           for(Board ff:fishrank) {
-       
+        	 System.out.println(ff.getFishName());
           Board board = new Board();
           board.setFishName(ff.getFishName());   
           board.setUserId(userId);
@@ -130,8 +125,14 @@ public class FishLengthRanking extends HttpServlet {
         	map.put("rank"+Integer.toString(k), rankL);
         	list.add(k-1, map);
         	
+        	
+        	System.out.println("         "+rankL.getFishName());
+
+        	
 	
         k++;
+        
+        
         }
 
 

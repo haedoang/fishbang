@@ -64,12 +64,12 @@ input#fishName{
 }
 
 #mains{
-height:8000px;
+height:500px;
 }
 #feedBoard{
 background : #fbfbfb;
 width:1000px;
-height:3000px;
+height:500px;
 margin-right:10px;
 float:left;
 display:block;
@@ -77,7 +77,7 @@ display:block;
 #side{
 background: white;
 width:355px;
-height:3000px;
+height:500px;
 margin-left:1000px;
 
 }
@@ -156,7 +156,7 @@ margin-left:1000px;
 
 
 	<iframe src="http://www.weather.go.kr/weather/forecast/marine_daily.jsp" 
-	style="	 position: relative; top:-290px; left:-150px;  display:block; width:879px; height: 1050px"; scrolling="no"; padding: 20px; "></iframe>
+	style="	 position: relative; top:-235px; left:-150px;  display:block; width:874px; height: 1050px"; scrolling="no"; padding: 20px; "></iframe>
 
 
 	

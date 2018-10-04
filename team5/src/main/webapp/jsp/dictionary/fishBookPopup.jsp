@@ -417,7 +417,7 @@ heigth : auto;
 							    <div class = "forimg">
 							   <div class="slider">
 							  <div class="slide">
-							  <img src="https://cs8.pikabu.ru/post_img/big/2016/05/03/0/1462224392130194053.jpg" alt="">
+							  <img src="${dict.imgPath}" alt="">
 							   <img src="http://wallpapers-images.ru/1920x1080/nature/wallpapers/wallpapers-nature-1.jpg" alt="">
 							   <img src="http://s7.hostingkartinok.com/uploads/images/2014/10/85b9468b1c085aeef767a6947562e620.jpg" alt="">
 							  </div>
