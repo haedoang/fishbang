@@ -214,6 +214,7 @@ li.unselect{
 
 
 #sideInfo{
+	margin-top: 40px;
 	text-indent: 10px;
 	background : #fbfbfb;
 	width: 170px;
@@ -339,8 +340,8 @@ form button{
   	<div id="feedBoard">
   		<div class="menu" >
     <ul>
-      <li class="select"><a href="/team5/ranking/fishLength.do">어종별 대물 랭킹</a></li>
-      <li class="unselect"><a href="/team5/ranking/fishCatch.do">전체 랭킹</a></li>
+      <li class="unselect"><a href="/team5/ranking/fishLength.do">어종별 대물 랭킹</a></li>
+      <li class="select"><a href="/team5/ranking/fishCatch.do">전체 랭킹</a></li>
       <li class="unselect"><a href="/team5/ranking/fishCollection.do">도감 수집도 랭킹</a></li>
     </ul>
  </div>

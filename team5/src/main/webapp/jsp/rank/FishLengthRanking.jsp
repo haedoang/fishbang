@@ -383,15 +383,15 @@ form button{
 <table class="icon" >
 <tr>
 	<td>
-		<form action="/team5/ranking/fishCollection.do" role="search" class="search-form">
-			<span class="glyphicon glyphicon-calendar"></span>
-			<input type="date" name="startday" value="2017-01-01" min="2017-01-01" max="2018-12-26"> ~ 
-			<input type="Date" name="endday" value="2018-12-26" min="2018-06-26" max="2018-12-26">
-			<button>전송</button>
+		<form action="/team5/ranking/fishLengthDetail.do" role="search" class="search-form">
+			<span class="glyphicon glyphicon-search"></span>					
+			<input type="search" name="fishName" class="widget-post___input widget-post--search search--fish" id="fishName" placeholder="예)놀래기"> 
+			<input type="hidden" name="fishId" id="fishResult" />
+			<button id="search">검색</button>
 		</form>
 	</td>
 		<td>
-		<form action="/team5/ranking/fishCollectionDetail.do" role="search" class="search-form">
+		<form action="/team5/ranking/fishLength.do" role="search" class="search-form">
 			<span class="glyphicon glyphicon-calendar"></span>
 			<input type="date" name="startday" value="2017-01-01" min="2017-01-01" max="2018-12-26"> ~ 
 			<input type="Date" name="endday" value="2018-12-26" min="2018-06-26" max="2018-12-26">

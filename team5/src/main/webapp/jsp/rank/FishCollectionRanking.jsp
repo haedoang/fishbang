@@ -361,9 +361,9 @@ form button{
   	<div id="feedBoard">
   		<div class="menu" >
     <ul>
-      <li class="select"><a href="/team5/ranking/fishLength.do">어종별 대물 랭킹</a></li>
+      <li class="unselect"><a href="/team5/ranking/fishLength.do">어종별 대물 랭킹</a></li>
       <li class="unselect"><a href="/team5/ranking/fishCatch.do">전체 랭킹</a></li>
-      <li class="unselect"><a href="/team5/ranking/fishCollection.do">도감 수집도 랭킹</a></li>
+      <li class="select"><a href="/team5/ranking/fishCollection.do">도감 수집도 랭킹</a></li>
     </ul>
  </div>
 <!--  
@@ -418,10 +418,11 @@ form button{
   	<div id="side">
   	  	<c:if test="${not empty sessionScope.user}">
   		<div id="sideInfo">
-		<pre>
-		나의 수집도
-		  <progress value="${myrank}" max="${cnt}"></progress>  ${myrank}종 ${Math.round(myrank/cnt*100*100)/100.0}%
-		</pre>
+  		<div class="list">
+		      나의 수집도
+		<progress value="${myrank}" max="${cnt}" style="margin-left: 5px;"></progress>
+		      <p>${Math.round(myrank/cnt*100*100)/100.0}%( ${myrank}종 )</p>
+		</div>
 		<div class="head">다음 목표 타깃</div>
 		<div class="list">
 		<ul>
