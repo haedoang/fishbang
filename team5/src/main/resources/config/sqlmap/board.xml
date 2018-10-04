@@ -99,10 +99,17 @@
 	
 	<!-- 게시판 수정 -->
 	<update id="updateBoard" parameterType="Board">
-		update tb_postiong
+		update tb_posting
 		set method_no=#{methodNo}, fish_id=#{fishId}, fish_name=#{fishName}, catch_date=#{catchDate}, catch_location=#{catchLocation}, 
 		geo_lat=#{geoLat}, geo_lng=#{geoLng}, fish_length=#{fishLength}, fish_weight=#{fishWeight}, fish_release=#{fishRelease}, content=#{content}
 		where posting_no=#{postiongNo} and user_id = #{userId}
+	</update>
+	
+	<!-- 월척 count -->
+	<update id="updateLike" parameterType="int">
+		update tb_posting
+		  set post_liked = post_liked+1 
+		 where posting_no=#{postingNo} 
 	</update>
 	
 	<!-- 게시판 삭제 -->

@@ -13,8 +13,9 @@ public interface BoardMapper {
 	public void insertBoard(Board board);
 	public void insertFileAttach(BoardFileAttach file);
 	public Profile selectProfile(String id);
+	public void updateLike(int no);
 	
 //	관리지 게시글 삭제 및 인증 업데이트 
-	void deletePosting(int no);
-	void updateVerified(Board board);
+	public void deletePosting(int no);
+	public void updateVerified(Board board);
 }

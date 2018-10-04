@@ -68,16 +68,17 @@
 }
 
 #feedBoard {
-	border: 1px solid blue;
+	/* border: 1px solid blue; */
 	width: 1000px;
 	height: 3000px;
 	margin-right: 10px;
+	margin-left: 10px;
 	float: left;
 	display: block;
 }
 
 #side {
-	border: 1px solid yellow;
+	/* border: 1px solid yellow; */
 	width: 355px;
 	height: 3000px;
 	margin-left: 1000px;
@@ -199,9 +200,14 @@ td#feedcontent{
 	text-align: left;
 }
 
+div.post_write_comment{
+	height: 66px;
+}
+
 div.comment{
 	height: 23px;
 	padding: 0px;
+	width: 95%;
 }
 
 textarea#post-comment{
@@ -209,9 +215,22 @@ textarea#post-comment{
 	padding: 0px;
 }
 
+.comment-submit{
+	display: inline-block;
+}
+
+span.UFICommentContent-user{
+	padding: 2px;
+	/* border: 1px solid blue; */
+	background: #afcdff;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
 </style>
 </head>
 <body>
+<input type='hidden' value='${sessionScope.user.id}' id='sessionVar'/>
 	<nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -291,7 +310,6 @@ textarea#post-comment{
 
 	<!-- Main-Content 각자의 페이지 작성  -->
 	<div class="main-content">
-
 			<div id="feedBoard">
 			<c:if test="${not empty sessionScope.user.id}">
 				<div class="widget-post" aria-labelledby="post-header-title">
@@ -300,7 +318,7 @@ textarea#post-comment{
 					</div>
 					<form action="/team5/write.do" id="widget-form" class="widget-post__form" name="mform"
 						aria-label="post widget"
-						onsubmit="return doCheck()"
+						onsubmit="return doCheckPost()"
 						method="POST" 
 					  	enctype="multipart/form-data" 
 						>
@@ -390,7 +408,7 @@ textarea#post-comment{
 								
 								<!-- ALWAYS 비공식  Button-->
 								<i class="fa fa-check" aria-hidden="true" style="color: white"></i>
-									공식</span>
+									비공식</span>
 
 								<div class="date">
 								
@@ -454,58 +472,35 @@ textarea#post-comment{
 					</div>
 					
 					<ul class="comments" id="comments">
-						<li class="UFIRow  UFILastComment UFILastCommentComponent UFILastComponent UFIComment display UFIComponent UFIUnseenItem">
-						<div class="clearfix">
-								<div class="_ohe lfloat">
-								</div>
-									<div class="UFIImageBlockContent _42ef clearfix">
-										<!-- <div class="_ohf rfloat">
-											<button
-												class="UFICommentCloseButtonFake _50zy _50-0 _50z- _5upp _42ft"
-												tabindex="-1" type="button" title="Remover"
-												data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$right.0">
-												<span
-													data-reactid=".1.1:4:1:$comment596675990473743_599044600236882:0.0.$right.0.$right.0.1">Remover</span>
-											</button>
-										</div> -->
-										<div class="">
-											<div class="UFICommentContentBlock">
-												<div class="UFICommentContent">
-													<span class="UFICommentContent-user">
-												<!-- 댓글 작성자 User ID CSS STYLE FONT-WEIGHT: BOLD-->
-													Nivaldo Silva
-													</span>
-														<span class="UFICommentBody">
-														<!-- 댓글 내용 -->
-														Delicia de mulher cc
-														</span>
-												</div>
-											</div>
-										</div>
-									</div>
-							</div>
-							</li>
+						
 					</ul>
 					<div class="clearfix"></div>
+					<c:if test="${not empty sessionScope.user.id}">
 					<div class="post_write_comment">
 					
 					<!-- 댓글 작성자 프로파일 이미지  -->
-
+					
 						<div class="txt">
 							<div class="text_block">
 								<div class="comment">
-									<form action="/team5/comment.do">
+									<!-- form textarea input-->
+									<form action="/team5/comment.do" name="cform"
+										method="POST" id="commentForm"
+									>
 										<textarea name="comment" id="post-comment" class="widget-post__textarea scroller" placeholder="댓글달기"></textarea>
-									</form>
+										<input type="hidden" name="postingNo"/>
+										<input type="hidden" name="commwrId" value="${sessionScope.user.id}"/>
+										<input type="submit" value="댓글등록">
 									<div class="pull-left text-wrcommenttext">
 									
-									<!-- form textarea input-->
 									</div>
-
+									
+									</form>
 								</div>
 							</div>
 						</div>
 					</div>
+					</c:if>
 				<div id="br"><br></div>
 				</div>
 				
@@ -529,7 +524,8 @@ textarea#post-comment{
 
 <script src="<c:url value="/script/main/fishsearch.js"/>"></script>
 
-	
+<!-- Comment Form Submit  Script -->
+<script src="<c:url value="/script/main/writecomment.js"/>"></script>
 <!-- Daum Address Search Script -->
 <script>
 

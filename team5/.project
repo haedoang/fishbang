@@ -38,12 +38,12 @@
 		<link>
 			<name>src/main/webapp/img/upload</name>
 			<type>2</type>
-			<location>C:/fishbang/upload</location>
+			<location>/Applications/Eclipse/Eclipse JEE.app/Contents/MacOS/C::/fishbang/upload</location>
 		</link>
 		<link>
 			<name>src/main/webapp/img/uploads</name>
 			<type>2</type>
-			<location>C:/fishbang/tomcatwork/wtpwebapps/team5/img/upload</location>
+			<location>/Users/wonchoi/eclipse-workspace/tomcat-work/wtpwebapps/team5/img/uploads</location>
 		</link>
 	</linkedResources>
 </projectDescription>
